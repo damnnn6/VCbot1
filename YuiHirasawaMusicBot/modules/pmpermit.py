@@ -18,13 +18,13 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                "Hi there, This is a music assistant service .\n\n ❗️ Rules:\n   - No chatting allowed\n   - No spam allowed \n\n 👉 **SEND GROUP INVITE LINK OR USERNAME IF USERBOT CAN'T JOIN YOUR GROUP.**\n\n ⚠️ Disclamer: If you are sending a message here it means admin will see your message and join chat\n    - Don't add this user to secret groups.\n   - Don't Share private info here\n\n",
+                "مرحبًا ، هذه خدمة مساعد موسيقى .\n\n ❗️ قواعد:\n   - لا يسمح بالدردشة\n   - لا يسمح البريد العشوائي \n\n 👉 **إرسال رابط دعوة المجموعة أو اسم المستخدم إذا لم يتمكن USERBOT من الانضمام إلى مجموعتك.**\n\n ⚠️ إخلاء المسؤولية: إذا كنت ترسل رسالة هنا ، فهذا يعني أن المسؤول سيرى رسالتك وينضم إلى الدردشة\n    - لا تقم بإضافة هذا المستخدم إلى مجموعات سرية.\n   - لا تشارك المعلومات الخاصة هنا\n\n",
             )
             return
 
     
 
-@Client.on_message(filters.command(["/pmpermit"]))
+@Client.on_message(filters.command(["موافقة"]))
 async def bye(client: Client, message: Message):
     if message.from_user.id in SUDO_USERS:
         global PMSET
@@ -44,7 +44,7 @@ async def autopmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if not chat_id in pchats:
         pchats.append(chat_id)
-        await message.reply_text("Approoved to PM due to outgoing messages")
+        await message.reply_text("تمت الموافقة على PM بسبب الرسائل الصادرة")
         return
     message.continue_propagation()    
     

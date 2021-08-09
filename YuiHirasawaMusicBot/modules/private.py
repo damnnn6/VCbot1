@@ -22,15 +22,15 @@ def _start(client, message):
             [
                 [
                     InlineKeyboardButton(
-                        "➕ Add me to your Group 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
+                        "➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
                 [
                     InlineKeyboardButton(
-                        "📲 Updates", url=f"https://t.me/{UPDATES_CHANNEL}"), 
+                        "📲 الاوامر", url=f"https://t.me/vvvvisn/3172"), 
                     InlineKeyboardButton(
-                        "💬 Support", url=f"https://t.me/{SUPPORT_GROUP}")
+                        "💬 قناة البوت", url=f"https://t.me/cDDDD")
                 ],[
                     InlineKeyboardButton(
-                         "🛠 Source Code 🛠", url=f"https://{SOURCE_CODE}")
+                         "🛠 المطور  🛠", url=f"https://t.me/vvvvisn")
                 ]
             ]
         ),
@@ -45,7 +45,7 @@ async def gstart(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "💬 Support Chat", url=f"https://t.me/{SUPPORT_GROUP}"
+                        "💬 قناة اابوت", url=f"https://t.me/vvvvisn"
                     )
                 ]
             ]
@@ -103,7 +103,7 @@ def map(pos):
 @Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
 async def ghelp(_, message: Message):
     await message.reply_text(
-        f"""**🙋‍♀️ Hello there! I can play music in the voice chats of telegram groups & channels.**""",
+        f"""**🙋‍♀️ أهلا بك!  يمكنني تشغيل الموسيقى في الدردشات الصوتية .**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [

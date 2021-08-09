@@ -15,7 +15,7 @@ async def inline(client: Client, query: InlineQuery):
         await client.answer_inline_query(
             query.id,
             results=answers,
-            switch_pm_text="Type a YouTube video name...",
+            switch_pm_text="اكتب اسم فيديو YouTube‌‌...",
             switch_pm_parameter="help",
             cache_time=0,
         )
@@ -30,7 +30,7 @@ async def inline(client: Client, query: InlineQuery):
                         result["duration"], result["viewCount"]["short"]
                     ),
                     input_message_content=InputTextMessageContent(
-                        "https://www.youtube.com/watch?v={}".format(result["id"])
+                        "تشغيل https://www.youtube.com/watch?v={}".format(result["id"])
                     ),
                     thumb_url=result["thumbnails"][0]["url"],
                 )
@@ -42,6 +42,6 @@ async def inline(client: Client, query: InlineQuery):
             await query.answer(
                 results=answers,
                 cache_time=0,
-                switch_pm_text="Error: Search timed out",
+                switch_pm_text="خطاء: توقف البحث",
                 switch_pm_parameter="",
             )

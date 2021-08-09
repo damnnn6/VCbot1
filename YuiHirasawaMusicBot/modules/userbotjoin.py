@@ -7,7 +7,7 @@ from YuiHirasawaMusicBot.helpers.decorators import errors
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
 from YuiHirasawaMusicBot.config import SUDO_USERS
 
-@Client.on_message(filters.command(["userbotjoin"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command([""]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addchannel(client, message):
@@ -44,7 +44,7 @@ async def addchannel(client, message):
     )
 
 
-@USER.on_message(filters.group & filters.command(["userbotleave"]))
+@USER.on_message(filters.group & filters.command([""]))
 @authorized_users_only
 async def rem(USER, message):
     try:
