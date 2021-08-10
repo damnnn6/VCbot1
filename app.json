@@ -1,9 +1,9 @@
 {
-  "name": "YuiHirasawaMusicBot",
-  "logo": "https://telegra.ph/file/d378fd2a9c7109abc0e49.jpg",
+  "name": "VENOMMUSICBOT",
+  "logo": "https://telegra.ph/file/4d55188c891842cbc5f62.jpg",
   "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by MARSHALX TGCALLS.",
   "keywords": ["music", "voicechat", "telegram"],
-  "repository": "https://github.com/Yeagerist-Music-Streamer-Bot-V3/YuiHirasawaMusicBot",
+  "repository": "https://github.com/Dev3yad/VCbot1",
   "buildpacks": [
    {
      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
@@ -52,7 +52,7 @@
     "BG_IMAGE": {
       "description": "BG image of bot (Use transparent one) [IGNORE].",
       "required": false,
-      "value": "  https://telegra.ph/file/8a4928725cbc36a0f703b.jpg"
+      "value": "  https://telegra.ph/file/07de19a57f2dd58ea9f06.jpg"
     },     
     "UPDATES_CHANNEL": {
       "description": "Updates Channel without @ [Leave this if you don't have one].",
