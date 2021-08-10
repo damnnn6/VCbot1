@@ -14,70 +14,65 @@
   ],        
   "env": {
     "SESSION_NAME": {
-      "description": "Pyrogram session string",
+      "description": "كود تيرمكس",
       "required": true
     },
     "BOT_TOKEN": {
-      "description": "A bot token from @BotFather",
+      "description": "توكن البوت",
       "required": true
     },
     "BOT_USERNAME": {
-      "description": "Your bot's username without @",
+      "description": "يوزر البوت",
       "required": true
     },
     "BOT_NAME": {
-      "description": "Your MusicPlayer Bot Name.",
+      "description": "اسم البوت.",
       "required": false,
       "value": ""
     },
     "SUPPORT_GROUP": {
-      "description": "Your MusicPlayer support group without @ [Leave this if you don't have one]",
+      "description": "يوزر جروب المساعده",
       "required": false,
-      "value": "Yeageristbots"
+      "value": "VC_SUP"
     },
     "PROJECT_NAME": {
-      "description": "Your MusicPlayer project Name.",
+      "description": "اسم الحساب المساعد.",
       "required": false,
-      "value": "YuiHirasawaMusicBot v5"
+      "value": "√𝙼𝚄𝚂𝙸𝙲.."𖥕𝚅𝙴𝙽𝙼𝙾🎶"
     },
     "ASSISTANT_NAME": {
-      "description": "Your MusicPlayer's assistant Username without @.",
+      "description": "يوزر الحساب المساعد.",
       "required": true
-    },
-    "ARQ_API_KEY": {
-      "description": "Get from @ARQRobot.",
-      "required": false,
-      "value": ""
-    },    
+    },  
     "BG_IMAGE": {
-      "description": "BG image of bot (Use transparent one) [IGNORE].",
+      "description": "صوره تشغيل الموسيقي.",
       "required": false,
       "value": "https://telegra.ph/file/07de19a57f2dd58ea9f06.jpg"
     },     
     "UPDATES_CHANNEL": {
-      "description": "Updates Channel without @ [Leave this if you don't have one].",
+      "description": "قناه التحديثات.",
       "required": false,
       "value": "Animemusicarchive6"
     },    
     "API_ID": {
-      "description": "App ID from my.telegram.org/apps",
+      "description": "ال api id my.telegram.org/apps",
       "required": true
     },
     "PMPERMIT": {
-      "description": "Change to turn off",
+      "description": "زي ما هي",
       "required": false,
       "value": "ENABLE"
     },    
     "API_HASH": {
-      "description": "App hash from my.telegram.org/apps",
+      "description": "ال api hash my.telegram.org/apps",
       "required": true
     },
     "SUDO_USERS": {
-      "description": "List of user IDs counted as admin everywhere (separated by space).",
+      "description": "قائمه ايديهات الادمنيه.",
       "required": true
     },
     "DURATION_LIMIT": {
-      "description": "Max audio duration limit for downloads (minutes).",
+      "description": "اقصي مده لي عدد الدقايق.",
       "required": true,
       "value": "400"
     }
