@@ -52,7 +52,7 @@ def cb_admin_check(func: Callable) -> Callable:
         if cb.from_user.id in admemes:
             return await func(client, cb)
         else:
-            await cb.answer("You ain't allowed!", show_alert=True)
+            await cb.answer("لا يسمح لك!", show_alert=True)
             return
 
     return decorator
@@ -1052,24 +1052,24 @@ async def jiosaavn(client: Client, message_: Message):
             if administrator == message_.from_user.id:
                 if message_.chat.title.startswith("Channel Music: "):
                     await lel.edit(
-                        "<b>Remember to add helper to your channel</b>",
+                        "<b>تذكر أن تضيف الحساب المساعد إلى قناتك</b>",
                     )
                     pass
                 try:
                     invitelink = await client.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Add me as admin of yor group first</b>",
+                        "<b>أضفني كمسؤول عن مجموعتك أولاً</b>",
                     )
                     return
 
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message_.chat.id, "I joined this group for playing music in VC"
+                        message_.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى في VC"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>انضم الحساب المساعد إلى محادثتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -1077,15 +1077,15 @@ async def jiosaavn(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add @DaisyXmusic to your Group and try again</b>",
+                        f"<b>🔴 خطأ يوجد ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} لا يمكن الانضمام إلى مجموعتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر المستخدم في المجموعة."
+                        "\n\nأو أضف يدويًا @DaisyXmusic إلى مجموعتك وحاول مرة أخرى</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            "<i> helper Userbot not in this chat, Ask admin to send /play command for first time or add assistant manually</i>"
+            "<i> الحساب مساعد ليس في هذه الدردشة ، اطلب من المسؤول الإرسال \n /انضم او /تشغيل \n لأول مرة أو إضافة الحساب المساعد يدويًا</i>"
         )
         return
     requested_by = message_.from_user.first_name
@@ -1093,7 +1093,7 @@ async def jiosaavn(client: Client, message_: Message):
     text = message_.text.split(" ", 1)
     query = text[1]
     res = lel
-    await res.edit(f"Searching 🔍 for `{query}` on jio saavn")
+    await res.edit(f"يبحث 🔍 عن `{query}` ")
     try:
         songs = await arq.saavn(query)
         if not songs.ok:
@@ -1105,13 +1105,13 @@ async def jiosaavn(client: Client, message_: Message):
         sthumb = songs.result[0].image
         sduration = int(songs.result[0].duration)
     except Exception as e:
-        await res.edit("Found Literally Nothing!, You Should Work On Your English.")
+        await res.edit("لم يتم العثور على أي شيء حرفيًا! ، يجب أن تعمل على تحسين مستواك في اللغة الإنجليزية.")
         print(str(e))
         return
     try:    
         duuration= round(sduration / 60)
         if duuration > DURATION_LIMIT:
-            await cb.message.edit(f"Music longer than {DURATION_LIMIT}min are not allowed to play")
+            await cb.message.edit(f"الموسيقى أطول من {DURATION_LIMIT} دقيقة لا يمكنني تشغيلها")
             return
     except:
         pass    
@@ -1123,7 +1123,7 @@ async def jiosaavn(client: Client, message_: Message):
             ],
             [
                 InlineKeyboardButton(
-                    text="Join Updates Channel", url=f"https://t.me/{updateschannel}"
+                    text="الانضمام إلى قناة التحديثات", url=f"https://t.me/{updateschannel}"
                 )
             ],
             [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
@@ -1144,11 +1144,11 @@ async def jiosaavn(client: Client, message_: Message):
             chat_id=message_.chat.id,
             reply_markup=keyboard,
             photo="final.png",
-            caption=f"✯{bn}✯=#️⃣ Queued at position {position}",
+            caption=f"✯{bn}✯=#️⃣ في قائمة الانتظار {position}",
         )
 
     else:
-        await res.edit_text(f"{bn}=▶️ Playing.....")
+        await res.edit_text(f"{bn}=▶️ يشتغل.....")
         que[chat_id] = []
         qeue = que.get(chat_id)
         s_name = sname
@@ -1159,16 +1159,16 @@ async def jiosaavn(client: Client, message_: Message):
         try:
             await callsmusic.set_stream(chat_id, file_path)
         except:
-            res.edit("Group call is not connected of I can't join it")
+            res.edit("المكالمة الجماعية غير متصلة لا أستطيع الانضمام إليها")
             return
-    await res.edit("Generating Thumbnail.")
+    await res.edit("توليد الصورة المصغرة.")
     await generate_cover(requested_by, sname, ssingers, sduration, sthumb)
     await res.delete()
     m = await client.send_photo(
         chat_id=message_.chat.id,
         reply_markup=keyboard,
         photo="final.png",
-        caption=f"Playing {sname} Via Jiosaavn",
+        caption=f"يشتغل {sname} ",
     )
     os.remove("final.png")
 
@@ -1184,11 +1184,11 @@ async def lol_cb(b, cb):
     try:
         x,query,useer_id = typed_.split("|")      
     except:
-        await cb.message.edit("Song Not Found")
+        await cb.message.edit("لم يتم العثور على الاغنية")
         return
     useer_id = int(useer_id)
     if cb.from_user.id != useer_id:
-        await cb.answer("You ain't the person who requested to play the song!", show_alert=True)
+        await cb.answer("أنت لست الشخص الذي طلب تشغيل الأغنية!", show_alert=True)
         return
     await cb.message.edit("انتظر  لحظة للتشغيل ☻")
     x=int(x)
@@ -1211,7 +1211,7 @@ async def lol_cb(b, cb):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         if (dur / 60) > DURATION_LIMIT:
-             await cb.message.edit(f"Music longer than {DURATION_LIMIT}min are not allowed to play")
+             await cb.message.edit(f"الموسيقى أطول من {DURATION_LIMIT} دقيقة لايمكن تشغيلها")
              return
     except:
         pass
@@ -1254,7 +1254,7 @@ async def lol_cb(b, cb):
         await cb.message.delete()
         await b.send_photo(chat_id,
             photo="final.png",
-            caption=f"#⃣  Song requested by {r_by.mention} <b>queued</b> at position {position}!",
+            caption=f"#⃣ تم طلب الأغنية بواسطة {r_by.mention} <b>في قائمة الانتظار</b> في الانتظار {position}!",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -1276,7 +1276,7 @@ async def lol_cb(b, cb):
         await b.send_photo(chat_id,
             photo="final.png",
             reply_markup=keyboard,
-            caption=f"▶️ <b>Playing</b> here the song requested by {r_by.mention} via Youtube Music 😎",
+            caption=f"▶️ <b>يشتغل</b> هنا الأغنية التي طلبتها {r_by.mention} عبر يوتيوب 😎",
         )
         
         os.remove("final.png")
