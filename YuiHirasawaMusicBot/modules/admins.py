@@ -49,10 +49,10 @@ async def resume(_, message: Message):
     if (chat_id not in callsmusic.active_chats) or (
         callsmusic.active_chats[chat_id] == "playing"
     ):
-        await message.reply_text("❗ لم يتم إيقاف أي شيء مؤقتًا‌‌!")
+        await message.reply_text("❗ لم يتم إيقاف أي شيء مؤقتا!")
     else:
         callsmusic.resume(chat_id)
-        await message.reply_text("⏸ مستأنـف!")
+        await message.reply_text("⏸ اسـتـنـاف !")
 
 
 @Client.on_message(command("انهاء") & other_filters)
@@ -79,7 +79,7 @@ async def skip(_, message: Message):
     global que
     chat_id = get_chat_id(message.chat)
     if chat_id not in callsmusic.active_chats:
-        await message.reply_text("❗ لا شيء مشغل للتخطي!")
+        await message.reply_text("❗ لا شيء مشغل للتخطي !")
     else:
         queues.task_done(chat_id)
         if queues.is_empty(chat_id):
@@ -98,7 +98,7 @@ async def skip(_, message: Message):
     await message.reply_text(f"- تم تخطي **{skip[0]}**\n- يشغل الان **{qeue[0][0]}**")
 
 
-@Client.on_message(filters.command("المشرفين"))
+@Client.on_message(filters.command("تحديث"))
 @errors
 async def admincache(client, message: Message):
     set(
@@ -108,4 +108,4 @@ async def admincache(client, message: Message):
             for member in await message.chat.get_members(filter="administrators")
         ],
     )
-    await message.reply_text("❇️ تم تحديث ذاكرة التخزين المؤقت للمسؤول !")
+    await message.reply_text("❇️ تم تحديث قائمه المشرفين المؤقتا !")
