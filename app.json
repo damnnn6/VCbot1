@@ -1,9 +1,9 @@
 {
-  "name": "VENOMMUSICBOT",
-  "logo": "https://telegra.ph/file/4d55188c891842cbc5f62.jpg",
+  "name": "YuiHirasawaMusicBot",
+  "logo": "https://telegra.ph/file/d378fd2a9c7109abc0e49.jpg",
   "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by MARSHALX TGCALLS.",
   "keywords": ["music", "voicechat", "telegram"],
-  "repository": "https://github.com/Dev3yad/VCbot1",
+  "repository": "https://github.com/Yeagerist-Music-Streamer-Bot-V3/YuiHirasawaMusicBot",
   "buildpacks": [
    {
      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
@@ -14,65 +14,70 @@
   ],        
   "env": {
     "SESSION_NAME": {
-      "description": "كود تيرمكس",
+      "description": "Pyrogram session string",
       "required": true
     },
     "BOT_TOKEN": {
-      "description": "توكن البوت",
+      "description": "A bot token from @BotFather",
       "required": true
     },
     "BOT_USERNAME": {
-      "description": "يوزر البوت",
+      "description": "Your bot's username without @",
       "required": true
     },
     "BOT_NAME": {
-      "description": "اسم البوت.",
+      "description": "Your MusicPlayer Bot Name.",
       "required": false,
       "value": ""
     },
     "SUPPORT_GROUP": {
-      "description": "يوزر جروب المساعده",
+      "description": "Your MusicPlayer support group without @ [Leave this if you don't have one]",
       "required": false,
-      "value": "VC_SUP"
+      "value": "Yeageristbots"
     },
     "PROJECT_NAME": {
-      "description": "اسم الحساب المساعد.",
+      "description": "Your MusicPlayer project Name.",
       "required": false,
-      "value": "√𝙼𝚄𝚂𝙸𝙲.."𖥕𝚅𝙴𝙽𝙼𝙾🎶"
+      "value": "YuiHirasawaMusicBot v5"
     },
     "ASSISTANT_NAME": {
-      "description": "يوزر الحساب المساعد.",
+      "description": "Your MusicPlayer's assistant Username without @.",
       "required": true
-    },  
-    "BG_IMAGE": {
-      "description": "صوره تشغيل الموسيقي.",
+    },
+    "ARQ_API_KEY": {
+      "description": "Get from @ARQRobot.",
       "required": false,
-      "value": "https://telegra.ph/file/07de19a57f2dd58ea9f06.jpg"
+      "value": ""
+    },    
+    "BG_IMAGE": {
+      "description": "BG image of bot (Use transparent one) [IGNORE].",
+      "required": false,
+      "value": "  https://telegra.ph/file/8a4928725cbc36a0f703b.jpg"
     },     
     "UPDATES_CHANNEL": {
-      "description": "قناه التحديثات.",
+      "description": "Updates Channel without @ [Leave this if you don't have one].",
       "required": false,
       "value": "Animemusicarchive6"
     },    
     "API_ID": {
-      "description": "ال api id my.telegram.org/apps",
+      "description": "App ID from my.telegram.org/apps",
       "required": true
     },
     "PMPERMIT": {
-      "description": "زي ما هي",
+      "description": "Change to turn off",
       "required": false,
       "value": "ENABLE"
     },    
     "API_HASH": {
-      "description": "ال api hash my.telegram.org/apps",
+      "description": "App hash from my.telegram.org/apps",
       "required": true
     },
     "SUDO_USERS": {
-      "description": "قائمه ايديهات الادمنيه.",
+      "description": "List of user IDs counted as admin everywhere (separated by space).",
       "required": true
     },
     "DURATION_LIMIT": {
-      "description": "اقصي مده لي عدد الدقايق.",
+      "description": "Max audio duration limit for downloads (minutes).",
       "required": true,
       "value": "400"
     }
