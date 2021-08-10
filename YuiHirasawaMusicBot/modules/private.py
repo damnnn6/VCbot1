@@ -25,12 +25,12 @@ def _start(client, message):
                         "➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
                 [
                     InlineKeyboardButton(
-                        "📲 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
+                        "💬 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
                     InlineKeyboardButton(
-                        "🛠 المطور 🛠", url=f"https://t.me/ahmedyad200")
+                        "المطور 🛠", url=f"https://t.me/ahmedyad200")
                 ],[
                     InlineKeyboardButton(
-                         "📲 الاوامر", url=f"https://t.me/vvvvisn")
+                         "📲 الاوامر", url=f"https://t.me/SOURCEVENOM1/1563")
                 ]
             ]
         ),
