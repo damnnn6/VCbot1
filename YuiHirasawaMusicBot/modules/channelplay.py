@@ -53,7 +53,7 @@ async def playlist(client, message):
       lel = await client.get_chat(message.chat.id)
       lol = lel.linked_chat.id
     except:
-      message.reply("Is this cat even linked?")
+      message.reply("لم يتم ربط القناه ?")
       return
     global que
     queue = que.get(lol)
@@ -126,14 +126,14 @@ async def ee(client, message):
       lol = lel.linked_chat.id
       conv = lel.linked_chat
     except:
-      await message.reply("Is chat even linked")
+      await message.reply("لم يتم ربط القناه ")
       return
     queue = que.get(lol)
     stats = updated_stats(conv, queue)
     if stats:
         await message.reply(stats)
     else:
-        await message.reply("No VC instances running in this chat")
+        await message.reply("لا توجد محادثة صوتية قيد التشغيل في هذه الدردشة")
 
 
 @Client.on_message(filters.command(["channelplayer","cplayer"]) & filters.group & ~filters.edited)
@@ -145,7 +145,7 @@ async def settings(client, message):
       lol = lel.linked_chat.id
       conv = lel.linked_chat
     except:
-      await message.reply("Is chat even linked")
+      await message.reply("لم يتم ربط القناه ")
       return
     queue = que.get(lol)
     stats = updated_stats(conv, queue)
@@ -156,7 +156,7 @@ async def settings(client, message):
         else:
             await message.reply(stats, reply_markup=r_ply("play"))
     else:
-        await message.reply("No VC instances running in this chat")
+        await message.reply("لا توجد محادثة صوتية قيد التشغيل في هذه الدردشة")
 
 
 @Client.on_callback_query(filters.regex(pattern=r"^(cplaylist)$"))
@@ -227,7 +227,7 @@ async def m_cb(b, cb):
         if (chet_id not in callsmusic.active_chats) or (
             callsmusic.active_chats[chet_id] == "paused"
         ):
-            await cb.answer("Chat is not connected!", show_alert=True)
+            await cb.answer("الدردشة غير متصلة!", show_alert=True)
         else:
             callsmusic.pause(chet_id)
             await cb.answer("Music Paused!")
@@ -239,7 +239,7 @@ async def m_cb(b, cb):
         if (chet_id not in callsmusic.active_chats) or (
             callsmusic.active_chats[chet_id] == "playing"
         ):
-            await cb.answer("Chat is not connected!", show_alert=True)
+            await cb.answer("الدردشة غير متصلة!", show_alert=True)
         else:
             callsmusic.resume(chet_id)
             await cb.answer("Music Resumed!")
@@ -274,7 +274,7 @@ async def m_cb(b, cb):
         if (chet_id not in callsmusic.active_chats) or (
             callsmusic.active_chats[chet_id] == "playing"
         ):
-            await cb.answer("Chat is not connected or already playng", show_alert=True)
+            await cb.answer("الدردشة غير متصلة or already playng", show_alert=True)
         else:
             callsmusic.resume(chet_id)
             await cb.answer("Music Resumed!")
@@ -282,7 +282,7 @@ async def m_cb(b, cb):
         if (chet_id not in callsmusic.active_chats) or (
             callsmusic.active_chats[chet_id] == "paused"
         ):
-            await cb.answer("Chat is not connected or already paused", show_alert=True)
+            await cb.answer("الدردشة غير متصلة or already paused", show_alert=True)
         else:
             callsmusic.pause(chet_id)
             await cb.answer("Music Paused!")
@@ -312,7 +312,7 @@ async def m_cb(b, cb):
         if qeue:
             qeue.pop(0)
         if chet_id not in callsmusic.active_chats:
-            await cb.answer("Chat is not connected!", show_alert=True)
+            await cb.answer("الدردشة غير متصلة!", show_alert=True)
         else:
             queues.task_done(chet_id)
 
@@ -339,14 +339,14 @@ async def m_cb(b, cb):
             callsmusic.stop(chet_id)
             await cb.message.edit("Successfully Left the Chat!")
         else:
-            await cb.answer("Chat is not connected!", show_alert=True)
+            await cb.answer("الدردشة غير متصلة!", show_alert=True)
 
 
 @Client.on_message(filters.command(["channelplay","cplay"])  & filters.group & ~filters.edited)
 @authorized_users_only
 async def play(_, message: Message):
     global que
-    lel = await message.reply("🔄 <b>Processing</b>")
+    lel = await message.reply("🔄 <b>معالجة</b>")
 
     try:
       conchat = await _.get_chat(message.chat.id)
@@ -354,12 +354,12 @@ async def play(_, message: Message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("Is chat even linked")
+      await message.reply("لم يتم ربط القناه ")
       return
     try:
       administrators = await get_administrators(conv)
     except:
-      await message.reply("Am I admin of Channel")
+      await message.reply("اضفني ادمن في القناة")
     try:
         user = await USER.get_me()
     except:
@@ -374,7 +374,7 @@ async def play(_, message: Message):
             if administrator == message.from_user.id:
                 if message.chat.title.startswith("Channel Music: "):
                     await lel.edit(
-                        "<b>Remember to add helper to your channel</b>",
+                        "<b>تذكر أن تضيف المساعد إلى قناتك</b>",
                     )
                     pass
 
@@ -397,8 +397,8 @@ async def play(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add assistant to your Group and try again</b>",
+                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} تعذر الانضمام إلى قناتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر الحساب في المجموعة."
+                        "\n\nأو أضف يدويًا وحاول مرا اخري</b>",
                     )
     try:
         await USER.get_chat(chid)
@@ -470,7 +470,7 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("🎵 **Processing**")
+        await lel.edit("🎵 **معالجة**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -524,7 +524,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
-        await lel.edit("🎵 **Processing**")
+        await lel.edit("🎵 **معالجة**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -614,7 +614,7 @@ async def play(_, message: Message):
 @authorized_users_only
 async def deezer(client: Client, message_: Message):
     global que
-    lel = await message_.reply("🔄 <b>Processing</b>")
+    lel = await message_.reply("🔄 <b>معالجة</b>")
 
     try:
       conchat = await client.get_chat(message_.chat.id)
@@ -622,12 +622,12 @@ async def deezer(client: Client, message_: Message):
       conv = conchat.linked_chat
       chid = conid
     except:
-      await message_.reply("Is chat even linked")
+      await message_.reply("لم يتم ربط القناه ")
       return
     try:
       administrators = await get_administrators(conv)
     except:
-      await message.reply("Am I admin of Channel") 
+      await message.reply("اضفني ادمن في القناة") 
     try:
         user = await USER.get_me()
     except:
@@ -642,7 +642,7 @@ async def deezer(client: Client, message_: Message):
             if administrator == message_.from_user.id:
                 if message_.chat.title.startswith("Channel Music: "):
                     await lel.edit(
-                        "<b>Remember to add helper to your channel</b>",
+                        "<b>تذكر أن تضيف المساعد إلى قناتك</b>",
                     )
                     pass
                 try:
@@ -664,8 +664,8 @@ async def deezer(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in channel."
-                        "\n\nOr manually add assistant to your Group and try again</b>",
+                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in channel."
+                        "\n\nأو أضف يدويًا وحاول مرا اخري</b>",
                     )
     try:
         await USER.get_chat(chid)
@@ -718,7 +718,7 @@ async def deezer(client: Client, message_: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await res.edit_text(f"✯{bn}✯= #️⃣ Queued at position {position}")
+        await res.edit_text(f"✯{bn}✯= #️⃣ في قائمة الانتظار {position}")
     else:
         await res.edit_text(f"✯{bn}✯=▶️ Playing.....")
 
@@ -745,19 +745,19 @@ async def deezer(client: Client, message_: Message):
 @authorized_users_only
 async def jiosaavn(client: Client, message_: Message):
     global que
-    lel = await message_.reply("🔄 **Processing**")
+    lel = await message_.reply("🔄 **معالجة**")
     try:
       conchat = await client.get_chat(message_.chat.id)
       conid = conchat.linked_chat.id
       conv = conchat.linked_chat
       chid = conid
     except:
-      await message_.reply("Is chat even linked")
+      await message_.reply("لم يتم ربط القناه ")
       return
     try:
       administrators = await get_administrators(conv)
     except:
-      await message.reply("Am I admin of Channel")
+      await message.reply("اضفني ادمن في القناة")
     try:
         user = await USER.get_me()
     except:
@@ -772,14 +772,14 @@ async def jiosaavn(client: Client, message_: Message):
             if administrator == message_.from_user.id:
                 if message_.chat.title.startswith("Channel Music: "):
                     await lel.edit(
-                        "<b>Remember to add helper to your channel</b>",
+                        "<b>تذكر أن تضيف المساعد إلى قناتك</b>",
                     )
                     pass
                 try:
                     invitelink = await client.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Add me as admin of yor group first</b>",
+                        "<b>أضفني كمسؤول في مجموعتك أولاً</b>",
                     )
                     return
 
@@ -794,15 +794,15 @@ async def jiosaavn(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add @Rengoku_Kyujoro_Helper to your Group and try again</b>",
+                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} تعذر الانضمام إلى قناتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر الحساب في المجموعة."
+                        "\n\nأو أضف يدويًا @Rengoku_Kyujoro_Helper to your Group and try again</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            "<i> helper Userbot not in this channel, Ask channel admin to send /play command for first time or add assistant manually</i>"
+            "<i> الحساب المساعد ليس في هذه القناة ، اطلب من مسؤول القناة إرسال \n /انضم او /تشغيل \nالأمر لأول مرة أو إضافة الحساب المساعد يدويًا </i>"
         )
         return
     requested_by = message_.from_user.first_name
@@ -854,11 +854,11 @@ async def jiosaavn(client: Client, message_: Message):
             chat_id=message_.chat.id,
             reply_markup=keyboard,
             photo="final.png",
-            caption=f"✯{bn}✯=#️⃣ Queued at position {position}",
+            caption=f"✯{bn}✯=#️⃣ في قائمة الانتظار {position}",
         )
 
     else:
-        await res.edit_text(f"{bn}=▶️ Playing.....")
+        await res.edit_text(f"{bn}=▶️ يشتغل.....")
         que[chat_id] = []
         qeue = que.get(chat_id)
         s_name = sname
@@ -874,6 +874,6 @@ async def jiosaavn(client: Client, message_: Message):
         chat_id=message_.chat.id,
         reply_markup=keyboard,
         photo="final.png",
-        caption=f"Playing {sname} Via Jiosaavn in linked channel",
+        caption=f"يشتغل {sname} في القناة المرتبطة",
     )
     os.remove("final.png")

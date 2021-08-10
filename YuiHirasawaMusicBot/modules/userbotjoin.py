@@ -6,6 +6,7 @@ from YuiHirasawaMusicBot.helpers.decorators import authorized_users_only
 from YuiHirasawaMusicBot.helpers.decorators import errors
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
 from YuiHirasawaMusicBot.config import SUDO_USERS
+from YuiHirasawaMusicBot.config import BOT_USERNAME
 
 @Client.on_message(filters.command(["انضم"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
@@ -36,7 +37,7 @@ async def addchannel(client, message):
         print(e)
         await message.reply_text(
             f"<b>🛑 خطأ كثره الطلبات 🛑 \n المستخدم {user.first_name} تعذر الانضمام إلى مجموعتك بسبب كثرة طلبات الانضمام للمستخدم تأكد من عدم حظر المستخدم في المجموعة."
-            "\n\nأو أضف يدويًا @Rengoku_Kyujoro_Helper إلى مجموعتك وحاول مرة أخرى</b>",
+            "\n\nأو أضف يدويًا @{BOT_USERNAME} إلى مجموعتك وحاول مرة أخرى</b>",
         )
         return
     await message.reply_text(
@@ -111,7 +112,7 @@ async def addcchannel(client, message):
         print(e)
         await message.reply_text(
             f"<b>🛑 خطأ كثره الطلبات 🛑 \n المستخدم {user.first_name} تعذر الانضمام إلى قناتك بسبب كثرة طلبات الانضمام علي الحساب المساعد او تأكد من عدم حظر المستخدم في القناة."
-            "\n\nأو أضف يدويًا @Rengoku_Kyujoro_Helper إلى مجموعتك وحاول مرة أخرى</b>",
+            "\n\nأو أضف يدويًا @{BOT_USERNAME} إلى مجموعتك وحاول مرة أخرى</b>",
         )
         return
     await message.reply_text(

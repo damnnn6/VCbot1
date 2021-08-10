@@ -19,13 +19,13 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                "مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}",
+                "مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME} ",
             )
             return
 
     
 
-@Client.on_message(filters.command(["موافقة"]))
+@Client.on_message(filters.command(["pmpermit"]))
 async def bye(client: Client, message: Message):
     if message.from_user.id in SUDO_USERS:
         global PMSET
@@ -45,7 +45,7 @@ async def autopmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if not chat_id in pchats:
         pchats.append(chat_id)
-        await message.reply_text("تمت الموافقة على PM بسبب الرسائل الصادرة")
+        await message.reply_text("تمت الموافقه علي استلام الرسائل في هذه المحادثه")
         return
     message.continue_propagation()    
     

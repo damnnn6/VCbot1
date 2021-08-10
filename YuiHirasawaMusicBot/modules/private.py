@@ -25,7 +25,7 @@ def _start(client, message):
                         "➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
                 [
                     InlineKeyboardButton(
-                        "💬 قناة البوت", url=f"https://t.me/SOURCEVENOM"), 
+                        "📲 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
                     InlineKeyboardButton(
                         "🛠 المطور 🛠", url=f"https://t.me/ahmedyad200")
                 ],[
@@ -36,21 +36,6 @@ def _start(client, message):
         ),
         reply_to_message_id=message.message_id
         )
-
-@Client.on_message(filters.command("start") & ~filters.private & ~filters.channel)
-async def gstart(_, message: Message):
-    await message.reply_text(
-        f"""**🔴 {PROJECT_NAME} is online**""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "💬 قناة اابوت", url=f"https://t.me/vvvvisn"
-                    )
-                ]
-            ]
-        ),
-    )
 
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['help']))
@@ -86,7 +71,7 @@ def map(pos):
         url = f"https://t.me/{SUPPORT_GROUP}"
         button = [
             [InlineKeyboardButton("➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-            [InlineKeyboardButton(text = '📲 قناة التحديثات', url=f"https://t.me/{UPDATES_CHANNEL}"),
+            [InlineKeyboardButton(text = '📲 قناة البوت', url=f"https://t.me/{UPDATES_CHANNEL}"),
              InlineKeyboardButton(text = '💬 جروب الدعم', url=f"https://t.me/{SUPPORT_GROUP}")],
             [InlineKeyboardButton(text = '◀️', callback_data = f"help+{pos-1}")]
         ]
@@ -107,7 +92,7 @@ async def ghelp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🟡 اضغط هنا للمساعده 🟡", url=f"https://t.me/{BOT_USERNAME}?start"
+                        "🟡 اضغط هنا للمساعده 🟡", url=f"https://t.me/{BOT_USERNAME}"
                     )
                 ]
             ]

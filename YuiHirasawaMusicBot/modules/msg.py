@@ -9,72 +9,65 @@ class Messages():
       HELP_MSG = [
         ".",
 f"""
-**Hey 👋 Welcome back to {PROJECT_NAME}
-⚪️ {PROJECT_NAME} can play music in your group's voice chat as well as channel voice chats
-⚪️ Assistant name >> @{ASSISTANT_NAME}\n\nClick next for instructions**
+**👋 مرحبًا بك مرة أخرى {PROJECT_NAME}
+⚪️ {PROJECT_NAME} يمكنه تشغيل الموسيقى في الدردشة الصوتية لمجموعتك بالإضافة إلى الدردشات الصوتية للقناة
+⚪️ الحساب المساعد >> @{ASSISTANT_NAME}\n\nانقر فوق التالي للحصول على التعليمات**
 """,
 
 f"""
-**Setting up**
-1) Make bot admin (Group and in channel if use cplay)
-2) Start a voice chat
-3) Try /play [song name] for the first time by an admin
-*) If userbot joined enjoy music, If not add @{ASSISTANT_NAME} to your group and retry
-**For Channel Music Play**
-1) Make me admin of your channel 
-2) Send /userbotjoinchannel in linked group
-3) Now send commands in linked group
-**Commands**
-**=>> Song Playing 🎧**
-- /play: Play the requestd song
-- /play [yt url] : Play the given yt url
-- /play [reply yo audio]: Play replied audio
-- /dplay: Play song via deezer
-- /splay: Play song via jio saavn
-- /ytplay: Directly play song via Youtube Music
-**=>> Playback ⏯**
-- /player: Open Settings menu of player
-- /skip: Skips the current track
-- /pause: Pause track
-- /resume: Resumes the paused track
-- /end: Stops media playback
-- /current: Shows the current Playing track
-- /playlist: Shows playlist
-*Player cmd and all other cmds except /play, /current  and /playlist  are only for admins of the group.
+**اعداد**
+1) ارفع البوت مشرف في مجموعتك او قناتك
+2) بدء تشغيل البوت
+3) اكتب /تشغيل [اسم الاغنيه] يجب ادخال هذه الامر لاول مرا من قبل المسؤول
+*) اذي انضم الحساب المساعد استمتع بي الموسيقي اذي (لم ينضم فا اضفه يدويا @{ASSISTANT_NAME})
+**يمكنك تشغيل الموسيقي في القناه**
+1) ارفع البوت مشرف في القناه
+2) ارسل /userbotjoinchannel في المجموعة المرتبطه
+3) ثم ارسل اوامر القناه في المجموعة المرتبطه
+**الاوامر**
+**=>> تشغيل موسيقي 🎧**
+- /تشغيل: لي انضمام الحساب المساعد
+- /تشغيل [رابط يوتيوب] : لي تشغيل موسيقي من يوتيوب
+- /تشغيل [رد علي الصوت]: لي تشغيل موسيقي من المحادثه
+- /dplay: لي تشغيل موسيقي عبر ديزل (اسم الاغنيه بي الانجليزيه)
+- /splay: لي تشغيل موسيقي عبر jio saavn
+- /ytplay: لي تشغيل موسيقي عبر يوتيوب
+**=>> قائمه التشغيل ⏯**
+- /التحكم: فتح قائمه الاعدادات
+- /تخطي: تخطي الموسيقي الحاليا
+- /توقف: ايقاف مؤقت
+- /استئناف: استئناف الموسيقي
+- /انهاء: الانهاء الموسيقي
+- /عرض القائمه: يعرض مسار التشغيل الحالي
+- /عرض: يظهر قائمة التشغيل
 """,
         
 f"""
-**=>> Channel Music Play 🛠**
-⚪️ For linked group admins only:
-- /cplay [song name] - play song you requested
-- /cdplay [song name] - play song you requested via deezer
-- /csplay [song name] - play song you requested via jio saavn
-- /cplaylist - Show now playing list
-- /cccurrent - Show now playing
-- /cplayer - open music player settings panel
-- /cpause - pause song play
-- /cresume - resume song play
-- /cskip - play next song
-- /cend - stop music play
-- /userbotjoinchannel - invite assistant to your chat
-channel is also can be used instead of c ( /cplay = /channelplay )
-⚪️ If you donlt like to play in linked group:
-1) Get your channel ID.
-2) Create a group with tittle: Channel Music: your_channel_id
-3) Add bot as Channel admin with full perms
-4) Add @{ASSISTANT_NAME} to the channel as an admin.
-5) Simply send commands in your group.
+**=>> مشغل موسيقي القنوات 🛠**
+⚪️ لمسؤولي المجموعة المرتبطة فقط:
+- /cplay [اسم الموسيقي] - لي تشغيل موسيقي
+- /cdplay [اسم الموسيقي] - لي تشغيل موسيقي من الديزل
+- /csplay [اسم الموسيقي] - لي تشغيل موسيقي من jio saavn
+- /cplaylist - عرض قائمة التشغيل
+- /cccurrent - عرض مسار التشغيل الحالي
+- /cplayer - فتح قائمة التحكم
+- /cpause - ايقاف مؤقت
+- /cresume - استئناف التشغيل
+- /cskip - تخطي الموسيقي
+- /cend - انهاء الموسيقي
+- /userbotjoinchannel - انضمام الحساب المساعد لي القناه المرتبطه
+يمكن أيضًا استخدام القناة بدلاً من c ( /cplay = /channelplay )
 """,
 
 f"""
-**=>> More tools 🧑‍🔧**
-- /musicplayer [on/off]: Enable/Disable Music player
-- /admincache: Updates admin info of your group. Try if bot isn't recognize admin
-- /userbotjoin: Invite @{ASSISTANT_NAME} Userbot to your chat
-**=>> Commands for Sudo Users ⚔️**
- - /userbotleaveall - remove assistant from all chats
- - /broadcast <reply to message> - globally brodcast replied message to all chats
- - /pmpermit [on/off] - enable/disable pmpermit message
-*Sudo Users can execute any command in any groups
+**=>> مزيد من الادوات 🧑‍🔧**
+- /musicplayer [on/off]: تفعيل/تعطيل : البوت
+- /تحديث: لي تحديث قائمه المشرفين في المجموعه
+- /انضم: لي دعوه الحساب المساعد الي المجموعه @{ASSISTANT_NAME}
+**=>> اوامر المطورين ⚔️**
+ - /مغادره - لي مغادره الحساب المساعد من جميع الدردشات
+ - /broadcast <بي الرد علي رساله> - يقوم الحساب المساعد بي ارساله لي جميع المحادثات
+ - /pmpermit [on/off] - تفعيل/تعطيل رد الخاص
+*يمكن للمطورين استخدام اي امر في المجموعة
 """
       ]
