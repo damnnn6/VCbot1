@@ -25,12 +25,12 @@ def _start(client, message):
                         "➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
                 [
                     InlineKeyboardButton(
-                        "💬 قناة البوت", url=f"https://t.me/SOURCEVENOM"), 
+                        "📲 الاوامر", url=f"https://t.me/vvvvisn/3172"), 
                     InlineKeyboardButton(
-                        "🛠 المطور 🛠", url=f"https://t.me/ahmedyad200")
+                        "💬 قناة البوت", url=f"https://t.me/cDDDD")
                 ],[
                     InlineKeyboardButton(
-                         "📲 الاوامر", url=f"https://t.me/vvvvisn")
+                         "🛠 المطور  🛠", url=f"https://t.me/vvvvisn")
                 ]
             ]
         ),
@@ -85,9 +85,10 @@ def map(pos):
     elif(pos==len(tr.HELP_MSG)-1):
         url = f"https://t.me/{SUPPORT_GROUP}"
         button = [
-            [InlineKeyboardButton("➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-            [InlineKeyboardButton(text = '📲 قناة التحديثات', url=f"https://t.me/{UPDATES_CHANNEL}"),
-             InlineKeyboardButton(text = '💬 جروب الدعم', url=f"https://t.me/{SUPPORT_GROUP}")],
+            [InlineKeyboardButton("➕ Add me to your Group 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
+            [InlineKeyboardButton(text = '📲 Updates', url=f"https://t.me/{UPDATES_CHANNEL}"),
+             InlineKeyboardButton(text = '💬 Support', url=f"https://t.me/{SUPPORT_GROUP}")],
+            [InlineKeyboardButton(text = '🛠 Source Code 🛠', url=f"https://{SOURCE_CODE}")],
             [InlineKeyboardButton(text = '◀️', callback_data = f"help+{pos-1}")]
         ]
     else:
@@ -107,7 +108,7 @@ async def ghelp(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🟡 اضغط هنا للمساعده 🟡", url=f"https://t.me/{BOT_USERNAME}?start"
+                        "🟡 Click here for help 🟡", url=f"https://t.me/{BOT_USERNAME}?start"
                     )
                 ]
             ]

@@ -7,7 +7,7 @@ from YuiHirasawaMusicBot.helpers.decorators import errors
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
 from YuiHirasawaMusicBot.config import SUDO_USERS
 
-@Client.on_message(filters.command(["انضم"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command([""]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addchannel(client, message):
@@ -16,7 +16,7 @@ async def addchannel(client, message):
         invitelink = await client.export_chat_invite_link(chid)
     except:
         await message.reply_text(
-            "<b>أضفني كمسؤول في مجموعتك أولاً</b>",
+            "<b>Add me as admin of yor group first</b>",
         )
         return
 
@@ -27,49 +27,49 @@ async def addchannel(client, message):
 
     try:
         await USER.join_chat(invitelink)
-        await USER.send_message(message.chat.id, "انضممت هنا كما طلبت")
+        await USER.send_message(message.chat.id, "I joined here as you requested")
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>الحساب المساعد بالفعل في الدردشة الخاصة بك</b>",
+            "<b>helper already in your chat</b>",
         )
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"<b>🛑 خطأ كثره الطلبات 🛑 \n المستخدم {user.first_name} تعذر الانضمام إلى مجموعتك بسبب كثرة طلبات الانضمام للمستخدم تأكد من عدم حظر المستخدم في المجموعة."
-            "\n\nأو أضف يدويًا @Rengoku_Kyujoro_Helper إلى مجموعتك وحاول مرة أخرى</b>",
+            f"<b>🛑 Flood Wait Error 🛑 \n User {user.first_name} couldn't join your group due to heavy join requests for userbot! Make sure user is not banned in group."
+            "\n\nOr manually add @Rengoku_Kyujoro_Helper to your Group and try again</b>",
         )
         return
     await message.reply_text(
-        "<b>انضم الحساب المساعد إلى محادثتك</b>",
+        "<b>helper userbot joined your chat</b>",
     )
 
 
-@USER.on_message(filters.group & filters.command(["غادر"]))
+@USER.on_message(filters.group & filters.command([""]))
 @authorized_users_only
 async def rem(USER, message):
     try:
         await USER.leave_chat(message.chat.id)
     except:
         await message.reply_text(
-            f"<b>لا يمكن للمستخدم مغادرة مجموعتك! قد يكون بسبب الضغط."
-            "\n\nأو اطردني يدويًا من مجموعتك</b>",
+            f"<b>User couldn't leave your group! May be floodwaits."
+            "\n\nOr manually kick me from to your Group</b>",
         )
         return
     
-@Client.on_message(filters.command(["مغادره"]))
+@Client.on_message(filters.command(["userbotleaveall"]))
 async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
         failed=0
-        lol = await message.reply("مساعد مغادرة جميع الدردشات")
+        lol = await message.reply("Assistant Leaving all chats")
         async for dialog in USER.iter_dialogs():
             try:
                 await USER.leave_chat(dialog.chat.id)
                 left = left+1
-                await lol.edit(f"ترك المساعد... متبقى: {left} الدردشات. باءت بالفشل: {failed} الدردشات.")
+                await lol.edit(f"Assistant leaving... Left: {left} chats. Failed: {failed} chats.")
             except:
                 failed=failed+1
-                await lol.edit(f"ترك المساعد... متبقى: {left} الدردشات. باءت بالفشل: {failed} الدردشات.")
+                await lol.edit(f"Assistant leaving... Left: {left} chats. Failed: {failed} chats.")
             await asyncio.sleep(0.7)
         await client.send_message(message.chat.id, f"Left {left} chats. Failed {failed} chats.")
     
@@ -83,14 +83,14 @@ async def addcchannel(client, message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("لم يتم ربط القناه")
+      await message.reply("Is chat even linked")
       return    
     chat_id = chid
     try:
         invitelink = await client.export_chat_invite_link(chid)
     except:
         await message.reply_text(
-            "<b>أضفني كمشرف في قناتك أولاً</b>",
+            "<b>Add me as admin of yor channel first</b>",
         )
         return
 
@@ -101,20 +101,20 @@ async def addcchannel(client, message):
 
     try:
         await USER.join_chat(invitelink)
-        await USER.send_message(message.chat.id, "انضممت هنا كما طلبت")
+        await USER.send_message(message.chat.id, "I joined here as you requested")
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>الحساب المساعد بالفعل في الدردشة الخاصة بك</b>",
+            "<b>helper already in your channel</b>",
         )
         return
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"<b>🛑 خطأ كثره الطلبات 🛑 \n المستخدم {user.first_name} تعذر الانضمام إلى قناتك بسبب كثرة طلبات الانضمام علي الحساب المساعد او تأكد من عدم حظر المستخدم في القناة."
-            "\n\nأو أضف يدويًا @Rengoku_Kyujoro_Helper إلى مجموعتك وحاول مرة أخرى</b>",
+            f"<b>🛑 Flood Wait Error 🛑 \n User {user.first_name} couldn't join your channel due to heavy join requests for userbot! Make sure user is not banned in channel."
+            "\n\nOr manually add @Rengoku_Kyujoro_Helper to your Group and try again</b>",
         )
         return
     await message.reply_text(
-        "<b>انضم الحساب المساعد إلى قناتك</b>",
+        "<b>helper userbot joined your channel</b>",
     )
     

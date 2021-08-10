@@ -23,16 +23,16 @@ async def pause(_, message: Message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("لم يتم ربط القناه")
+      await message.reply("Is chat even linked")
       return    
     chat_id = chid
     if (chat_id not in callsmusic.active_chats) or (
         callsmusic.active_chats[chat_id] == "paused"
     ):
-        await message.reply_text("❗ لا شيئ مشغل الان !")
+        await message.reply_text("❗ Nothing is playing!")
     else:
         callsmusic.pause(chat_id)
-        await message.reply_text("▶️ متوقف !")
+        await message.reply_text("▶️ Paused!")
 
 
 @Client.on_message(filters.command(["channelresume","cresume"]) & filters.group & ~filters.edited)
@@ -44,16 +44,16 @@ async def resume(_, message: Message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("لم يتم ربط القناه")
+      await message.reply("Is chat even linked")
       return    
     chat_id = chid
     if (chat_id not in callsmusic.active_chats) or (
         callsmusic.active_chats[chat_id] == "playing"
     ):
-        await message.reply_text("❗ لم يتم إيقاف أي شيء مؤقتا !")
+        await message.reply_text("❗ Nothing is paused!")
     else:
         callsmusic.resume(chat_id)
-        await message.reply_text("⏸ اسـتـنـاف !")
+        await message.reply_text("⏸ Resumed!")
 
 
 @Client.on_message(filters.command(["channelend","cend"]) & filters.group & ~filters.edited)
@@ -65,11 +65,11 @@ async def stop(_, message: Message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("لم يتم ربط القناه")
+      await message.reply("Is chat even linked")
       return    
     chat_id = chid
     if chat_id not in callsmusic.active_chats:
-        await message.reply_text("❗ لا شيئ مشغل الان!")
+        await message.reply_text("❗ Nothing is streaming!")
     else:
         try:
             queues.clear(chat_id)
@@ -77,7 +77,7 @@ async def stop(_, message: Message):
             pass
 
         await callsmusic.stop(chat_id)
-        await message.reply_text("❌ توقف البوت عن العمل!")
+        await message.reply_text("❌ Stopped streaming!")
 
 
 @Client.on_message(filters.command(["channelskip","cskip"]) & filters.group & ~filters.edited)
@@ -90,11 +90,11 @@ async def skip(_, message: Message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("لم يتم ربط القناه")
+      await message.reply("Is chat even linked")
       return    
     chat_id = chid
     if chat_id not in callsmusic.active_chats:
-        await message.reply_text("❗ لا شيء مشغل للتخطي !")
+        await message.reply_text("❗ Nothing is playing to skip!")
     else:
         queues.task_done(chat_id)
 
@@ -111,7 +111,7 @@ async def skip(_, message: Message):
         skip = qeue.pop(0)
     if not qeue:
         return
-    await message.reply_text(f"- تم تخطي **{skip[0]}**\n- يشتغل الان **{qeue[0][0]}**")
+    await message.reply_text(f"- Skipped **{skip[0]}**\n- Now Playing **{qeue[0][0]}**")
 
 
 @Client.on_message(filters.command("channeladmincache"))
@@ -122,7 +122,7 @@ async def admincache(client, message: Message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("لم يتم ربط القناه")
+      await message.reply("Is chat even linked")
       return
     set(
         chid,
@@ -131,4 +131,4 @@ async def admincache(client, message: Message):
             for member in await conchat.linked_chat.get_members(filter="administrators")
         ],
     )
-    await message.reply_text("❇️ تم تحديث قائمه المشرفين المؤقتا للقناه !")
+    await message.reply_text("❇️ Admin cache refreshed!")
