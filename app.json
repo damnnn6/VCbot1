@@ -3,7 +3,7 @@
   "logo": "https://telegra.ph/file/d378fd2a9c7109abc0e49.jpg",
   "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by MARSHALX TGCALLS.",
   "keywords": ["music", "voicechat", "telegram"],
-  "repository": "https://github.com/Yeagerist-Music-Streamer-Bot-V3/YuiHirasawaMusicBot",
+  "repository": "https://github.com/Dev3yad/VCbot1",
   "buildpacks": [
    {
      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
@@ -27,18 +27,16 @@
     },
     "BOT_NAME": {
       "description": "Your MusicPlayer Bot Name.",
-      "required": false,
-      "value": ""
+      "required": false
     },
     "SUPPORT_GROUP": {
       "description": "Your MusicPlayer support group without @ [Leave this if you don't have one]",
       "required": false,
-      "value": "Yeageristbots"
+      "value": "VC_SUP"
     },
     "PROJECT_NAME": {
       "description": "Your MusicPlayer project Name.",
-      "required": false,
-      "value": "YuiHirasawaMusicBot v5"
+      "required": false
     },
     "ASSISTANT_NAME": {
       "description": "Your MusicPlayer's assistant Username without @.",
@@ -46,8 +44,7 @@
     },
     "ARQ_API_KEY": {
       "description": "Get from @ARQRobot.",
-      "required": false,
-      "value": ""
+      "required": false
     },    
     "BG_IMAGE": {
       "description": "BG image of bot (Use transparent one) [IGNORE].",
@@ -56,8 +53,7 @@
     },     
     "UPDATES_CHANNEL": {
       "description": "Updates Channel without @ [Leave this if you don't have one].",
-      "required": false,
-      "value": "Animemusicarchive6"
+      "required": false
     },    
     "API_ID": {
       "description": "App ID from my.telegram.org/apps",
