@@ -496,7 +496,7 @@ async def play(_, message: Message):
     text_links=None
     await lel.edit("🔎 <b>العثور على</b>")
     if message.reply_to_message:
-        if message.reply_to_message.audio or message.reply_to_message.voice:
+        if message.reply_to_message.audio: or message.reply_to_message.voice:
             pass
         entities = []
         if message.reply_to_message.entities:
