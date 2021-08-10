@@ -11,6 +11,7 @@ from YuiHirasawaMusicBot.config import PROJECT_NAME
 from YuiHirasawaMusicBot.config import SUPPORT_GROUP
 from YuiHirasawaMusicBot.config import UPDATES_CHANNEL
 from YuiHirasawaMusicBot.config import BOT_USERNAME
+from YuiHirasawaMusicBot.config import SUDO_USERNAME
 logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
@@ -27,7 +28,7 @@ def _start(client, message):
                     InlineKeyboardButton(
                         "💬 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
                     InlineKeyboardButton(
-                        "المطور 🛠", url=f"https://t.me/ahmedyad200")
+                        "المطور 🛠", url=f"https://t.me/{SUDO_USERNAME}")
                 ],[
                     InlineKeyboardButton(
                          "📲 الاوامر", url=f"https://t.me/SOURCEVENOM1/1563")

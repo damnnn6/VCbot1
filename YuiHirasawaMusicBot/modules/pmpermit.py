@@ -3,6 +3,7 @@ import asyncio
 from YuiHirasawaMusicBot.config import SUDO_USERS
 from YuiHirasawaMusicBot.config import PMPERMIT
 from YuiHirasawaMusicBot.config import BOT_USERNAME
+from YuiHirasawaMusicBot.config import SUDO_USERNAME
 from pyrogram import filters
 from pyrogram.types import Message
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
@@ -19,7 +20,7 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                f"مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}",
+                f"مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}\nالمطور @{SUDO_USERNAME}",
             )
             return
 
@@ -39,15 +40,6 @@ async def bye(client: Client, message: Message):
             PMSET = None
             await message.reply_text("Pmpermit turned off")
             return
-
-@USER.on_message(filters.text & filters.private & filters.me)        
-async def autopmPermiat(client: USER, message: Message):
-    chat_id = message.chat.id
-    if not chat_id in pchats:
-        pchats.append(chat_id)
-        await message.reply_text("تمت الموافقه علي استلام الرسائل في هذه المحادثه")
-        return
-    message.continue_propagation()    
     
 @USER.on_message(filters.command("a", [".", ""]) & filters.me & filters.private)
 async def pmPermiat(client: USER, message: Message):
@@ -58,7 +50,6 @@ async def pmPermiat(client: USER, message: Message):
         return
     message.continue_propagation()    
     
-
 @USER.on_message(filters.command("da", [".", ""]) & filters.me & filters.private)
 async def rmpmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
