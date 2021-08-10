@@ -31,7 +31,7 @@ def _start(client, message):
                         "المطور 🛠", url=f"https://t.me/{SUDO_USERNAME}")
                 ],[
                     InlineKeyboardButton(
-                         "📲 الاوامر", url=f"https://t.me/SOURCEVENOM1/1563")
+                         "📲 الاوامر", url=f"https://telegra.ph/0150---أحمد-عياد----𝘼𝙃𝙈𝙀𝘿-Lonely-08-10")
                 ],[
                     InlineKeyboardButton(
                         PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
