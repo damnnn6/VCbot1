@@ -475,7 +475,7 @@ async def play(_, message: Message):
                         message.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى ☻"
                     )
                     await lel.edit(
-                        "<b>انضم userbot المساعد إلى محادثتك</b>",
+                        "<b>انضم الحساب المساعد إلى محادثتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -490,7 +490,7 @@ async def play(_, message: Message):
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot ليس في هذه الدردشة ، اطلب من المسؤول إرسال تشغيل الأمر لأول مرة أو الإضافة {user.first_name} يدويا</i>"
+            f"<i> {user.first_name} الحساب المساعد ليس في هذه الدردشة ، اطلب من المسؤول إرسال تشغيل الأمر لأول مرة أو الإضافة {user.first_name} يدويا</i>"
         )
         return
     text_links=None
@@ -499,8 +499,6 @@ async def play(_, message: Message):
         if message.reply_to_message.audio:
             pass
         entities = []
-        toxt = message.reply_to_message.text \
-              or message.reply_to_message.caption
         if message.reply_to_message.entities:
             entities = message.reply_to_message.entities + entities
         elif message.reply_to_message.caption_entities:
@@ -524,7 +522,7 @@ async def play(_, message: Message):
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             await lel.edit(
-                f"❌ مقاطع الفيديو أطول من {DURATION_LIMIT} دقيقة (دقائق) غير مسموح لها بالتشغيل !"
+                f"❌ مقاطع الفيديو أطول من {DURATION_LIMIT} دقيقة غير مسموح لها بالتشغيل !"
             )
             return
         keyboard = InlineKeyboardMarkup(

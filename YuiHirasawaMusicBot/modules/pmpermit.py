@@ -19,7 +19,7 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                "مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME} ",
+                f"مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}",
             )
             return
 

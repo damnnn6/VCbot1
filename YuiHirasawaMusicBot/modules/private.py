@@ -31,7 +31,9 @@ def _start(client, message):
                 ],[
                     InlineKeyboardButton(
                          "📲 الاوامر", url=f"https://t.me/SOURCEVENOM1/1563")
-                ]
+                ],[
+                    InlineKeyboardButton(
+                        PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
             ]
         ),
         reply_to_message_id=message.message_id
