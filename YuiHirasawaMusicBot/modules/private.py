@@ -16,30 +16,28 @@ logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
 def _start(client, message):
-                keyboard = InlineKeyboardMarkup(
+    client.message.reply_photo(message.chat.id,
+        photo="https://t.me/{BOT_USERNAME}",
+        caption=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+        parse_mode="markdown",
+        reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
                         "➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
                 [
                     InlineKeyboardButton(
-                        "💬 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
+                        "📲 الاوامر", url=f"https://t.me/vvvvisn/3172"), 
                     InlineKeyboardButton(
-                        "المطور 🛠", url=f"https://t.me/{SUDO_USERNAME}")
+                        "💬 قناة البوت", url=f"https://t.me/cDDDD")
                 ],[
                     InlineKeyboardButton(
-                         "📲 الاوامر", url=f"{COMMANDS}")
-                ],[
-                    InlineKeyboardButton(
-                        PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
+                         "🛠 المطور  🛠", url=f"https://t.me/vvvvisn")
+                ]
             ]
         ),
-        
-        client.send_message(message.chat.id,
-        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
-        parse_mode="markdown",
-        reply_markup=keyboard,
-            ),
+        reply_to_message_id=message.message_id
+        )
      
 @Client.on_message(filters.incoming & filters.command(['help','مساعده','مساعدة','الاوامر']))
 def _help(client, message):
