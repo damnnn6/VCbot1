@@ -20,7 +20,7 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                f"مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}\nالمطور @{SUDO_USERNAME}",
+                f"مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}\nمطور البوت @{SUDO_USERNAME}",
             )
             return
 
@@ -41,7 +41,7 @@ async def bye(client: Client, message: Message):
             await message.reply_text("Pmpermit turned off")
             return
     
-@USER.on_message(filters.command("a", [".", ""]) & filters.me & filters.private)
+@USER.on_message(filters.command("a", [".", ""]) & filters.me)
 async def pmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if not chat_id in pchats:
@@ -50,7 +50,7 @@ async def pmPermiat(client: USER, message: Message):
         return
     message.continue_propagation()    
     
-@USER.on_message(filters.command("da", [".", ""]) & filters.me & filters.private)
+@USER.on_message(filters.command("da", [".", ""]) & filters.me)
 async def rmpmPermiat(client: USER, message: Message):
     chat_id = message.chat.id
     if chat_id in pchats:

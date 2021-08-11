@@ -15,12 +15,7 @@ from YuiHirasawaMusicBot.config import COMMANDS
 logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
-def _start(client, message):
-    client.send_photo(message.chat.id,
-        caption=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
-        photo=f"https://t.me/{BOT_USERNAME}",
-        parse_mode="markdown",
-        reply_markup=InlineKeyboardMarkup(
+                keyboard = InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
@@ -38,7 +33,10 @@ def _start(client, message):
                         PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
             ]
         ),
-        reply_to_message_id=message.message_id
+            await message.reply_photo(
+        photo=f"https://t.me/{BOT_USERNAME}",
+        caption=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+            reply_markup=keyboard,
         )
 
 
