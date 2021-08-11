@@ -35,13 +35,13 @@ def _start(client, message):
             ]
         ),
         
-            client.message.reply_photo(
+        await message.reply_photo(
         photo=f"https://t.me/{BOT_USERNAME}",
         caption=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
             reply_markup=keyboard,
-        )
-
-
+                message.from_user.mention()
+            ),
+     
 @Client.on_message(filters.incoming & filters.command(['help','مساعده','مساعدة','الاوامر']))
 def _help(client, message):
     client.send_message(chat_id = message.chat.id,
