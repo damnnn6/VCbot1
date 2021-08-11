@@ -223,8 +223,7 @@ async def settings(client, message):
     else:
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
-
-@Client.on_message(filters.command(["musicplayer","الموسيقي"]) & ~filters.edited & ~filters.bot & ~filters.private";)
+@Client.on_message(filters.command(["musicplayer","الموسيقي"]) & ~filters.edited & ~filters.bot & ~filters.private)
 @authorized_users_only
 async def hfmm(_, message):
     global DISABLED_GROUPS
