@@ -21,6 +21,7 @@ from pyrogram.types import Message
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
 
+from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 from YuiHirasawaMusicBot.config import ARQ_API_KEY
 from YuiHirasawaMusicBot.config import BOT_NAME as bn
@@ -123,7 +124,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("background.png")
 
 
-@Client.on_message(filters.command(["عرض","playlist"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["عرض","playlist",f"عرض@{BOT_USERNAME}",f"playlist@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def playlist(client, message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -191,7 +192,7 @@ def r_ply(type_):
     return mar
 
 
-@Client.on_message(filters.command(["عرض القائمة","current"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["عرض القائمة","current",f"عرض القائمة@{BOT_USERNAME}",f"current@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def ee(client, message):
     if message.chat.id in DISABLED_GROUPS:
         return
@@ -203,7 +204,7 @@ async def ee(client, message):
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
 
-@Client.on_message(filters.command(["التحكم","player"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["التحكم","player",f"التحكم@{BOT_USERNAME}",f"player@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def settings(client, message):
     if message.chat.id in DISABLED_GROUPS:
@@ -223,7 +224,7 @@ async def settings(client, message):
     else:
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
-@Client.on_message(filters.command(["musicplayer","الموسيقي"]) & ~filters.edited & ~filters.bot & ~filters.private)
+@Client.on_message(filters.command(["musicplayer","الموسيقي",f"الموسيقي@{BOT_USERNAME}",f"musicplayer@{BOT_USERNAME}"]) & ~filters.edited & ~filters.bot & ~filters.private)
 @authorized_users_only
 async def hfmm(_, message):
     global DISABLED_GROUPS
@@ -433,7 +434,7 @@ async def m_cb(b, cb):
             await cb.answer("الدردشة غير متصلة!", show_alert=True)
 
 
-@Client.on_message(filters.command(["play","تشغيل"]) & other_filters)
+@Client.on_message(filters.command(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}"]) & other_filters)
 async def play(_, message: Message):
     global que
     global useer
@@ -734,7 +735,7 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(filters.command(["ytplay","يوتيوب تشغيل"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["ytplay","يوتيوب تشغيل",f"ytplay@{BOT_USERNAME}",f"يوتيوب تشغيل@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -891,7 +892,7 @@ async def ytplay(_, message: Message):
         os.remove("final.png")
         return await lel.delete()
     
-@Client.on_message(filters.command(["dplay","ديزر تشغيل"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["dplay","ديزر تشغيل",f"dplay@{BOT_USERNAME}",f"ديزر تشغيل@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def deezer(client: Client, message_: Message):
     if message_.chat.id in DISABLED_GROUPS:
         return

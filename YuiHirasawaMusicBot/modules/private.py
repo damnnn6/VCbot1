@@ -16,9 +16,8 @@ logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
 def _start(client, message):
-    client.message.reply_photo(message.chat.id,
-        photo="https://t.me/{BOT_USERNAME}",
-        caption=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+    client.send_message(message.chat.id,
+        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
             [
@@ -27,13 +26,15 @@ def _start(client, message):
                         "➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
                 [
                     InlineKeyboardButton(
-                        "📲 الاوامر", url=f"https://t.me/vvvvisn/3172"), 
+                        "💬 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
                     InlineKeyboardButton(
-                        "💬 قناة البوت", url=f"https://t.me/cDDDD")
+                        "المطور 🛠", url=f"https://t.me/{SUDO_USERNAME}")
                 ],[
                     InlineKeyboardButton(
-                         "🛠 المطور  🛠", url=f"https://t.me/vvvvisn")
-                ]
+                         "📲 الاوامر", url=f"https://telegra.ph/0150---أحمد-عياد----𝘼𝙃𝙈𝙀𝘿-Lonely-08-10")
+                ],[
+                    InlineKeyboardButton(
+                        PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
             ]
         ),
         reply_to_message_id=message.message_id
