@@ -1,7 +1,7 @@
 {
-  "name": "YuiHirasawaMusicBot",
-  "logo": "https://telegra.ph/file/d378fd2a9c7109abc0e49.jpg",
-  "description": "Open-Source bot to play songs in your Telegram's Group Voice Chat. Powered by MARSHALX TGCALLS.",
+  "name": "AhmedYadVCMusicBot",
+  "logo": "https://telegra.ph/file/4da63defb9b28c3dd0c47.jpg",
+  "description": "تـم تـعـريـب الـمـلـف بـوسـطـه @ahmedyad200",
   "keywords": ["music", "voicechat", "telegram"],
   "repository": "https://github.com/Dev3yad/VCbot1",
   "buildpacks": [
@@ -14,72 +14,73 @@
   ],        
   "env": {
     "SESSION_NAME": {
-      "description": "Pyrogram session string",
+      "description": "كـود التـيـريمـكـس",
       "required": true
     },
     "BOT_TOKEN": {
-      "description": "A bot token from @BotFather",
+      "description": "تـوكـن الـبـوت @BotFather",
       "required": true
     },
     "BOT_USERNAME": {
-      "description": "Your bot's username without @",
+      "description": "مـعـرف الـبـوت بـدون @",
       "required": true
     },
     "SUDO_USERNAME": {
-      "description": "Your sudo username without @",
+      "description": "مـعـرف الـمـطـور بـدون @",
       "required": true
     },
     "BOT_NAME": {
-      "description": "Your MusicPlayer Bot Name.",
+      "description": "اسـم الـبـوت",
       "required": false
     },
     "SUPPORT_GROUP": {
-      "description": "Your MusicPlayer support group without @ [Leave this if you don't have one]",
+      "description": "مـعـرف جـروب الـدعـم بـدون @",
       "required": false,
       "value": "VC_SUP"
     },
     "PROJECT_NAME": {
-      "description": "Your MusicPlayer project Name.",
+      "description": "اسـم الـحسـاب الـمـسـاعـد",
       "required": false
     },
     "ASSISTANT_NAME": {
-      "description": "Your MusicPlayer's assistant Username without @.",
+      "description": "مـعـرف الـحـسـاب الـمـسـاعـد بـدون @",
       "required": true
     },
     "ARQ_API_KEY": {
-      "description": "Get from @ARQRobot.",
-      "required": false
+      "description": "احـصـل عـلـيـه مـن @ARQRobot.",
+      "required": true
     },    
     "BG_IMAGE": {
-      "description": "BG image of bot (Use transparent one) [IGNORE].",
-      "required": false,
+      "description": "رابـط صـوره لـوحـه الـتـحـكـم",
+      "required": true,
       "value": "https://telegra.ph/file/8a4928725cbc36a0f703b.jpg"
     },     
     "UPDATES_CHANNEL": {
-      "description": "Updates Channel without @ [Leave this if you don't have one].",
-      "required": false
+      "description": "مـعـرف قـنـاة تـحـديـثـات الـبـوت بـدون @",
+      "required": true,
+      "value": "SOURCEVENOM"
     },    
     "API_ID": {
-      "description": "App ID from my.telegram.org/apps",
+      "description": "ال ايـبـي ايـدي my.telegram.org/apps",
       "required": true
     },
     "PMPERMIT": {
-      "description": "Change to turn off",
+      "description": "اتـركـه كـمـا هـو",
       "required": false,
       "value": "ENABLE"
     },    
     "API_HASH": {
-      "description": "App hash from my.telegram.org/apps",
+      "description": "ال ايـبـي هـاش my.telegram.org/apps",
       "required": true
     },
     "SUDO_USERS": {
-      "description": "List of user IDs counted as admin everywhere (separated by space).",
-      "required": true,
+      "description": "قـائـمـة ايـديـهـات المـطـوريـن",
+      "required": false,
       "value": "944353237"
     },
     "DURATION_LIMIT": {
-      "description": "Max audio duration limit for downloads (minutes).",
-      "required": true,
+      "description": "الـحـد الاقـصـي لـمـده تـشـغـيـل الاغـانـي",
+      "required": false,
       "value": "30"
     }
   }
