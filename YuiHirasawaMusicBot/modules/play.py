@@ -891,12 +891,12 @@ async def ytplay(_, message: Message):
         os.remove("final.png")
         return await lel.delete()
     
-@@Client.on_message(filters.command(["dplay","تشغيل ديزل"] & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["dplay","تشغيل ديزر"] & filters.group & ~filters.edited)
 async def deezer(client: Client, message_: Message):
     if message_.chat.id in DISABLED_GROUPS:
         return
     global que
-    lel = await message_.reply("🔄 <b>Processing</b>")
+    lel = await message_.reply("🔄 <b>معالجه</b>")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
     try:
