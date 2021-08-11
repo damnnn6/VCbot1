@@ -34,7 +34,8 @@ def _start(client, message):
                         PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
             ]
         ),
-            await message.reply_photo(
+        
+            client.message.reply_photo(
         photo=f"https://t.me/{BOT_USERNAME}",
         caption=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
             reply_markup=keyboard,
