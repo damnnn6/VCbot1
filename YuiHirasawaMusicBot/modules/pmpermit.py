@@ -25,8 +25,8 @@ async def pmPermit(client: USER, message: Message):
             return
 
 @Client.on_message(filters.command(["تيست","test",f"تيست@{BOT_USERNAME}",f"test@{BOT_USERNAME}"]))
-async def pmPermit(client: USER, message: Message):
-    if PMPERMIT == "ENABLE":
+async def pmPermit(client: Client, message: Message):
+    if message.from_user.id in SUDO_USERS:
         if PMSET:
             chat_id = message.chat.id
             if chat_id in pchats:
@@ -36,9 +36,10 @@ async def pmPermit(client: USER, message: Message):
                 f"بوت تشغيل الموسيقي يعمل بنجاح\nالبوت @{BOT_USERNAME}\nمطور البوت @{SUDO_USERNAME}\nالحساب المساعد @{ASSISTANT_NAME}",
             )
             return
-USER.on_message(filters.command(["تيست","test",f"تيست@{BOT_USERNAME}",f"test@{BOT_USERNAME}"]) & filters.private & filters.me)
+            
+@USER.on_message(filters.command(["تيست","test",f"تيست@{BOT_USERNAME}",f"test@{BOT_USERNAME}"]) & filters.private & filters.me)
 async def pmPermit(client: USER, message: Message):
-    if PMPERMIT == "ENABLE":
+    if message.from_user.id in SUDO_USERS:
         if PMSET:
             chat_id = message.chat.id
             if chat_id in pchats:
@@ -48,9 +49,6 @@ async def pmPermit(client: USER, message: Message):
                 f"بوت تشغيل الموسيقي يعمل بنجاح\nالبوت @{BOT_USERNAME}\nمطور البوت @{SUDO_USERNAME}\nالحساب المساعد @{ASSISTANT_NAME}",
             )
             return
-    
-    
-    
 
 @Client.on_message(filters.command(["pmpermit","رد الخاص",f"رد الخاص@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
 async def bye(client: Client, message: Message):
@@ -67,20 +65,3 @@ async def bye(client: Client, message: Message):
             await message.reply_text("تم تعطيل رد الخاص")
             return
     
-@USER.on_message(filters.command("a", [".", ""]) & filters.me)
-async def pmPermiat(client: USER, message: Message):
-    chat_id = message.chat.id
-    if not chat_id in pchats:
-        pchats.append(chat_id)
-        await message.reply_text("Approoved to PM")
-        return
-    message.continue_propagation()    
-    
-@USER.on_message(filters.command("da", [".", ""]) & filters.me)
-async def rmpmPermiat(client: USER, message: Message):
-    chat_id = message.chat.id
-    if chat_id in pchats:
-        pchats.remove(chat_id)
-        await message.reply_text("Dispprooved to PM")
-        return
-    message.continue_propagation()

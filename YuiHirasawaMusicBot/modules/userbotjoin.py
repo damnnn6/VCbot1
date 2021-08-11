@@ -30,6 +30,9 @@ async def addchannel(client, message):
     try:
         await USER.join_chat(invitelink)
         await USER.send_message(message.chat.id, "انضممت هنا كما طلبت")
+        await message.reply_text(
+        "<b>انضم الحساب المساعد إلى محادثتك</b>",
+    )
     except UserAlreadyParticipant:
         await message.reply_text(
             "<b>الحساب المساعد بالفعل في الدردشة الخاصة بك</b>",
@@ -41,18 +44,16 @@ async def addchannel(client, message):
             "\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
         )
         return
-    await message.reply_text(
-        "<b>انضم الحساب المساعد إلى محادثتك</b>",
-    )
+    
 
 
-@USER.on_message(filters.group & filters.command(["غادر","left"]))
+@USER.on_message(filters.command(["left","غادر",f"غادر@{BOT_USERNAME}",f"left@{BOT_USERNAME}"]))
 @authorized_users_only
 async def rem(USER, message):
     try:
         await USER.send_message(message.chat.id, "جاري المغادره")
         await USER.leave_chat(message.chat.id)
-        await message.reply_text(
+        Client.message.reply_text(
         "<b>قام الحساب المساعد بي مغادره المجموعه</b>",
     )
     except:
@@ -62,12 +63,12 @@ async def rem(USER, message):
         )
         return
     
-@Client.on_message(filters.command(["مغادره","leftall"]))
+@Client.on_message(filters.command(["leftall","مغادره",f"مغادره@{BOT_USERNAME}",f"leftall@{BOT_USERNAME}"]))
 async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
         failed=0
-        lol = await message.reply("مساعد مغادرة جميع الدردشات")
+        lol = await message.reply("الحساب مساعد مغادرة جميع الدردشات")
         async for dialog in USER.iter_dialogs():
             try:
                 await USER.send_message(dialog.chat.id, f"سوف اغادر ارسل `/انضم` لانضم مرا اخري او اضافتي يدويا @{ASSISTANT_NAME}")

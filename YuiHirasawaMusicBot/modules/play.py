@@ -124,7 +124,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("background.png")
 
 
-@Client.on_message(filters.command(["عرض","playlist",f"عرض@{BOT_USERNAME}",f"playlist@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["عرض القائمة","playlist",f"عرض القائمة@{BOT_USERNAME}",f"playlist@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def playlist(client, message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -192,7 +192,7 @@ def r_ply(type_):
     return mar
 
 
-@Client.on_message(filters.command(["عرض القائمة","current",f"عرض القائمة@{BOT_USERNAME}",f"current@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["المسار","current",f"المسار@{BOT_USERNAME}",f"current@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
 async def ee(client, message):
     if message.chat.id in DISABLED_GROUPS:
         return
