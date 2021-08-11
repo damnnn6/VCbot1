@@ -6,6 +6,7 @@ if os.path.exists("local.env"):
     load_dotenv("local.env")
 
 que = {}
+COMMANDS = getenv("COMMANDS")
 SESSION_NAME = getenv("SESSION_NAME")
 BOT_TOKEN = getenv("BOT_TOKEN")
 BOT_NAME = getenv("BOT_NAME")
