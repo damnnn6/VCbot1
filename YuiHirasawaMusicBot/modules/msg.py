@@ -1,5 +1,4 @@
 import os
-from YuiHirasawaMusicBot.config import SOURCE_CODE
 from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 from YuiHirasawaMusicBot.config import PROJECT_NAME
 from YuiHirasawaMusicBot.config import SUPPORT_GROUP
