@@ -14,20 +14,7 @@ from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.queues import queues
 
 
-@Client.on_message(filters.command("ضبط الادمنية"))
-async def update_admin(client, message: Message):
-    chat_id = get_chat_id(message.chat)
-    set(
-        chat_id,
-        [
-            member.user
-            for member in await message.chat.get_members(filter="المسؤولين")
-        ],
-    )
-    await message.reply_text("❇️ تم تحديث ذاكرة التخزين المؤقت للمسؤول")
-
-
-@Client.on_message(command("توقف") & other_filters)
+@Client.on_message(filters.command(["توقف","pause"]) & other_filters)
 @errors
 @authorized_users_only
 async def pause(_, message: Message):
@@ -41,7 +28,7 @@ async def pause(_, message: Message):
         await message.reply_text("▶️ متوقف !")
 
 
-@Client.on_message(command("استئناف") & other_filters)
+@Client.on_message(filters.command(["استئناف","playing"]) & other_filters)
 @errors
 @authorized_users_only
 async def resume(_, message: Message):
@@ -55,7 +42,7 @@ async def resume(_, message: Message):
         await message.reply_text("⏸ اسـتـنـاف !")
 
 
-@Client.on_message(command("انهاء") & other_filters)
+@Client.on_message(filters.command(["انهاء","end"]) & other_filters)
 @errors
 @authorized_users_only
 async def stop(_, message: Message):
@@ -72,7 +59,7 @@ async def stop(_, message: Message):
         await message.reply_text("❌ توقف البوت عن العمل !")
 
 
-@Client.on_message(command("تخطي") & other_filters)
+@Client.on_message(filters.command(["تخطي","skip"]) & other_filters)
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
@@ -98,7 +85,7 @@ async def skip(_, message: Message):
     await message.reply_text(f"- تم تخطي **{skip[0]}**\n- يشغل الان **{qeue[0][0]}**")
 
 
-@Client.on_message(filters.command("تحديث"))
+@Client.on_message(filters.command(["تحديث","updata"]))
 @errors
 async def admincache(client, message: Message):
     set(

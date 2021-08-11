@@ -122,7 +122,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("background.png")
 
 
-@Client.on_message(filters.command("عرض") & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["عرض","playlist"]) & filters.group & ~filters.edited)
 async def playlist(client, message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -190,7 +190,7 @@ def r_ply(type_):
     return mar
 
 
-@Client.on_message(filters.command("عرض القائمة") & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["عرض القائمة","current"]) & filters.group & ~filters.edited)
 async def ee(client, message):
     if message.chat.id in DISABLED_GROUPS:
         return
@@ -202,7 +202,7 @@ async def ee(client, message):
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
 
-@Client.on_message(filters.command("التحكم") & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["التحكم","player"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def settings(client, message):
     if message.chat.id in DISABLED_GROUPS:
@@ -223,7 +223,7 @@ async def settings(client, message):
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
 
-@Client.on_message(filters.command("musicplayer") & ~filters.edited & ~filters.bot & ~filters.private
+@Client.on_message(filters.command(["musicplayer","الموسيقي"]) & ~filters.edited & ~filters.bot & ~filters.private
 )
 @authorized_users_only
 async def hfmm(_, message):
@@ -239,7 +239,7 @@ async def hfmm(_, message):
         return
     status = message.text.split(None, 1)[1]
     message.chat.id
-    if status == "ON" or status == "on" or status == "On":
+    if status == "ON" or status == "on" or status == "oN" or status == "On" or status == "تنشيط":
         lel = await message.reply("`معالجة...`")
         if not message.chat.id in DISABLED_GROUPS:
             await lel.edit("تم تنشيط مشغل الموسيقى بالفعل في هذه الدردشة ♢")
@@ -249,7 +249,7 @@ async def hfmm(_, message):
             f"تم تمكين مشغل الموسيقى بنجاح للمستخدمين في الدردشة {message.chat.id}"
         )
 
-    elif status == "OFF" or status == "off" or status == "Off":
+    elif status == "OFF" or status == "OFf" or status == "Off" or status == "off" or status == "oFF" or status == "ofF" or status == "OfF" or status == "oFf" or status == "تعطيل":
         lel = await message.reply("`معالجة...`")
         
         if message.chat.id in DISABLED_GROUPS:
@@ -434,7 +434,7 @@ async def m_cb(b, cb):
             await cb.answer("الدردشة غير متصلة!", show_alert=True)
 
 
-@Client.on_message(command("تشغيل") & other_filters)
+@Client.on_message(filters.command(["play","تشغيل"]) & other_filters)
 async def play(_, message: Message):
     global que
     global useer
@@ -465,7 +465,7 @@ async def play(_, message: Message):
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>أضفني كمسؤول عن مجموعتك أولاً ☺</b>",
+                        "<b>أضفني كمسؤول في مجموعتك أولاً ☺</b>",
                     )
                     return
 
@@ -490,7 +490,7 @@ async def play(_, message: Message):
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} الحساب المساعد ليس في هذه الدردشة ، اطلب من المسؤول إرسال تشغيل الأمر لأول مرة أو الإضافة {user.first_name} يدويا</i>"
+            f"<i> {user.first_name} الحساب المساعد ليس في هذه الدردشة ، اطلب من المسؤول إرسال `/انضم` لأول مرة أو الإضافة {user.first_name} يدويا</i>"
         )
         return
     text_links=None
@@ -734,7 +734,7 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(filters.command("ytplay") & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["ytplay","تشغيل يوتيوب"]) & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -891,7 +891,7 @@ async def ytplay(_, message: Message):
         os.remove("final.png")
         return await lel.delete()
     
-@Client.on_message(filters.command("dplay") & filters.group & ~filters.edited)
+@@Client.on_message(filters.command(["dplay","تشغيل ديزل"] & filters.group & ~filters.edited)
 async def deezer(client: Client, message_: Message):
     if message_.chat.id in DISABLED_GROUPS:
         return

@@ -5,7 +5,6 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import Message
-from YuiHirasawaMusicBot.config import SOURCE_CODE
 from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 from YuiHirasawaMusicBot.config import PROJECT_NAME
 from YuiHirasawaMusicBot.config import SUPPORT_GROUP
