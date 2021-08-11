@@ -25,6 +25,17 @@ async def pmPermit(client: USER, message: Message):
             return
 
 @Client.on_message(filters.command(["تيست","test",f"تيست@{BOT_USERNAME}",f"test@{BOT_USERNAME}"]))
+async def bye(client: Client, message: Message):
+    if message.from_user.id in SUDO_USERS:
+        global PMSET
+        text = message.text.split(" ", 1)
+        await message.reply_text(
+                message.chat.id,
+                f"بوت تشغيل الموسيقي يعمل بنجاح\nالبوت @{BOT_USERNAME}\nمطور البوت @{SUDO_USERNAME}\nالحساب المساعد @{ASSISTANT_NAME}",
+            )
+                return
+
+@Client.on_message(filters.command(["تيست","test",f"تيست@{BOT_USERNAME}",f"test@{BOT_USERNAME}"]))
 async def pmPermit(client: Client, message: Message):
     if message.from_user.id in SUDO_USERS:
         if PMSET:

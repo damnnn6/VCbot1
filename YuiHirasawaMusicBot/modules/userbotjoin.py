@@ -9,7 +9,7 @@ from YuiHirasawaMusicBot.config import SUDO_USERS
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 
-@Client.on_message(filters.command(["انضم","join","userbotjoin"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["انضم","join","userbotjoin",f"انضم@{BOT_USERNAME}",f"join@{BOT_USERNAME}",f"userbotjoin@{BOT_USERNAME}"]]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addchannel(client, message):
