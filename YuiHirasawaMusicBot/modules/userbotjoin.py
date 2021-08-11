@@ -9,7 +9,7 @@ from YuiHirasawaMusicBot.config import SUDO_USERS
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 
-@Client.on_message(filters.command(["انضم",""]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["انضم","join","userbotjoin"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addchannel(client, message):
@@ -46,14 +46,14 @@ async def addchannel(client, message):
     )
 
 
-@USER.on_message(filters.group & filters.command(["غادر"]))
+@USER.on_message(filters.group & filters.command(["غادر","left"]))
 @authorized_users_only
 async def rem(USER, message):
     try:
         await USER.send_message(message.chat.id, "جاري المغادره")
         await USER.leave_chat(message.chat.id)
         await message.reply_text(
-        "<b>لقد قام الحساب المساعد بي مغادره المجموعه</b>",
+        "<b>قام الحساب المساعد بي مغادره المجموعه</b>",
     )
     except:
         await message.reply_text(
@@ -62,7 +62,7 @@ async def rem(USER, message):
         )
         return
     
-@Client.on_message(filters.command(["مغادره",""]))
+@Client.on_message(filters.command(["مغادره","leftall"]))
 async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
@@ -70,7 +70,7 @@ async def bye(client, message):
         lol = await message.reply("مساعد مغادرة جميع الدردشات")
         async for dialog in USER.iter_dialogs():
             try:
-                await USER.send_message(dialog.chat.id, f"سوف اغادر بامر من المطور ارسل `/انضم` لانضم مرا اخري او قم بي اضافتي يدويا @{ASSISTANT_NAME}")
+                await USER.send_message(dialog.chat.id, f"سوف اغادر ارسل `/انضم` لانضم مرا اخري او اضافتي يدويا @{ASSISTANT_NAME}")
                 await USER.leave_chat(dialog.chat.id)
                 left = left+1
                 await lol.edit(f"المساعد ترك {left} دردشة.\nفشل: {failed} دردشة.")

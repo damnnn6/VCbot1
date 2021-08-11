@@ -21,6 +21,7 @@ from pyrogram.types import Message
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
 
+from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 from YuiHirasawaMusicBot.config import ARQ_API_KEY
 from YuiHirasawaMusicBot.config import BOT_NAME as bn
 from YuiHirasawaMusicBot.config import DURATION_LIMIT
@@ -223,8 +224,7 @@ async def settings(client, message):
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
 
-@Client.on_message(filters.command(["musicplayer","الموسيقي"]) & ~filters.edited & ~filters.bot & ~filters.private
-)
+@Client.on_message(filters.command(["musicplayer","الموسيقي"]) & ~filters.edited & ~filters.bot & ~filters.private";)
 @authorized_users_only
 async def hfmm(_, message):
     global DISABLED_GROUPS
@@ -475,7 +475,7 @@ async def play(_, message: Message):
                         message.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى ☻"
                     )
                     await lel.edit(
-                        "<b>انضم الحساب المساعد إلى محادثتك</b>",
+                        "<b>انضم الحساب المساعد @{ASSISTANT_NAME} إلى محادثتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -490,7 +490,7 @@ async def play(_, message: Message):
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} الحساب المساعد ليس في هذه الدردشة ، اطلب من المسؤول إرسال `/انضم` لأول مرة أو الإضافة {user.first_name} يدويا</i>"
+            f"<i> الحساب المساعد ليس في هذه الدردشة ، اطلب من المسؤول إرسال `/انضم` لأول مرة أو الإضافة @{ASSISTANT_NAME} يدويا</i>"
         )
         return
     text_links=None
@@ -609,7 +609,7 @@ async def play(_, message: Message):
         ydl_opts = {"format": "bestaudi[ext=m4a]"}
         
         try:
-          results = YoutubeSearch(query, max_results=5).to_dict()
+          results = YoutubeSearch(query, max_results=9).to_dict()
         except:
           await lel.edit("ارسل شيئ للتشغيل ♦")
         # Looks like hell. Aren't it?? FUCK OFF
@@ -617,7 +617,7 @@ async def play(_, message: Message):
             toxxt = "**حدد الأغنية التي تريد تشغيلها**\n\n"
             j = 0
             useer=user_name
-            emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣",]
+            emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣",]
 
             while j < 5:
                 toxxt += f"{emojilist[j]} <b>Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
@@ -636,6 +636,12 @@ async def play(_, message: Message):
                     [
                         InlineKeyboardButton("4️⃣", callback_data=f'plll 3|{query}|{user_id}'),
                         InlineKeyboardButton("5️⃣", callback_data=f'plll 4|{query}|{user_id}'),
+                        InlineKeyboardButton("6️⃣", callback_data=f'plll 5|{query}|{user_id}'),
+                    ],
+                                        [
+                        InlineKeyboardButton("7⃣", callback_data=f'plll 6|{query}|{user_id}'),
+                        InlineKeyboardButton("8️⃣", callback_data=f'plll 7|{query}|{user_id}'),
+                        InlineKeyboardButton("9️⃣", callback_data=f'plll 8|{query}|{user_id}'),
                     ],
                     [InlineKeyboardButton(text="❌", callback_data="cls")],
                 ]
@@ -726,7 +732,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️ <b>يشغل</b> هنا الأغنية التي طلبتها {} عبر يوتيوب 😎".format(
+            caption="▶️ <b>يشغل</b> هنا الأغنية التي طلبها {}".format(
                 message.from_user.mention()
             ),
         )
@@ -734,7 +740,7 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(filters.command(["ytplay","تشغيل يوتيوب"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["ytplay","يوتيوب تشغيل"]) & filters.group & ~filters.edited)
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -757,24 +763,24 @@ async def ytplay(_, message: Message):
             if administrator == message.from_user.id:
                 if message.chat.title.startswith("Channel Music: "):
                     await lel.edit(
-                        "<b>Remember to add helper to your channel</b>",
+                        "<b>تذكر أن تضيف الحساب المساعد إلى قناتك</b>",
                     )
                     pass
                 try:
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Add me as admin of yor group first</b>",
+                        "<b>أضفني كمسؤول في مجموعتك أولاً</b>",
                     )
                     return
 
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message.chat.id, "I joined this group for playing music in VC"
+                        message.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>انضم الحساب المساعد إلى محادثتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -782,18 +788,18 @@ async def ytplay(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add assistant to your Group and try again</b>",
+                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \n لا يمكن الانضمام إلى مجموعتك بسبب الطلبات الكثيفة على الحساب المساعد! تأكد من عدم حظر الحساب المساعد @{ASSISTANT_NAME} في المجموعة."
+                        "\n\nأو أضف الحساب المساعد @{ASSISTANT_NAME} يدويًا إلى مجموعتك وحاول مرة أخرى</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
+            f"<i>الحساب المساعد ليس في هذه الدردشة ، اطلب من المسؤول الإرسال `/انضم` او اضف البوت يدويا @{ASSISTANT_NAME}</i>"
         )
         return
-    await lel.edit("🔎 <b>Finding</b>")
+    await lel.edit("🔎 <b>يبحث</b>")
     user_id = message.from_user.id
     user_name = message.from_user.first_name
      
@@ -802,7 +808,7 @@ async def ytplay(_, message: Message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    await lel.edit("🎵 <b>Processing</b>")
+    await lel.edit("🎵 <b>معالجه</b>")
     ydl_opts = {"format": "bestaudi[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -819,7 +825,7 @@ async def ytplay(_, message: Message):
 
     except Exception as e:
         await lel.edit(
-            "Song not found.Try another song or maybe spell it properly."
+            "لم يتم العثور على الأغنية ، جرب أغنية أخرى أو ربما تهجئها بشكل صحيح."
         )
         print(str(e))
         return
@@ -829,7 +835,7 @@ async def ytplay(_, message: Message):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         if (dur / 60) > DURATION_LIMIT:
-             await lel.edit(f"❌ Videos longer than {DURATION_LIMIT} minutes aren't allowed to play!")
+             await lel.edit(f"❌ مده الفيديو تتخطي {DURATION_LIMIT} دقيقة لا يمكنني تشغيله!")
              return
     except:
         pass    
@@ -862,7 +868,7 @@ async def ytplay(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"#⃣ Your requested song <b>queued</b> at position {position}!",
+            caption=f"#⃣ الأغنية التي طلبتها <b>في قائمة الانتظار</b> في الموضع {position}!",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -879,19 +885,19 @@ async def ytplay(_, message: Message):
         try:
            await callsmusic.set_stream(chat_id, file_path)
         except:
-            message.reply("Group Call is not connected or I can't join it")
+            message.reply("المكالمة الجماعية غير متصلة أو لا يمكنني الانضمام إليها")
             return
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️ <b>Playing</b> here the song requested by {} via Youtube Music 😎".format(
+            caption="▶️ <b>يشتغل</b> هنا الأغنية التي طلبتها {} ".format(
                 message.from_user.mention()
             ),
         )
         os.remove("final.png")
         return await lel.delete()
     
-@Client.on_message(filters.command(["dplay","تشغيل ديزر"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["dplay","ديزر تشغيل"]) & filters.group & ~filters.edited)
 async def deezer(client: Client, message_: Message):
     if message_.chat.id in DISABLED_GROUPS:
         return
@@ -913,24 +919,24 @@ async def deezer(client: Client, message_: Message):
             if administrator == message_.from_user.id:
                 if message_.chat.title.startswith("Channel Music: "):
                     await lel.edit(
-                        "<b>Remember to add helper to your channel</b>",
+                        "<b>تذكر أن تضيف الحساب المساعد إلى قناتك</b>",
                     )
                     pass
                 try:
                     invitelink = await client.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Add me as admin of yor group first</b>",
+                        "<b>أضفني كمسؤول في مجموعتك أولاً</b>",
                     )
                     return
 
                 try:
                     await USER.join_chat(invitelink)
                     await USER.send_message(
-                        message_.chat.id, "I joined this group for playing music in VC"
+                        message_.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>انضم الحساب المساعد إلى محادثتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -938,15 +944,15 @@ async def deezer(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 Flood Wait Error 🔴 \nUser {user.first_name} couldn't join your group due to heavy requests for userbot! Make sure user is not banned in group."
-                        "\n\nOr manually add assistant to your Group and try again</b>",
+                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \n لا يمكن الانضمام إلى مجموعتك بسبب الطلبات الكثيفة على الحساب المساعد! تأكد من عدم حظر الحساب المساعد @{ASSISTANT_NAME} في المجموعة."
+                        "\n\nأو أضف الحساب المساعد @{ASSISTANT_NAME} يدويًا إلى مجموعتك وحاول مرة أخرى</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot not in this chat, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
+            f"<i>الحساب المساعد ليس في هذه الدردشة ، اطلب من المسؤول الإرسال `/انضم` او اضف البوت يدويا @{ASSISTANT_NAME}</i>"
         )
         return
     requested_by = message_.from_user.first_name
@@ -955,7 +961,7 @@ async def deezer(client: Client, message_: Message):
     queryy = text[1]
     query = queryy
     res = lel
-    await res.edit(f"Searching 🔍 for `{queryy}` on deezer")
+    await res.edit(f"🔍 يتم البحث عن `{queryy}` علي ديزر")
     try:
         songs = await arq.deezer(query,1)
         if not songs.ok:
@@ -968,12 +974,12 @@ async def deezer(client: Client, message_: Message):
         thumbnail = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
 
     except:
-        await res.edit("Found Literally Nothing, You Should Work On Your English!")
+        await res.edit("لم يتم العثور على أي شيء حرفيًا ، يجب أن تعمل على تحسين مستواك في اللغة الإنجليزية!")
         return
     try:    
         duuration= round(duration / 60)
         if duuration > DURATION_LIMIT:
-            await cb.message.edit(f"Music longer than {DURATION_LIMIT}min are not allowed to play")
+            await cb.message.edit(f"الموسيقي اطول من {DURATION_LIMIT} دقيقة لا يمكنني البدء")
             return
     except:
         pass    
@@ -984,7 +990,7 @@ async def deezer(client: Client, message_: Message):
                 InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
                 InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
             ],
-            [InlineKeyboardButton(text="Listen On Deezer 🎬", url=f"{url}")],
+            [InlineKeyboardButton(text="استمع على ديزر 🎬", url=f"{url}")],
             [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
         ]
     )
@@ -1001,9 +1007,9 @@ async def deezer(client: Client, message_: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await res.edit_text(f"✯{bn}✯= #️⃣ Queued at position {position}")
+        await res.edit_text(f"✯{bn}✯= #️⃣ في قائمة الانتظار {position}")
     else:
-        await res.edit_text(f"✯{bn}✯=▶️ Playing.....")
+        await res.edit_text(f"✯{bn}✯=▶️ يشتغل.....")
 
         que[chat_id] = []
         qeue = que.get(chat_id)
@@ -1015,7 +1021,7 @@ async def deezer(client: Client, message_: Message):
         try:
             await callsmusic.set_stream(chat_id, file_path)
         except:
-            res.edit("Group call is not connected of I can't join it")
+            res.edit("المكالمة الجماعية غير متصلة لأنني لا أستطيع الانضمام إليها")
             return
 
     await res.delete()
@@ -1024,7 +1030,7 @@ async def deezer(client: Client, message_: Message):
         chat_id=message_.chat.id,
         reply_markup=keyboard,
         photo="final.png",
-        caption=f"Playing [{title}]({url}) Via Deezer",
+        caption=f"يشتغل [{title}]({url}) عبر ديزر",
     )
     os.remove("final.png")
 
@@ -1034,7 +1040,7 @@ async def jiosaavn(client: Client, message_: Message):
     global que
     if message_.chat.id in DISABLED_GROUPS:
         return    
-    lel = await message_.reply("🔄 <b>Processing</b>")
+    lel = await message_.reply("🔄 <b>معالجه</b>")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
     try:
@@ -1077,7 +1083,7 @@ async def jiosaavn(client: Client, message_: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 خطأ يوجد ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} لا يمكن الانضمام إلى مجموعتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر المستخدم في المجموعة."
-                        "\n\nأو أضف يدويًا @DaisyXmusic إلى مجموعتك وحاول مرة أخرى</b>",
+                        "\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
                     )
     try:
         await USER.get_chat(chid)

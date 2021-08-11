@@ -11,12 +11,14 @@ from YuiHirasawaMusicBot.config import SUPPORT_GROUP
 from YuiHirasawaMusicBot.config import UPDATES_CHANNEL
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import SUDO_USERNAME
+from YuiHirasawaMusicBot.config import COMMANDS
 logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
 def _start(client, message):
-    client.send_message(message.chat.id,
-        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+    client.send_photo(message.chat.id,
+        caption=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+        photo=f"https://t.me/{BOT_USERNAME}",
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
             [
@@ -30,7 +32,7 @@ def _start(client, message):
                         "المطور 🛠", url=f"https://t.me/{SUDO_USERNAME}")
                 ],[
                     InlineKeyboardButton(
-                         "📲 الاوامر", url=f"https://telegra.ph/0150---أحمد-عياد----𝘼𝙃𝙈𝙀𝘿-Lonely-08-10")
+                         "📲 الاوامر", url=f"{COMMANDS}")
                 ],[
                     InlineKeyboardButton(
                         PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
@@ -40,7 +42,7 @@ def _start(client, message):
         )
 
 
-@Client.on_message(filters.private & filters.incoming & filters.command(['help']))
+@Client.on_message(filters.incoming & filters.command(['help','مساعده','مساعدة','الاوامر']))
 def _help(client, message):
     client.send_message(chat_id = message.chat.id,
         text = tr.HELP_MSG[1],
@@ -86,17 +88,3 @@ def map(pos):
         ]
     return button
 
-@Client.on_message(filters.command("help") & ~filters.private & ~filters.channel)
-async def ghelp(_, message: Message):
-    await message.reply_text(
-        f"""**🙋‍♀️ أهلا بك!  يمكنني تشغيل الموسيقى في الدردشات الصوتية .**""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "🟡 اضغط هنا للمساعده 🟡", url=f"https://t.me/{BOT_USERNAME}"
-                    )
-                ]
-            ]
-        ),
-    )
