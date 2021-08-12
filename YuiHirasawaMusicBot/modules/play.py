@@ -434,7 +434,7 @@ async def m_cb(b, cb):
             await cb.answer("الدردشة غير متصلة!", show_alert=True)
 
 
-@Client.on_message(filters.command(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(filters.text(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}"]) & other_filters)
 async def play(_, message: Message):
     global que
     global useer
@@ -494,13 +494,12 @@ async def play(_, message: Message):
         )
         return
     text_links=None
-    await lel.edit("<b>في حالة لم تشتغل قم بي مسح اي رابط او ماركداون في وصف الموسيقي</b>")
-    await lel.edit("🔎 <b>يتم التشغيل</b>")
+    await lel.edit("🔎<b>يتم التشغيل\nفي حالة لم تشتغل قم بي مسح اي رابط او ماركداون في وصف الاغنية\nيستحسن مسح الوصف كامل</b>")
     if message.reply_to_message:
         if message.reply_to_message.audio or message.reply_to_message.voice:
             pass
         entities = []
-        toxt = message.reply_to_message.file_name or message.reply_to_message.text \
+        toxt =  message.reply_to_message.text \
               or message.reply_to_message.caption
         if message.reply_to_message.entities:
             entities = message.reply_to_message.entities + entities
