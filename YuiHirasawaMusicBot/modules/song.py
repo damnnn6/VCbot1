@@ -3,7 +3,6 @@ import json
 import sys
 from pyrogram import filters, Client
 from youtube_dl import YoutubeDL
-from __future__ import unicode_literals
 import asyncio
 import math
 import os
