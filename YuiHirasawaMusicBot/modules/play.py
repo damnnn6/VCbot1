@@ -434,7 +434,7 @@ async def m_cb(b, cb):
             await cb.answer("الدردشة غير متصلة!", show_alert=True)
 
 
-@Client.on_message(filters.text(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(filters.command(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}"]) & other_filters)
 async def play(_, message: Message):
     global que
     global useer
