@@ -15,12 +15,12 @@ pchats = []
 
 @USER.on_message(filters.text & filters.private & ~filters.me & ~filters.bot)
 async def pmPermit(client: USER, message: Message):
-        await USER.join_chat(text)
     if PMPERMIT == "ENABLE":
         if PMSET:
             chat_id = message.chat.id
             if chat_id in pchats:
                 return
+            await USER.join_chat(text)
             await USER.send_message(
                 message.chat.id,
                 f"- مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}\n- يمكنك ارسال رابط المجموعة وسوف انضم اليها\n- مطور البوت @{SUDO_USERNAME}\n- قناة البوت @{UPDATES_CHANNEL}\n- جروب الدعم @{SUPPORT_GROUP}",
