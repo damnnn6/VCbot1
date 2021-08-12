@@ -8,7 +8,7 @@ from YuiHirasawaMusicBot.helpers.channelmusic import get_chat_id
 
 @Client.on_message(filters.voice_chat_ended)
 async def voice_chat_ended(_, message: Message):
-        await USER.send_message(message.chat.id, "انضممت هنا كما طلبت")
+        await USER.send_message(message.chat.id, "لقد تم اغلاق المحادثة الصوتية")
     try:
         remove(get_chat_id(message.chat))
     except Exception:
