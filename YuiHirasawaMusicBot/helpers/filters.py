@@ -9,6 +9,6 @@ other_filters2 = (
     filters.private & ~filters.edited & ~filters.via_bot & ~filters.forwarded
 )
 
-        
-def command(commands: Union[str, List[str]]):
-       return command=command.replace("/","")
+
+def command(commands: Union[str, List[str]] & commands.replace("/","")):
+    return filters.command(commands)
