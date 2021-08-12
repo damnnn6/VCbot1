@@ -35,7 +35,6 @@ from YuiHirasawaMusicBot.helpers.errors import DurationLimitError
 from YuiHirasawaMusicBot.helpers.decorators import errors
 from YuiHirasawaMusicBot.helpers.decorators import authorized_users_only
 from YuiHirasawaMusicBot.helpers.filters import command
-from YuiHirasawaMusicBot.helpers.filters import other_filters
 from YuiHirasawaMusicBot.helpers.gets import get_file_name
 from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
@@ -434,7 +433,7 @@ async def m_cb(b, cb):
             await cb.answer("الدردشة غير متصلة!", show_alert=True)
 
 
-@Client.on_message(filters.command(["/play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"/play@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(filters.command(["/play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"/play@{BOT_USERNAME}"]))
 async def play(_, message: Message):
     global que
     global useer
