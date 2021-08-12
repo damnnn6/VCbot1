@@ -23,5 +23,4 @@ PROJECT_NAME = getenv("PROJECT_NAME", '√꧑ᥙ᥉Ꭵᥴ.."𖥕᥎ᥱꪀ꧑᥆�
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "30"))
 ARQ_API_KEY = getenv("ARQ_API_KEY", "LARVEY-XVIAOU-RZICIW-LUDGTE-ARQ")
 PMPERMIT = getenv("PMPERMIT", "ENABLE")
-COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "").split())
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "944353237").split()))
