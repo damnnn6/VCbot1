@@ -11,5 +11,5 @@ other_filters2 = (
 
 
 def command(commands: Union[str, List[str]]):
-    filters.command(commands, "")
-    return command=command.replace("/","")
+       commands=commands.replace("/","")
+       return filters.command(commands, "")
