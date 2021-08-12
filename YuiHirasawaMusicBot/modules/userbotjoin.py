@@ -9,7 +9,7 @@ from YuiHirasawaMusicBot.config import SUDO_USERS
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 
-@Client.on_message(filters.command(["انضم","join","userbotjoin",f"انضم @{ASSISTANT_NAME}",f"انضم@{BOT_USERNAME}",f"join@{BOT_USERNAME}",f"userbotjoin@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["انضم","/join","/userbotjoin",f"انضم @{ASSISTANT_NAME}",f"انضم@{BOT_USERNAME}",f"/join@{BOT_USERNAME}",f"/userbotjoin@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addchannel(client, message):
@@ -42,7 +42,7 @@ async def addchannel(client, message):
         print(e)
         await message.reply_text(
             f"<b>🛑 خطأ كثره الطلبات 🛑 \n الحساب المساعد تعذر الانضمام إلى مجموعتك بسبب كثرة طلبات الانضمام للحساب المساعد تأكد من عدم حظر الحساب المساعد في المجموعة."
-            "\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
+            f"\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
         )
         return
     
@@ -60,11 +60,11 @@ async def rem(USER, message):
     except:
         await message.reply_text(
             f"<b>لا يمكن للحساب المساعد مغادرة مجموعتك! قد يكون بسبب الضغط."
-            "\n\nأو اطرده @{ASSISTANT_NAME} يدويًا من مجموعتك</b>",
+            f"\n\nأو اطرده @{ASSISTANT_NAME} يدويًا من مجموعتك</b>",
         )
         return
     
-@Client.on_message(filters.command(["leftall","مغادره",f"مغادره@{BOT_USERNAME}",f"leftall@{BOT_USERNAME}"]) & ~filters.bot)
+@Client.on_message(filters.command(["/leftall","مغادره",f"مغادره@{BOT_USERNAME}",f"/leftall@{BOT_USERNAME}"]) & ~filters.bot)
 async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
@@ -83,7 +83,7 @@ async def bye(client, message):
         await client.send_message(message.chat.id, f"خرج من {left} محادثة.\nفشل {failed} محادثة.")
     
     
-@Client.on_message(filters.command(["userbotjoinchannel","ubjoinc"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["/userbotjoinchannel","/ubjoinc"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addcchannel(client, message):
@@ -120,7 +120,7 @@ async def addcchannel(client, message):
         print(e)
         await message.reply_text(
             f"<b>🛑 خطأ كثره الطلبات 🛑 \n الحساب المساعد تعذر الانضمام إلى قناتك بسبب كثرة طلبات الانضمام علي الحساب المساعد او تأكد من عدم حظر الحساب المساعد في القناة."
-            "\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى قناتك وحاول مرة أخرى</b>",
+            f"\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى قناتك وحاول مرة أخرى</b>",
         )
         return
     await message.reply_text(

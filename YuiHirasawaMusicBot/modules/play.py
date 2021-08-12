@@ -124,7 +124,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("background.png")
 
 
-@Client.on_message(filters.command(["عرض القائمة","playlist",f"عرض القائمة@{BOT_USERNAME}",f"playlist@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["عرض القائمة","/playlist",f"عرض القائمة@{BOT_USERNAME}",f"/playlist@{BOT_USERNAME}"]) & filters.group)
 async def playlist(client, message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -192,7 +192,7 @@ def r_ply(type_):
     return mar
 
 
-@Client.on_message(filters.command(["المسار","current",f"المسار@{BOT_USERNAME}",f"current@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["المسار","/current",f"المسار@{BOT_USERNAME}",f"/current@{BOT_USERNAME}"]) & filters.group)
 async def ee(client, message):
     if message.chat.id in DISABLED_GROUPS:
         return
@@ -204,7 +204,7 @@ async def ee(client, message):
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
 
-@Client.on_message(filters.command(["التحكم","player",f"التحكم@{BOT_USERNAME}",f"player@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["التحكم","/player",f"التحكم@{BOT_USERNAME}",f"/player@{BOT_USERNAME}"]) & filters.group)
 @authorized_users_only
 async def settings(client, message):
     if message.chat.id in DISABLED_GROUPS:
@@ -224,7 +224,7 @@ async def settings(client, message):
     else:
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
-@Client.on_message(filters.command(["musicplayer","الموسيقي",f"الموسيقي@{BOT_USERNAME}",f"musicplayer@{BOT_USERNAME}"]) & ~filters.bot & ~filters.private)
+@Client.on_message(filters.command(["/musicplayer","الموسيقي",f"الموسيقي@{BOT_USERNAME}",f"/musicplayer@{BOT_USERNAME}"]) & ~filters.bot & ~filters.private)
 @authorized_users_only
 async def hfmm(_, message):
     global DISABLED_GROUPS
@@ -434,7 +434,7 @@ async def m_cb(b, cb):
             await cb.answer("الدردشة غير متصلة!", show_alert=True)
 
 
-@Client.on_message(filters.command(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}"]) & other_filters)
+@Client.on_message(filters.command(["/play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"/play@{BOT_USERNAME}"]) & other_filters)
 async def play(_, message: Message):
     global que
     global useer
@@ -475,7 +475,7 @@ async def play(_, message: Message):
                         message.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى ☻"
                     )
                     await lel.edit(
-                        "<b>انضم الحساب المساعد @{ASSISTANT_NAME} إلى محادثتك</b>",
+                        f"<b>انضم الحساب المساعد @{ASSISTANT_NAME} إلى محادثتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -735,7 +735,7 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(filters.command(["ytplay","يوتيوب تشغيل",f"ytplay@{BOT_USERNAME}",f"يوتيوب تشغيل@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["/ytplay","يوتيوب تشغيل",f"/ytplay@{BOT_USERNAME}",f"يوتيوب تشغيل@{BOT_USERNAME}"]) & filters.group)
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -784,7 +784,7 @@ async def ytplay(_, message: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \n لا يمكن الانضمام إلى مجموعتك بسبب الطلبات الكثيفة على الحساب المساعد! تأكد من عدم حظر الحساب المساعد @{ASSISTANT_NAME} في المجموعة."
-                        "\n\nأو أضف الحساب المساعد @{ASSISTANT_NAME} يدويًا إلى مجموعتك وحاول مرة أخرى</b>",
+                        f"\n\nأو أضف الحساب المساعد @{ASSISTANT_NAME} يدويًا إلى مجموعتك وحاول مرة أخرى</b>",
                     )
     try:
         await USER.get_chat(chid)
@@ -892,7 +892,7 @@ async def ytplay(_, message: Message):
         os.remove("final.png")
         return await lel.delete()
     
-@Client.on_message(filters.command(["dplay","ديزر تشغيل",f"dplay@{BOT_USERNAME}",f"ديزر تشغيل@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["/dplay","ديزر تشغيل",f"/dplay@{BOT_USERNAME}",f"ديزر تشغيل@{BOT_USERNAME}"]) & filters.group)
 async def deezer(client: Client, message_: Message):
     if message_.chat.id in DISABLED_GROUPS:
         return
@@ -940,7 +940,7 @@ async def deezer(client: Client, message_: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \n لا يمكن الانضمام إلى مجموعتك بسبب الطلبات الكثيفة على الحساب المساعد! تأكد من عدم حظر الحساب المساعد @{ASSISTANT_NAME} في المجموعة."
-                        "\n\nأو أضف الحساب المساعد @{ASSISTANT_NAME} يدويًا إلى مجموعتك وحاول مرة أخرى</b>",
+                        f"\n\nأو أضف الحساب المساعد @{ASSISTANT_NAME} يدويًا إلى مجموعتك وحاول مرة أخرى</b>",
                     )
     try:
         await USER.get_chat(chid)
@@ -1030,7 +1030,7 @@ async def deezer(client: Client, message_: Message):
     os.remove("final.png")
 
 
-@Client.on_message(filters.command("splay") & filters.group)
+@Client.on_message(filters.command("/splay") & filters.group)
 async def jiosaavn(client: Client, message_: Message):
     global que
     if message_.chat.id in DISABLED_GROUPS:
@@ -1078,7 +1078,7 @@ async def jiosaavn(client: Client, message_: Message):
                     # print(e)
                     await lel.edit(
                         f"<b>🔴 خطأ يوجد ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} لا يمكن الانضمام إلى مجموعتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر المستخدم في المجموعة."
-                        "\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
+                        f"\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
                     )
     try:
         await USER.get_chat(chid)

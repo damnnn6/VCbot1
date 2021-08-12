@@ -14,7 +14,7 @@ from YuiHirasawaMusicBot.config import SUDO_USERNAME
 from YuiHirasawaMusicBot.config import COMMANDS
 logging.basicConfig(level=logging.INFO)
 
-@Client.on_message(filters.private & filters.incoming & filters.command(['start']))
+@Client.on_message(filters.private & filters.incoming & filters.command(['/start']))
 def _start(client, message):
     client.send_message(message.chat.id,
         text=tr.START_MSG.format(message.from_user.first_name + " " + message.from_user.last_name, message.from_user.id),
@@ -43,7 +43,7 @@ def _start(client, message):
         reply_to_message_id=message.message_id
         )
      
-@Client.on_message(filters.private & filters.incoming & filters.command(['help','مساعده','مساعدة','الاوامر']))
+@Client.on_message(filters.private & filters.incoming & filters.command(['/help','مساعده','مساعدة','الاوامر']))
 def _help(client, message):
     client.send_message(chat_id = message.chat.id,
         text = tr.HELP_MSG[1],
@@ -89,7 +89,7 @@ def map(pos):
     return button
 
 
-@Client.on_message(filters.command(["يوتيوب","بحث يوتيوب",f"يوتيوب@{BOT_USERNAME}",f"بحث يوتيوب@{BOT_USERNAME}","youtube",f"youtube@{BOT_USERNAME}"]))
+@Client.on_message(filters.command(["اليوتيوب","بحث اليوتيوب",f"اليوتيوب@{BOT_USERNAME}",f"بحث اليوتيوب@{BOT_USERNAME}","/youtube",f"/youtube@{BOT_USERNAME}"]))
 async def start(client: Client, message: Message):
     await message.reply_text(
         "💁🏻‍♂️ هل تريد البحث علي يوتيوب?",
