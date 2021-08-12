@@ -37,7 +37,7 @@ async def autopmPermiat(client: Client, message: Message):
 @USER.on_message(filters.command(["تيست","test",f"تيست@{BOT_USERNAME}",f"test@{BOT_USERNAME}"]) & filters.me)
 async def autopmPermiat(client: USER, message: Message):
         await message.reply_text(f"بوت تشغيل الموسيقي يعمل بنجاح\n- البوت @{BOT_USERNAME}\n- مطور البوت @{SUDO_USERNAME}\n- الحساب المساعد @{ASSISTANT_NAME}\n- قناة البوت @{UPDATES_CHANNEL}\n- جروب الدعم @{SUPPORT_GROUP}",)
-    return
+
     
 @Client.on_message(filters.command(["pmpermit","رد الخاص",f"رد الخاص@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
 async def bye(client: Client, message: Message):
