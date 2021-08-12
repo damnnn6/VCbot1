@@ -31,11 +31,11 @@ def _start(client, message):
                         "🛠 المطور", url=f"https://t.me/{SUDO_USERNAME}")
                 ],[
                     InlineKeyboardButton(
-                         "🔐 الاوامر", url=f"{COMMANDS}")
+                         "🔐 الاوامر", url=f"https://telegra.ph/0150---أحمد-عياد----𝘼𝙃𝙈𝙀𝘿-Lonely-08-10")
                 ],[
                     InlineKeyboardButton(
-                        "💬 جروب الدعم", url=f"https://t.me/{SUPPORT_GROUP}")],
-            ],[
+                         "💬 جروب الدعم", url=f"https://t.me/{SUPPORT_GROUP}")
+                ],[
                     InlineKeyboardButton(
                         PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
             ]
