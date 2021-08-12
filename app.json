@@ -26,11 +26,6 @@
       "required": false,
       "value": "https://telegra.ph/0613---أحمد-عياد----𝘼𝙃𝙈𝙀𝘿-Lonely-08-11"
     },
-    "COMMAND_PREFIXES": {
-      "description": "اتـركـهـا فـارغـة",
-      "required": false,
-      "value": ""
-    },
     "BOT_USERNAME": {
       "description": "مـعـرف الـبـوت بـدون @",
       "required": true
