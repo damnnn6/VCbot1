@@ -16,7 +16,7 @@ async def broadcast(_, message: Message):
     sent=0
     failed=0
     if message.from_user.id not in SUDO_USERS:
-        await message.reply("هل انت عبيط 😂!")
+        await message.reply("بس لعب!")
         return
     else:
         wtf = await message.reply("`جاري بدء الاذاعه...`")
@@ -32,5 +32,5 @@ async def broadcast(_, message: Message):
             except:
                 failed=failed+1
                 await wtf.edit(f"`الاذاعة...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
-            await asyncio.sleep(3)
+            await asyncio.sleep(1)
         await message.reply_text(f"`انتهت الاذاعة 😌` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")

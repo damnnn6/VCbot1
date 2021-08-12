@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 @Client.on_message(filters.private & filters.incoming & filters.command(['start']))
 def _start(client, message):
     client.send_message(message.chat.id,
-        text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
+        text=tr.START_MSG.format(message.from_user.first_name + " " + message.from_user.last_name, message.from_user.id),
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
             [
@@ -26,13 +26,16 @@ def _start(client, message):
                         "➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
                 [
                     InlineKeyboardButton(
-                        "💬 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
+                        "🔊 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
                     InlineKeyboardButton(
-                        "المطور 🛠", url=f"https://t.me/{SUDO_USERNAME}")
+                        "🛠 المطور", url=f"https://t.me/{SUDO_USERNAME}")
                 ],[
                     InlineKeyboardButton(
-                         "📲 الاوامر", url=f"https://telegra.ph/0150---أحمد-عياد----𝘼𝙃𝙈𝙀𝘿-Lonely-08-10")
+                         "🔐 الاوامر", url=f"{COMMANDS}")
                 ],[
+                    InlineKeyboardButton(
+                        "💬 جروب الدعم", url=f"https://t.me/{SUPPORT_GROUP}")],
+            ],[
                     InlineKeyboardButton(
                         PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
             ]
@@ -40,7 +43,7 @@ def _start(client, message):
         reply_to_message_id=message.message_id
         )
      
-@Client.on_message(filters.incoming & filters.command(['help','مساعده','مساعدة','الاوامر']))
+@Client.on_message(filters.private & filters.incoming & filters.command(['help','مساعده','مساعدة','الاوامر']))
 def _help(client, message):
     client.send_message(chat_id = message.chat.id,
         text = tr.HELP_MSG[1],
@@ -72,7 +75,7 @@ def map(pos):
     elif(pos==len(tr.HELP_MSG)-1):
         button = [
             [InlineKeyboardButton("➕ انقر لاضافتي لمجموعتك 🙋‍♀️", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-            [InlineKeyboardButton(text = '📲 قناة البوت', url=f"https://t.me/{UPDATES_CHANNEL}"),
+            [InlineKeyboardButton(text = '🔊 قناة البوت', url=f"https://t.me/{UPDATES_CHANNEL}"),
              InlineKeyboardButton(text = '💬 جروب الدعم', url=f"https://t.me/{SUPPORT_GROUP}")],
             [InlineKeyboardButton(text = '◀️', callback_data = f"help+{pos-1}")]
         ]
@@ -85,3 +88,32 @@ def map(pos):
         ]
     return button
 
+
+@Client.on_message(filters.command(["يوتيوب","بحث يوتيوب",f"يوتيوب@{BOT_USERNAME}",f"بحث يوتيوب@{BOT_USERNAME}","youtube",f"youtube@{BOT_USERNAME}"]))
+async def start(client: Client, message: Message):
+    await message.reply_text(
+        "💁🏻‍♂️ هل تريد البحث علي يوتيوب?",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "🔊 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"
+                    ),
+                    InlineKeyboardButton(
+                        "💬 جروب الدعم", url=f"https://t.me/{SUPPORT_GROUP}"
+                    )
+                ],    
+                [    
+                    InlineKeyboardButton(
+                        "✅ نعم", switch_inline_query_current_chat=""
+                    ),
+                    InlineKeyboardButton(
+                        "لا ❌", callback_data="close"
+                    )
+                ]
+            ]
+        )
+    )
+    
+    
+    

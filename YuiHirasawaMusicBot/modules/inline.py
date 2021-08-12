@@ -1,5 +1,6 @@
 from pyrogram import Client
 from pyrogram import errors
+from YuiHirasawaMusicBot.config import BOT_USERNAME
 from pyrogram.types import InlineQuery
 from pyrogram.types import InlineQueryResultArticle   
 from pyrogram.types import InputTextMessageContent
@@ -15,7 +16,7 @@ async def inline(client: Client, query: InlineQuery):
         await client.answer_inline_query(
             query.id,
             results=answers,
-            switch_pm_text="اكتب اسم فيديو YouTube‌‌...",
+            switch_pm_text="اكتب اي شيئ للبحث علي يوتيوب",
             switch_pm_parameter="help",
             cache_time=0,
         )
@@ -30,7 +31,7 @@ async def inline(client: Client, query: InlineQuery):
                         result["duration"], result["viewCount"]["short"]
                     ),
                     input_message_content=InputTextMessageContent(
-                        "/play https://www.youtube.com/watch?v={}".format(result["id"])
+                        f"/play@{BOT_USERNAME} https://www.youtube.com/watch?v={}".format(result["id"])
                     ),
                     thumb_url=result["thumbnails"][0]["url"],
                 )
@@ -42,6 +43,6 @@ async def inline(client: Client, query: InlineQuery):
             await query.answer(
                 results=answers,
                 cache_time=0,
-                switch_pm_text="خطاء: توقف البحث",
+                switch_pm_text="خطأ لا يمكنني البحث هن كل هذا 🙂",
                 switch_pm_parameter="",
             )

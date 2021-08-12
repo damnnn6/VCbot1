@@ -124,7 +124,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     os.remove("background.png")
 
 
-@Client.on_message(filters.command(["عرض القائمة","playlist",f"عرض القائمة@{BOT_USERNAME}",f"playlist@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["عرض القائمة","playlist",f"عرض القائمة@{BOT_USERNAME}",f"playlist@{BOT_USERNAME}"]) & filters.group)
 async def playlist(client, message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -192,7 +192,7 @@ def r_ply(type_):
     return mar
 
 
-@Client.on_message(filters.command(["المسار","current",f"المسار@{BOT_USERNAME}",f"current@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["المسار","current",f"المسار@{BOT_USERNAME}",f"current@{BOT_USERNAME}"]) & filters.group)
 async def ee(client, message):
     if message.chat.id in DISABLED_GROUPS:
         return
@@ -204,7 +204,7 @@ async def ee(client, message):
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
 
-@Client.on_message(filters.command(["التحكم","player",f"التحكم@{BOT_USERNAME}",f"player@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["التحكم","player",f"التحكم@{BOT_USERNAME}",f"player@{BOT_USERNAME}"]) & filters.group)
 @authorized_users_only
 async def settings(client, message):
     if message.chat.id in DISABLED_GROUPS:
@@ -224,7 +224,7 @@ async def settings(client, message):
     else:
         await message.reply("لا توجد اغاني قيد التشغيل ❍")
 
-@Client.on_message(filters.command(["musicplayer","الموسيقي",f"الموسيقي@{BOT_USERNAME}",f"musicplayer@{BOT_USERNAME}"]) & ~filters.edited & ~filters.bot & ~filters.private)
+@Client.on_message(filters.command(["musicplayer","الموسيقي",f"الموسيقي@{BOT_USERNAME}",f"musicplayer@{BOT_USERNAME}"]) & ~filters.bot & ~filters.private)
 @authorized_users_only
 async def hfmm(_, message):
     global DISABLED_GROUPS
@@ -494,12 +494,13 @@ async def play(_, message: Message):
         )
         return
     text_links=None
-    await lel.edit("🔎 <b>العثور على</b>")
+    await lel.edit("<b>في حالة لم تشتغل قم بي مسح اي رابط او ماركداون في وصف الموسيقي</b>")
+    await lel.edit("🔎 <b>يتم التشغيل</b>")
     if message.reply_to_message:
         if message.reply_to_message.audio or message.reply_to_message.voice:
             pass
         entities = []
-        toxt = message.reply_to_message.text \
+        toxt = message.reply_to_message.file_name or message.reply_to_message.text \
               or message.reply_to_message.caption
         if message.reply_to_message.entities:
             entities = message.reply_to_message.entities + entities
@@ -514,7 +515,7 @@ async def play(_, message: Message):
     if text_links:
         urls = True
     user_id = message.from_user.id
-    user_name = message.from_user.first_name
+    user_name = message.from_user.first_name + " " + message.from_user.last_name
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
@@ -541,8 +542,8 @@ async def play(_, message: Message):
         thumb_name = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
-        views = "Locally added"
-        requested_by = message.from_user.first_name
+        views = "ERROR"
+        requested_by = message.from_user.first_name + " " + message.from_user.last_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await convert(
             (await message.reply_to_message.download(file_name))
@@ -578,7 +579,7 @@ async def play(_, message: Message):
                 dur += (int(dur_arr[i]) * secmul)
                 secmul *= 60
             if (dur / 60) > DURATION_LIMIT:
-                 await lel.edit(f"❌ مقاطع الفيديو أطول من {DURATION_LIMIT} دقيقة (دقائق) غير مسموح لها بالتشغيل ")
+                 await lel.edit(f"❌ الاغنيه أطول من {DURATION_LIMIT} دقيقة غير مسموح لي بالتشغيل ")
                  return
         except:
             pass        
@@ -597,7 +598,7 @@ async def play(_, message: Message):
                 [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
             ]
         )
-        requested_by = message.from_user.first_name
+        requested_by = message.from_user.first_name + " " + message.from_user.last_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await convert(youtube.download(url))        
     else:
@@ -691,7 +692,7 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
                 ]
             )
-            requested_by = message.from_user.first_name
+            requested_by = message.from_user.first_name + " " + message.from_user.last_name
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await convert(youtube.download(url))   
     chat_id = get_chat_id(message.chat)
@@ -735,7 +736,7 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(filters.command(["ytplay","يوتيوب تشغيل",f"ytplay@{BOT_USERNAME}",f"يوتيوب تشغيل@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["ytplay","يوتيوب تشغيل",f"ytplay@{BOT_USERNAME}",f"يوتيوب تشغيل@{BOT_USERNAME}"]) & filters.group)
 async def ytplay(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
@@ -796,7 +797,7 @@ async def ytplay(_, message: Message):
         return
     await lel.edit("🔎 <b>يبحث</b>")
     user_id = message.from_user.id
-    user_name = message.from_user.first_name
+    user_name = message.from_user.first_name + " " + message.from_user.last_name
      
 
     query = ""
@@ -849,7 +850,7 @@ async def ytplay(_, message: Message):
             [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
         ]
     )
-    requested_by = message.from_user.first_name
+    requested_by = message.from_user.first_name + " " + message.from_user.last_name
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
@@ -892,7 +893,7 @@ async def ytplay(_, message: Message):
         os.remove("final.png")
         return await lel.delete()
     
-@Client.on_message(filters.command(["dplay","ديزر تشغيل",f"dplay@{BOT_USERNAME}",f"ديزر تشغيل@{BOT_USERNAME}"]) & filters.group & ~filters.edited)
+@Client.on_message(filters.command(["dplay","ديزر تشغيل",f"dplay@{BOT_USERNAME}",f"ديزر تشغيل@{BOT_USERNAME}"]) & filters.group)
 async def deezer(client: Client, message_: Message):
     if message_.chat.id in DISABLED_GROUPS:
         return
@@ -1030,7 +1031,7 @@ async def deezer(client: Client, message_: Message):
     os.remove("final.png")
 
 
-@Client.on_message(filters.command("splay") & filters.group & ~filters.edited)
+@Client.on_message(filters.command("splay") & filters.group)
 async def jiosaavn(client: Client, message_: Message):
     global que
     if message_.chat.id in DISABLED_GROUPS:

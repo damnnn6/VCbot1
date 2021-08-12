@@ -3,6 +3,7 @@ from pyrogram import Client
 from pyrogram import filters
 from pyrogram.types import Message
 
+from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import que
 from YuiHirasawaMusicBot.function.admins import set
 from YuiHirasawaMusicBot.helpers.channelmusic import get_chat_id
@@ -14,7 +15,7 @@ from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.queues import queues
 
 
-@Client.on_message(filters.command(["توقف","pause"]) & other_filters)
+@Client.on_message(filters.command(["توقف","pause",f"توقف@{BOT_USERNAME}",f"pause@{BOT_USERNAME}"]) & other_filters)
 @errors
 @authorized_users_only
 async def pause(_, message: Message):
@@ -28,7 +29,7 @@ async def pause(_, message: Message):
         await message.reply_text("▶️ متوقف !")
 
 
-@Client.on_message(filters.command(["استئناف","playing"]) & other_filters)
+@Client.on_message(filters.command(["استئناف","playing",f"استئناف@{BOT_USERNAME}",f"playing@{BOT_USERNAME}"]) & other_filters)
 @errors
 @authorized_users_only
 async def resume(_, message: Message):
@@ -42,7 +43,7 @@ async def resume(_, message: Message):
         await message.reply_text("⏸ اسـتـنـاف !")
 
 
-@Client.on_message(filters.command(["انهاء","end"]) & other_filters)
+@Client.on_message(filters.command(["انهاء","end",f"انهاء@{BOT_USERNAME}",f"end@{BOT_USERNAME}"]) & other_filters)
 @errors
 @authorized_users_only
 async def stop(_, message: Message):
@@ -59,7 +60,7 @@ async def stop(_, message: Message):
         await message.reply_text("❌ توقف البوت عن العمل !")
 
 
-@Client.on_message(filters.command(["تخطي","skip"]) & other_filters)
+@Client.on_message(filters.command(["تخطي","skip",f"تخطي@{BOT_USERNAME}",f"skip@{BOT_USERNAME}"]) & other_filters)
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
@@ -85,7 +86,7 @@ async def skip(_, message: Message):
     await message.reply_text(f"- تم تخطي **{skip[0]}**\n- يشغل الان **{qeue[0][0]}**")
 
 
-@Client.on_message(filters.command(["تحديث","updata"]))
+@Client.on_message(filters.command(["تحديث","updata",f"تحديث@{BOT_USERNAME}",f"updata@{BOT_USERNAME}"]))
 @errors
 async def admincache(client, message: Message):
     set(

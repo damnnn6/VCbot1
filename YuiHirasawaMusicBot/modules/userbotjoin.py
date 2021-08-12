@@ -9,7 +9,7 @@ from YuiHirasawaMusicBot.config import SUDO_USERS
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 
-@Client.on_message(filters.command(["انضم","join","userbotjoin",f"انضم@{BOT_USERNAME}",f"join@{BOT_USERNAME}",f"userbotjoin@{BOT_USERNAME}"]]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["انضم","join","userbotjoin",f"انضم @{ASSISTANT_NAME}",f"انضم@{BOT_USERNAME}",f"join@{BOT_USERNAME}",f"userbotjoin@{BOT_USERNAME}"]]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addchannel(client, message):
@@ -34,13 +34,14 @@ async def addchannel(client, message):
         "<b>انضم الحساب المساعد إلى محادثتك</b>",
     )
     except UserAlreadyParticipant:
+        await USER.send_message(message.chat.id, "انا بالفعل موجود هنا 😐")
         await message.reply_text(
             "<b>الحساب المساعد بالفعل في الدردشة الخاصة بك</b>",
         )
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"<b>🛑 خطأ كثره الطلبات 🛑 \n المستخدم {user.first_name} تعذر الانضمام إلى مجموعتك بسبب كثرة طلبات الانضمام للمستخدم تأكد من عدم حظر المستخدم في المجموعة."
+            f"<b>🛑 خطأ كثره الطلبات 🛑 \n الحساب المساعد تعذر الانضمام إلى مجموعتك بسبب كثرة طلبات الانضمام للحساب المساعد تأكد من عدم حظر الحساب المساعد في المجموعة."
             "\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
         )
         return
@@ -118,8 +119,8 @@ async def addcchannel(client, message):
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"<b>🛑 خطأ كثره الطلبات 🛑 \n المستخدم {user.first_name} تعذر الانضمام إلى قناتك بسبب كثرة طلبات الانضمام علي الحساب المساعد او تأكد من عدم حظر المستخدم في القناة."
-            "\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
+            f"<b>🛑 خطأ كثره الطلبات 🛑 \n الحساب المساعد تعذر الانضمام إلى قناتك بسبب كثرة طلبات الانضمام علي الحساب المساعد او تأكد من عدم حظر الحساب المساعد في القناة."
+            "\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى قناتك وحاول مرة أخرى</b>",
         )
         return
     await message.reply_text(
