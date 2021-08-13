@@ -35,7 +35,7 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 
-@Client.on_message(filters.command(["song",f"song@{BOT_USERNAME}","تحميل","تحميل@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(filters.command(["song",f"song@{BOT_USERNAME}","تحميل","تحميل@{BOT_USERNAME}"]))
 async def song(client, message):
     cap = f"🎵 Uploaded by @{BOT_USERNAME}"
     url = message.text.split(None, 1)[1]
