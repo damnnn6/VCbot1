@@ -513,7 +513,7 @@ async def play(_, message: Message):
     if text_links:
         urls = True
     user_id = message.from_user.id
-    user_name = message.from_user.first_name + " " + message.from_user.last_name
+    user_name = message.from_user.first_name
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
     audio = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
@@ -541,7 +541,7 @@ async def play(_, message: Message):
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
         views = "ERROR"
-        requested_by = message.from_user.first_name + " " + message.from_user.last_name
+        requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await convert(
             (await message.reply_to_message.download(file_name))
@@ -596,7 +596,7 @@ async def play(_, message: Message):
                 [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
             ]
         )
-        requested_by = message.from_user.first_name + " " + message.from_user.last_name
+        requested_by = message.from_user.first_name
         await generate_cover(requested_by, title, views, duration, thumbnail)
         file_path = await convert(youtube.download(url))        
     else:
@@ -690,7 +690,7 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
                 ]
             )
-            requested_by = message.from_user.first_name + " " + message.from_user.last_name
+            requested_by = message.from_user.first_name
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await convert(youtube.download(url))   
     chat_id = get_chat_id(message.chat)
@@ -795,7 +795,7 @@ async def ytplay(_, message: Message):
         return
     await lel.edit("🔎 <b>يبحث</b>")
     user_id = message.from_user.id
-    user_name = message.from_user.first_name + " " + message.from_user.last_name
+    user_name = message.from_user.first_name
      
 
     query = ""
@@ -848,7 +848,7 @@ async def ytplay(_, message: Message):
             [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
         ]
     )
-    requested_by = message.from_user.first_name + " " + message.from_user.last_name
+    requested_by = message.from_user.first_name
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
