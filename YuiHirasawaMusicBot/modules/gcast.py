@@ -10,8 +10,9 @@ from pyrogram.errors import UserAlreadyParticipant
 
 from YuiHirasawaMusicBot.services.callsmusic.callsmusic import client as pakaya
 from YuiHirasawaMusicBot.config import SUDO_USERS
+from YuiHirasawaMusicBot.config import BOT_USERNAME
 
-@Client.on_message(filters.command(["اذاعه"]))
+@Client.on_message(filters.command(["اذاعه",f"اذاعه@{BOT_USERNAME}"]))
 async def broadcast(_, message: Message):
     sent=0
     failed=0
