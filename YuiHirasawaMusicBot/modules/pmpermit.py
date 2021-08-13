@@ -13,13 +13,6 @@ from YuiHirasawaMusicBot.config import SUPPORT_GROUP
 PMSET =True
 pchats = []
 
-@USER.on_message(filters.text(["join","انضم","userbotjoin"]) & filters.private & ~filters.bot)
-async def pmPermit(client: USER, message: Message):
-    link = message.text.split(" ", 1)[1]
-            await USER.join_chat(link)
-            await message.reply_text("حسنا لقد انضممت\nفي حاله لم انضم قم بي التاكد من الرابط او انني لست محظور")
-            return
-
 @USER.on_message(filters.text & filters.private & ~filters.me & ~filters.bot)
 async def pmPermit(client: USER, message: Message):
     if PMPERMIT == "ENABLE":
@@ -34,7 +27,7 @@ async def pmPermit(client: USER, message: Message):
             return
 
     
-@Client.on_message(filters.command(["pmpermit","رد الخاص",f"رد الخاص@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
+@Client.on_message(filters.text(["pmpermit","الردود",f"الردود@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
 async def bye(client: Client, message: Message):
     if message.from_user.id in SUDO_USERS:
         global PMSET
