@@ -233,7 +233,7 @@ async def hfmm(_, message):
         return
     if len(message.command) != 2:
         await message.reply_text(
-            "اوامر التنشيط و التعطيل `/musicplayer on` للتنشيط \n `/musicplayer off` للتعطيل"
+            "اوامر التنشيط و التعطيل `/الموسيقي تنشيط` للتنشيط \n `/الموسيقي تعطيل` للتعطيل"
         )
         return
     status = message.text.split(None, 1)[1]
