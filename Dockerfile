@@ -1,4 +1,3 @@
-RUN git clone https://github.com/Dev3yad/VCbot1 /root/YuiHirasawaMusicBot
 FROM debian:latest
 FROM python:3.9.6-slim-buster
 RUN apt update && apt upgrade -y
