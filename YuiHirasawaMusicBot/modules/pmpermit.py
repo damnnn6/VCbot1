@@ -13,6 +13,13 @@ from YuiHirasawaMusicBot.config import SUPPORT_GROUP
 PMSET =True
 pchats = []
 
+@USER.on_message(filters.text(["join","انضم","userbotjoin"]) & filters.private & ~filters.bot)
+async def pmPermit(client: USER, message: Message):
+    link = message.text.split(" ", 1)[1]
+            await USER.join_chat(link)
+            await message.reply_text("حسنا لقد انضممت\nفي حاله لم انضم قم بي التاكد من الرابط او انني لست محظور")
+            return
+
 @USER.on_message(filters.text & filters.private & ~filters.me & ~filters.bot)
 async def pmPermit(client: USER, message: Message):
     if PMPERMIT == "ENABLE":
@@ -22,7 +29,7 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                f"- مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}\n- يمكنك ارسال رابط المجموعة وسوف انضم اليها\n- مطور البوت @{SUDO_USERNAME}\n- قناة البوت @{UPDATES_CHANNEL}\n- جروب الدعم @{SUPPORT_GROUP}",
+                f"- مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}\n- يمكنك كتابه `/انضم `+ رابط المجموعه حتا انضم اليها\n- مطور البوت @{SUDO_USERNAME}\n- قناة البوت @{UPDATES_CHANNEL}\n- جروب الدعم @{SUPPORT_GROUP}",
             )
             return
 
