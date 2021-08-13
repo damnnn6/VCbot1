@@ -14,7 +14,7 @@ from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.queues import queues
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 
-@Client.on_message(filters.command(["/channelpause","/cpause","القناه توقف","القناة توقف",f"/channelpause@{BOT_USERNAME}",f"/cpause@{BOT_USERNAME}",f"القناه توقف@{BOT_USERNAME}",f"القناة توقف@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["channelpause","cpause","القناه توقف","القناة توقف",f"channelpause@{BOT_USERNAME}",f"cpause@{BOT_USERNAME}",f"القناه توقف@{BOT_USERNAME}",f"القناة توقف@{BOT_USERNAME}"]) & filters.group)
 @errors
 @authorized_users_only
 async def pause(_, message: Message):
@@ -35,7 +35,7 @@ async def pause(_, message: Message):
         await message.reply_text("▶️ متوقف !")
 
 
-@Client.on_message(filters.command(["/channelresume","/cresume","القناه استئناف","القناة استئناف",f"/channelresume@{BOT_USERNAME}",f"/cresume@{BOT_USERNAME}",f"القناه استئناف@{BOT_USERNAME}",f"القناة استئناف@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["channelresume","cresume","القناه استئناف","القناة استئناف",f"channelresume@{BOT_USERNAME}",f"cresume@{BOT_USERNAME}",f"القناه استئناف@{BOT_USERNAME}",f"القناة استئناف@{BOT_USERNAME}"]) & filters.group)
 @errors
 @authorized_users_only
 async def resume(_, message: Message):
@@ -56,7 +56,7 @@ async def resume(_, message: Message):
         await message.reply_text("⏸ اسـتـنـاف !")
 
 
-@Client.on_message(filters.command(["/channelend","/cend","القناه انهاء","القناة انهاء",f"/channelend@{BOT_USERNAME}",f"/cend@{BOT_USERNAME}",f"القناه انهاء@{BOT_USERNAME}",f"القناة انهاء@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["channelend","cend","القناه انهاء","القناة انهاء",f"channelend@{BOT_USERNAME}",f"cend@{BOT_USERNAME}",f"القناه انهاء@{BOT_USERNAME}",f"القناة انهاء@{BOT_USERNAME}"]) & filters.group)
 @errors
 @authorized_users_only
 async def stop(_, message: Message):
@@ -80,7 +80,7 @@ async def stop(_, message: Message):
         await message.reply_text("❌ توقف البوت عن العمل!")
 
 
-@Client.on_message(filters.command(["/channelskip","/cskip","القناه تخطي","القناة تخطي",f"/channelskip@{BOT_USERNAME}",f"/cskip@{BOT_USERNAME}",f"القناه تخطي@{BOT_USERNAME}",f"القناة تخطي@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["channelskip","cskip","القناه تخطي","القناة تخطي",f"channelskip@{BOT_USERNAME}",f"cskip@{BOT_USERNAME}",f"القناه تخطي@{BOT_USERNAME}",f"القناة تخطي@{BOT_USERNAME}"]) & filters.group)
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
@@ -114,7 +114,7 @@ async def skip(_, message: Message):
     await message.reply_text(f"- تم تخطي **{skip[0]}**\n- يشتغل الان **{qeue[0][0]}**")
 
 
-@Client.on_message(filters.command(["/channelupdata","/cupdata","القناه تحديث","القناة تحديث",f"/channelupdata@{BOT_USERNAME}",f"/cupdata@{BOT_USERNAME}",f"القناه تحديث@{BOT_USERNAME}",f"القناة تحديث@{BOT_USERNAME}"]) & filters.group)
+@Client.on_message(filters.command(["channelupdata","cupdata","القناه تحديث","القناة تحديث",f"channelupdata@{BOT_USERNAME}",f"cupdata@{BOT_USERNAME}",f"القناه تحديث@{BOT_USERNAME}",f"القناة تحديث@{BOT_USERNAME}"]) & filters.group)
 @errors
 async def admincache(client, message: Message):
     try:

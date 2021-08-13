@@ -89,7 +89,7 @@ def map(pos):
     return button
 
 
-@Client.on_message(filters.command(["اليوتيوب","بحث اليوتيوب",f"اليوتيوب@{BOT_USERNAME}",f"بحث اليوتيوب@{BOT_USERNAME}","/youtube",f"/youtube@{BOT_USERNAME}"]))
+@Client.on_message(filters.command(["اليوتيوب","بحث اليوتيوب",f"اليوتيوب@{BOT_USERNAME}",f"بحث اليوتيوب@{BOT_USERNAME}","youtube",f"youtube@{BOT_USERNAME}"]))
 async def start(client: Client, message: Message):
     await message.reply_text(
         "💁🏻‍♂️ هل تريد البحث علي يوتيوب?",
