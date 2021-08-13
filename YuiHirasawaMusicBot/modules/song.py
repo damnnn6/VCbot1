@@ -38,7 +38,7 @@ from youtube_dl.utils import (
 
 @Client.on_message(filters.command(["song",f"song@{BOT_USERNAME}","تحميل","تحميل@{BOT_USERNAME}"]))
 async def song(client, message):
-    cap = f"🎵 Uploaded by @{BOT_USERNAME}\nChannel bot @{UPDATES_CHANNEL}"
+    cap = f"🎵 Uploaded by @{BOT_USERNAME}\nChannel bot @{updateschannel}"
     rkp = await message.reply("معالجه...")
     url = message.text.split(" ", 1)[1]
     if not url:
