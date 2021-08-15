@@ -238,7 +238,7 @@ async def hfmm(_, message):
         return
     status = message.text.split(None, 1)[1]
     message.chat.id
-    if status == "ON" or status == "on" or status == "oN" or status == "On" or status == "تنشيط":
+    if status == "ON" or status == "on" or status == "oN" or status == "On" or status == "تنشيط" or status == "تفعيل":
         lel = await message.reply("`معالجة...`")
         if not message.chat.id in DISABLED_GROUPS:
             await lel.edit("تم تنشيط مشغل الموسيقى بالفعل في هذه الدردشة ♢")
