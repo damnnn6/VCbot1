@@ -72,15 +72,14 @@ async def bye(client, message):
         lol = await message.reply("الحساب مساعد مغادرة جميع الدردشات")
         async for dialog in USER.iter_dialogs():
             try:
-                await USER.send_message(dialog.chat.id, f"سوف اغادر ارسل `/انضم` لانضم مرا اخري او اضافتي يدويا @{ASSISTANT_NAME}")
                 await USER.leave_chat(dialog.chat.id)
                 left = left+1
-                await lol.edit(f"المساعد ترك {left} دردشة.\nفشل: {failed} دردشة.")
+                await lol.edit(f"المساعد \nترك {left} دردشة.\nفشل: {failed} دردشة.")
             except:
                 failed=failed+1
-                await lol.edit(f"المساعد ترك {left} دردشة.\nفشل: {failed} دردشة.")
-            await asyncio.sleep(0.7)
-        await client.send_message(message.chat.id, f"خرج من {left} محادثة.\nفشل {failed} محادثة.")
+                await lol.edit(f"المساعد \nترك {left} دردشة.\nفشل: {failed} دردشة.")
+            await asyncio.sleep(1)
+        await client.send_message(message.chat.id, f"الحساب المساعد خرج من {left} محادثة.\nفشل مغادره {failed} محادثة.")
     
     
 @Client.on_message(filters.command(["userbotjoinchannel","ubjoinc"]) & ~filters.private & ~filters.bot)
