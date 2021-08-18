@@ -32,7 +32,8 @@
     },
     "SUDO_USERNAME": {
       "description": "مـعـرف الـمـطـور بـدون @",
-      "required": true
+      "required": true,
+      "value": "ahmedyad200"
     },
     "BOT_NAME": {
       "description": "اسـم الـبـوت",
@@ -63,7 +64,7 @@
     "UPDATES_CHANNEL": {
       "description": "مـعـرف قـنـاة تـحـديـثـات الـبـوت بـدون @",
       "required": true,
-      "value": "SOURCEVENOM"
+      "value": "SOURCEVENOM1"
     },    
     "API_ID": {
       "description": "ال ايـبـي ايـدي my.telegram.org/apps",
