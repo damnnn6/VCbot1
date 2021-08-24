@@ -11,6 +11,7 @@ from YuiHirasawaMusicBot.config import UPDATES_CHANNEL
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import SUDO_USERNAME
 from YuiHirasawaMusicBot.config import COMMANDS
+from YuiHirasawaMusicBot.services.callsmusic import client as USER
 logging.basicConfig(level=logging.INFO)
 
 user = USER.get_me()
