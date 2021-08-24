@@ -7,9 +7,9 @@ from YuiHirasawaMusicBot.helpers.decorators import errors
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
 from YuiHirasawaMusicBot.config import SUDO_USERS
 from YuiHirasawaMusicBot.config import BOT_USERNAME
-from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 
-@Client.on_message(filters.command(["انضم","join","userbotjoin",f"انضم @{ASSISTANT_NAME}",f"انضم@{BOT_USERNAME}",f"join@{BOT_USERNAME}",f"userbotjoin@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
+
+@Client.on_message(filters.command(["انضم","join","userbotjoin",f"انضم@{BOT_USERNAME}",f"join@{BOT_USERNAME}",f"userbotjoin@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addchannel(client, message):
@@ -42,7 +42,7 @@ async def addchannel(client, message):
         print(e)
         await message.reply_text(
             f"<b>🛑 خطأ كثره الطلبات 🛑 \n الحساب المساعد تعذر الانضمام إلى مجموعتك بسبب كثرة طلبات الانضمام للحساب المساعد تأكد من عدم حظر الحساب المساعد في المجموعة."
-            f"\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى مجموعتك وحاول مرة أخرى</b>",
+            f"\n\nأو أضف يدويًا @{user.username} إلى مجموعتك وحاول مرة أخرى</b>",
         )
         return
     
@@ -50,17 +50,18 @@ async def addchannel(client, message):
 
 @USER.on_message(filters.command(["left","غادر",f"غادر@{BOT_USERNAME}",f"left@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
+        user = await USER.get_me()
 async def rem(USER, message):
     try:
         await USER.send_message(message.chat.id, "جاري المغادره")
         await USER.leave_chat(message.chat.id)
-        Client.message.reply_text(
+        await message.reply_text(
         "<b>قام الحساب المساعد بي مغادره المجموعه</b>",
     )
     except:
         await message.reply_text(
             f"<b>لا يمكن للحساب المساعد مغادرة مجموعتك! قد يكون بسبب الضغط."
-            f"\n\nأو اطرده @{ASSISTANT_NAME} يدويًا من مجموعتك</b>",
+            f"\n\nأو اطرده @{user.username} يدويًا من مجموعتك</b>",
         )
         return
     
@@ -119,7 +120,7 @@ async def addcchannel(client, message):
         print(e)
         await message.reply_text(
             f"<b>🛑 خطأ كثره الطلبات 🛑 \n الحساب المساعد تعذر الانضمام إلى قناتك بسبب كثرة طلبات الانضمام علي الحساب المساعد او تأكد من عدم حظر الحساب المساعد في القناة."
-            f"\n\nأو أضف يدويًا @{ASSISTANT_NAME} إلى قناتك وحاول مرة أخرى</b>",
+            f"\n\nأو أضف يدويًا @{user.username} إلى قناتك وحاول مرة أخرى</b>",
         )
         return
     await message.reply_text(

@@ -5,7 +5,6 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup
 from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import Message
-from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 from YuiHirasawaMusicBot.config import PROJECT_NAME
 from YuiHirasawaMusicBot.config import SUPPORT_GROUP
 from YuiHirasawaMusicBot.config import UPDATES_CHANNEL
@@ -16,6 +15,7 @@ logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(["start"]))
 def _start(client, message):
+    user = await USER.get_me()
     client.send_message(message.chat.id,
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         parse_mode="markdown",
@@ -37,7 +37,7 @@ def _start(client, message):
                          "💬 جروب الدعم", url=f"https://t.me/{SUPPORT_GROUP}")
                 ],[
                     InlineKeyboardButton(
-                        PROJECT_NAME, url=f"https://t.me/{ASSISTANT_NAME}")],
+                        PROJECT_NAME, url=f"https://t.me/{user.username}")],
             ]
         ),
         reply_to_message_id=message.message_id
