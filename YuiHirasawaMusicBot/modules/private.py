@@ -16,13 +16,8 @@ logging.basicConfig(level=logging.INFO)
 
 
 @Client.on_message(filters.private & filters.incoming & filters.command(["start"]))
-def _start(client, message):
 user = await USER.get_me()
-    except:
-        user.first_name = "helper"
-    usar = user
-    wew = usar.id
-    try:
+def _start(client, message):
     client.send_message(message.chat.id,
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         parse_mode="markdown",
