@@ -475,7 +475,7 @@ async def play(_, message: Message):
                         message.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى ☻"
                     )
                     await lel.edit(
-                        f"<b>انضم الحساب المساعد @{user.Username} إلى محادثتك</b>",
+                        f"<b>انضم الحساب المساعد @{user.username} إلى محادثتك</b>",
                     )
 
                 except UserAlreadyParticipant:
