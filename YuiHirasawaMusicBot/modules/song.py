@@ -39,8 +39,8 @@ from youtube_dl.utils import (
 @Client.on_message(filters.command(["song",f"song@{BOT_USERNAME}","تحميل","تحميل@{BOT_USERNAME}"]))
 async def song(client, message):
     cap = f"🎵 Uploaded by @{BOT_USERNAME}\nChannel bot @{updateschannel}"
+    url = message.text.split(None, 1)[1]
     rkp = await message.reply("معالجه...")
-    url = message.text.split(" ", 1)[1]
     if not url:
         await rkp.edit("**لي تحميل اغنيه?**\nاكتب`/تحميل` <اسم الاغنيه>")
     search = SearchVideos(url, offset=1, mode="json", max_results=1)

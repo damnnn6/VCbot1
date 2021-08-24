@@ -24,10 +24,10 @@ async def ytsearch(_, message: Message):
             return
         query = message.text.split(None, 1)[1]
         m = await message.reply_text("يبــحث....")
-        results = YoutubeSearch(query, max_results=6).to_dict()
+        results = YoutubeSearch(query, max_results=4).to_dict()
         i = 0
         text = ""
-        while i < 6:
+        while i < 4:
             text += f"عنوان - {results[i]['title']}\n"
             text += f"المدة - {results[i]['duration']}\n"
             text += f"المشاهدات - {results[i]['views']}\n"

@@ -12,7 +12,7 @@ from YuiHirasawaMusicBot.services.callsmusic.callsmusic import client as pakaya
 from YuiHirasawaMusicBot.config import SUDO_USERS
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 
-@Client.on_message(filters.command(["اذاعه المساعد",f"اذاعه المساعد@{BOT_USERNAME}"]))
+@Client.on_message(filters.command(["اذاعه",f"اذاعه@{BOT_USERNAME}"]))
 async def broadcast(_, message: Message):
     sent=0
     failed=0
@@ -35,5 +35,3 @@ async def broadcast(_, message: Message):
                 await wtf.edit(f"`الاذاعة...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
             await asyncio.sleep(1)
         await message.reply_text(f"`انتهت الاذاعة 😌` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
-
-

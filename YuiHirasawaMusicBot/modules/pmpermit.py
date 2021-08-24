@@ -22,12 +22,12 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                f"- مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}\n- يمكنك كتابه `/انضم `+ رابط المجموعه حتا انضم اليها\n- مطور البوت @{SUDO_USERNAME}\n- قناة البوت @{UPDATES_CHANNEL}\n- جروب الدعم @{SUPPORT_GROUP}",
+                f"- مرحبا انا الحساب المساعد لي البوت @{BOT_USERNAME}\n- يمكنك ارسال رابط المجموعة وسوف انضم اليها\n- مطور البوت @{SUDO_USERNAME}\n- قناة البوت @{UPDATES_CHANNEL}\n- جروب الدعم @{SUPPORT_GROUP}",
             )
             return
 
     
-@Client.on_message(filters.command(["pmpermit","الردود",f"الردود@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
+@Client.on_message(filters.command(["pmpermit","رد الخاص",f"رد الخاص@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
 async def bye(client: Client, message: Message):
     if message.from_user.id in SUDO_USERS:
         global PMSET
@@ -35,10 +35,10 @@ async def bye(client: Client, message: Message):
         queryy = text[1]
         if queryy == "on" or queryy == "تفعيل":
             PMSET = True
-            await message.reply_text("تم تفعيل الردود")
+            await message.reply_text("تم تفعيل رد الخاص")
             return
         if queryy == "off" or queryy == "تعطيل":
             PMSET = None
-            await message.reply_text("تم تعطيل الردود")
+            await message.reply_text("تم تعطيل رد الخاص")
             return
     
