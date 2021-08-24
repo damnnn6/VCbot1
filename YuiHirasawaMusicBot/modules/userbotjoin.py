@@ -50,8 +50,8 @@ async def addchannel(client, message):
 
 @USER.on_message(filters.command(["left","غادر",f"غادر@{BOT_USERNAME}",f"left@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
-        user = await USER.get_me()
 async def rem(USER, message):
+        user = await USER.get_me()
     try:
         await USER.send_message(message.chat.id, "جاري المغادره")
         await USER.leave_chat(message.chat.id)
@@ -83,7 +83,7 @@ async def bye(client, message):
         await client.send_message(message.chat.id, f"الحساب المساعد خرج من {left} محادثة.\nفشل مغادره {failed} محادثة.")
     
     
-@Client.on_message(filters.command(["userbotjoinchannel","ubjoinc"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["userbotjoinchannel","ubjoinc","القناه انضم",f"userbotjoinchannel@{BOT_USERNAME}",f"ubjoinc@{BOT_USERNAME}",f"القناه انضم@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 @errors
 async def addcchannel(client, message):
