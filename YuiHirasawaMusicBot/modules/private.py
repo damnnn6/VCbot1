@@ -13,7 +13,7 @@ from YuiHirasawaMusicBot.config import SUDO_USERNAME
 from YuiHirasawaMusicBot.config import COMMANDS
 logging.basicConfig(level=logging.INFO)
 
-user = await USER.get_me()
+user = USER.get_me()
 
 @Client.on_message(filters.private & filters.incoming & filters.command(["start"]))
 def _start(client, message):
