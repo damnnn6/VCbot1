@@ -469,12 +469,13 @@ async def play(_, message: Message):
                     return
 
                 try:
+                user = await USER.get_me()
                     await USER.join_chat(invitelink)
                     await USER.send_message(
                         message.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى ☻"
                     )
                     await lel.edit(
-                        f"<b>انضم الحساب المساعد @{ASSISTANT_NAME} إلى محادثتك</b>",
+                        f"<b>انضم الحساب المساعد @{user.Username} إلى محادثتك</b>",
                     )
 
                 except UserAlreadyParticipant:
