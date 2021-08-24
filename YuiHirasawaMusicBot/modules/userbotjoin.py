@@ -8,6 +8,7 @@ from YuiHirasawaMusicBot.services.callsmusic import client as USER
 from YuiHirasawaMusicBot.config import SUDO_USERS
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 
+user = USER.get_me()
 
 @Client.on_message(filters.command(["انضم","join","userbotjoin",f"انضم@{BOT_USERNAME}",f"join@{BOT_USERNAME}",f"userbotjoin@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
@@ -51,7 +52,6 @@ async def addchannel(client, message):
 @USER.on_message(filters.command(["left","غادر",f"غادر@{BOT_USERNAME}",f"left@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 async def rem(USER, message):
-        user = await USER.get_me()
     try:
         await USER.send_message(message.chat.id, "جاري المغادره")
         await USER.leave_chat(message.chat.id)
