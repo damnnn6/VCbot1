@@ -14,10 +14,15 @@ from YuiHirasawaMusicBot.config import COMMANDS
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
 logging.basicConfig(level=logging.INFO)
 
-user = USER.get_me()
 
 @Client.on_message(filters.private & filters.incoming & filters.command(["start"]))
 def _start(client, message):
+user = await USER.get_me()
+    except:
+        user.first_name = "helper"
+    usar = user
+    wew = usar.id
+    try:
     client.send_message(message.chat.id,
         text=tr.START_MSG.format(message.from_user.first_name, message.from_user.id),
         parse_mode="markdown",
@@ -100,9 +105,6 @@ async def start(client: Client, message: Message):
                 [
                     InlineKeyboardButton(
                         "🔊 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"
-                    ),
-                    InlineKeyboardButton(
-                        "💬 جروب الدعم", url=f"https://t.me/{SUPPORT_GROUP}"
                     )
                 ],    
                 [    
