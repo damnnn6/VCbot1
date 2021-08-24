@@ -469,7 +469,6 @@ async def play(_, message: Message):
                     return
 
                 try:
-                user = await USER.get_me()
                     await USER.join_chat(invitelink)
                     await USER.send_message(
                         message.chat.id, "انضممت إلى هذه المجموعة لتشغيل الموسيقى ☻"
@@ -483,7 +482,7 @@ async def play(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>هناك خطاء �</b>",
+                        f"<b>هناك خطاء</b>",
                     )
     try:
         await USER.get_chat(chid)
