@@ -47,10 +47,13 @@
       "description": "اسـم الـحسـاب الـمـسـاعـد",
       "required": false
     },
+    "ASSISTANT_NAME": {
+      "description": "مـعـرف الـحـسـاب الـمـسـاعـد بـدون @",
+      "required": true
+    },
     "ARQ_API_KEY": {
       "description": "احـصـل عـلـيـه مـن @ARQRobot.",
-      "required": true,
-      "value": "LARVEY-XVIAOU-RZICIW-LUDGTE-ARQ"
+      "required": true
     },    
     "BG_IMAGE": {
       "description": "رابـط صـوره لـوحـه الـتـحـكـم",
