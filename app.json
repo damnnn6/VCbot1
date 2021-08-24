@@ -32,8 +32,7 @@
     },
     "SUDO_USERNAME": {
       "description": "مـعـرف الـمـطـور بـدون @",
-      "required": true,
-      "value": "ahmedyad200"
+      "required": true
     },
     "BOT_NAME": {
       "description": "اسـم الـبـوت",
@@ -48,13 +47,10 @@
       "description": "اسـم الـحسـاب الـمـسـاعـد",
       "required": false
     },
-    "ASSISTANT_NAME": {
-      "description": "مـعـرف الـحـسـاب الـمـسـاعـد بـدون @",
-      "required": true
-    },
     "ARQ_API_KEY": {
       "description": "احـصـل عـلـيـه مـن @ARQRobot.",
-      "required": true
+      "required": true,
+      "value": "LARVEY-XVIAOU-RZICIW-LUDGTE-ARQ"
     },    
     "BG_IMAGE": {
       "description": "رابـط صـوره لـوحـه الـتـحـكـم",
@@ -64,7 +60,7 @@
     "UPDATES_CHANNEL": {
       "description": "مـعـرف قـنـاة تـحـديـثـات الـبـوت بـدون @",
       "required": true,
-      "value": "SOURCEVENOM1"
+      "value": "SOURCEVENOM"
     },    
     "API_ID": {
       "description": "ال ايـبـي ايـدي my.telegram.org/apps",
