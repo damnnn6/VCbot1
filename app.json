@@ -25,6 +25,10 @@
       "description": "مـعـرف الـبـوت بـدون @",
       "required": true
     },
+    "ASSISTANT_NAME": {
+      "description": "مـعـرف الحساب المساعد بـدون @",
+      "required": true
+    },
     "SUDO_USERNAME": {
       "description": "مـعـرف الـمـطـور بـدون @",
       "required": true
@@ -78,7 +82,7 @@
     "DURATION_LIMIT": {
       "description": "الـحـد الاقـصـي لـمـده تـشـغـيـل الاغـانـي",
       "required": false,
-      "value": "30"
+      "value": "10"
     }
   }
 }
