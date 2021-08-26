@@ -29,33 +29,9 @@ async def broadcast(_, message: Message):
             try:
                 await pakaya.send_message(dialog.chat.id, lmao)
                 sent = sent+1
-                await wtf.edit(f"`الاذاعة مساعد...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
+                await wtf.edit(f"`الاذاعة...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
             except:
                 failed=failed+1
-                await wtf.edit(f"`الاذاعة مساعد...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
+                await wtf.edit(f"`الاذاعة...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
             await asyncio.sleep(1)
-        await message.reply_text(f"`انتهت الاذاعة 😌` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
-
-
-@Client.on_message(filters.command(["اذاعه البوت",f"اذاعه البوت@{BOT_USERNAME}"]))
-async def broadcast(_, message: Message):
-    sent=0
-    failed=0
-    if message.from_user.id not in SUDO_USERS:
-        await message.reply("بس لعب!")
-        return
-    else:
-        wtf = await message.reply("`جاري بدء الاذاعه...`")
-        if not message.reply_to_message:
-            await wtf.edit("من فضلك قم بي الرد علي الرساله 🥺!")
-            return
-        lmao = message.reply_to_message.text
-        async for dialog in pakaya.iter_dialogs():
-            try:
-                await send_message(dialog.chat.id, lmao)
-                sent = sent+1
-                await wtf.edit(f"`الاذاعة بوت...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
-            except:
-                failed=failed+1
-                await wtf.edit(f"`الاذاعة بوت...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
         await message.reply_text(f"`انتهت الاذاعة 😌` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")

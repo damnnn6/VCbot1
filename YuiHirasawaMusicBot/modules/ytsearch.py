@@ -27,7 +27,7 @@ async def ytsearch(_, message: Message):
         results = YoutubeSearch(query, max_results=6).to_dict()
         i = 0
         text = ""
-        while i < 4:
+        while i < 6:
             text += f"عنوان - {results[i]['title']}\n"
             text += f"المدة - {results[i]['duration']}\n"
             text += f"المشاهدات - {results[i]['views']}\n"

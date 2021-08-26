@@ -109,11 +109,10 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/font.otf", 32)
-    draw.text((205, 550), f"Title: {title}", (51, 215, 255), font=font)
-    draw.text((205, 590), f"Duration: {duration}", (255, 255, 255), font=font)
-    draw.text((205, 630), f"Views: {views}", (255, 255, 255), font=font)
-    draw.text((205, 670), f"Added By: {requested_by}", (255, 255, 255), font=font)
-    draw.text((205, 670), f"Bot Channel: @{updateschannel}", (255, 255, 255), font=font)
+    draw.text((205, 560), f"Title: {title}", (51, 215, 255), font=font)
+    draw.text((205, 600), f"Duration: {duration}", (255, 255, 255), font=font)
+    draw.text((205, 640), f"Views: {views}", (255, 255, 255), font=font)
+    draw.text((205, 680), f"Added By: {requested_by}", (255, 255, 255), font=font)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
@@ -132,18 +131,18 @@ async def playlist(client, message):
         temp.append(t)
     now_playing = temp[0][0]
     by = temp[0][1].mention(style="md")
-    msg = "**يشتغل الان** in {}".format(message.chat.title)
+    msg = "**يشتغل الان** {}".format(message.chat.title)
     msg += "\n- " + now_playing
-    msg += "\n- Req by " + by
+    msg += "\n- تم الطلب بوسطه " + by
     temp.pop(0)
     if temp:
         msg += "\n\n"
-        msg += "**Queue**"
+        msg += "**الدور**"
         for song in temp:
             name = song[0]
             usr = song[1].mention(style="md")
             msg += f"\n- {name}"
-            msg += f"\n- Req by {usr}\n"
+            msg += f"\n- تم الطلب بوسطه {usr}\n"
     await message.reply_text(msg)
 
 
