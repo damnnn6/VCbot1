@@ -14,6 +14,7 @@ BG_IMAGE = getenv("BG_IMAGE", "https://telegra.ph/file/061e7730f38fd5120be92.jpg
 admins = {}
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
+ASSISTANT_NAME = getenv("ASSISTANT_NAME", "AYVCMusicuser")
 BOT_USERNAME = getenv("BOT_USERNAME", "AYVCMusicbot")
 SUDO_USERNAME = getenv("SUDO_USERNAME", "ahmedyad200")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "VC_SUP")
