@@ -27,7 +27,7 @@ async def pmPermit(client: USER, message: Message):
             return
 
     
-@Client.on_message(filters.command(["pmpermit","رد الخاص",f"رد الخاص@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
+@Client.on_message(filters.command(["pmpermit","الردود",f"الردود@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
 async def bye(client: Client, message: Message):
     if message.from_user.id in SUDO_USERS:
         global PMSET
@@ -35,10 +35,10 @@ async def bye(client: Client, message: Message):
         queryy = text[1]
         if queryy == "on" or queryy == "تفعيل":
             PMSET = True
-            await message.reply_text("تم تفعيل رد الخاص")
+            await message.reply_text("تم تفعيل الردود")
             return
         if queryy == "off" or queryy == "تعطيل":
             PMSET = None
-            await message.reply_text("تم تعطيل رد الخاص")
+            await message.reply_text("تم تعطيل الردود")
             return
     

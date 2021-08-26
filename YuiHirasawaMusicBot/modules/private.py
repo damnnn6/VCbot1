@@ -11,7 +11,6 @@ from YuiHirasawaMusicBot.config import SUPPORT_GROUP
 from YuiHirasawaMusicBot.config import UPDATES_CHANNEL
 from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import SUDO_USERNAME
-from YuiHirasawaMusicBot.config import COMMANDS
 logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.private & filters.incoming & filters.command(["start"]))
@@ -29,9 +28,6 @@ def _start(client, message):
                         "🔊 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"), 
                     InlineKeyboardButton(
                         "🛠 المطور", url=f"https://t.me/{SUDO_USERNAME}")
-                ],[
-                    InlineKeyboardButton(
-                         "🔐 الاوامر", url=f"{COMMANDS}")
                 ],[
                     InlineKeyboardButton(
                          "💬 جروب الدعم", url=f"https://t.me/{SUPPORT_GROUP}")
@@ -96,20 +92,13 @@ async def start(client: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "🔊 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"
-                    ),
-                    InlineKeyboardButton(
-                        "💬 جروب الدعم", url=f"https://t.me/{SUPPORT_GROUP}"
-                    )
+                    InlineKeyboardButton("✅ نعم", switch_inline_query_current_chat=""),
+                ],
+                [
+                    InlineKeyboardButton("لا ❌", callback_data="cls")
                 ],    
-                [    
-                    InlineKeyboardButton(
-                        "✅ نعم", switch_inline_query_current_chat=""
-                    ),
-                    InlineKeyboardButton(
-                        "لا ❌", callback_data="cls"
-                    )
+                [
+                    InlineKeyboardButton("🔊 قناة البوت", url=f"https://t.me/{UPDATES_CHANNEL}"),
                 ]
             ]
         )

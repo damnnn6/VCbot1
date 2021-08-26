@@ -112,12 +112,8 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     draw.text((205, 550), f"Title: {title}", (51, 215, 255), font=font)
     draw.text((205, 590), f"Duration: {duration}", (255, 255, 255), font=font)
     draw.text((205, 630), f"Views: {views}", (255, 255, 255), font=font)
-    draw.text(
-        (205, 670),
-        f"Added By: {requested_by}",
-        (255, 255, 255),
-        font=font,
-    )
+    draw.text((205, 670), f"Added By: {requested_by}", (255, 255, 255), font=font)
+    draw.text((205, 670), f"Bot Channel: @{updateschannel}", (255, 255, 255), font=font)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
@@ -136,7 +132,7 @@ async def playlist(client, message):
         temp.append(t)
     now_playing = temp[0][0]
     by = temp[0][1].mention(style="md")
-    msg = "**Now Playing** in {}".format(message.chat.title)
+    msg = "**يشتغل الان** in {}".format(message.chat.title)
     msg += "\n- " + now_playing
     msg += "\n- Req by " + by
     temp.pop(0)
@@ -157,13 +153,13 @@ async def playlist(client, message):
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.active_chats:
         # if chat.id in active_chats:
-        stats = "Settings of **{}**".format(chat.title)
+        stats = "**{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
-            stats += "Volume : {}%\n".format(vol)
-            stats += "Songs in queue : `{}`\n".format(len(que))
-            stats += "Now Playing : **{}**\n".format(queue[0][0])
-            stats += "Requested by : {}".format(queue[0][1].mention)
+            stats += "الصوت : {}%\n".format(vol)
+            stats += "عدد الاغاني : `{}`\n".format(len(que))
+            stats += "يشتغل الان : **{}**\n".format(queue[0][0])
+            stats += "تم الطلب بوسطه : {}".format(queue[0][1].mention)
     else:
         stats = None
     return stats
@@ -530,9 +526,11 @@ async def play(_, message: Message):
             [
                 [
                     InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
-                    InlineKeyboardButton("القائمة ⏯ ", callback_data="menu"),
+                    InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
                 ],
-                [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
+                [
+                    InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")
+                ],
             ]
         )
         file_name = get_file_name(audio)
@@ -590,10 +588,8 @@ async def play(_, message: Message):
                     InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
                 ],
                 [
-                    InlineKeyboardButton(text="🎬 YouTube", url=f"{url}"),
-                    InlineKeyboardButton(text="Download 📥", url=f"{dlurl}"),
+                    InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")
                 ],
-                [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -623,7 +619,8 @@ async def play(_, message: Message):
                 toxxt += f" ╚ <b>المدة</b> - {results[j]['duration']}\n"
                 toxxt += f" ╚ <b>المشاهدات</b> - {results[j]['views']}\n"
                 toxxt += f" ╚ <b>القناة</b> - {results[j]['channel']}\n\n"
-
+                toxxt += f" <b>يمكنك الضغط علي الازرار في الاسفل لي تشغيل الاغنيه</b>"
+                
                 j += 1            
             koyboard = InlineKeyboardMarkup(
                 [
@@ -678,18 +675,16 @@ async def play(_, message: Message):
             dlurl=url
             dlurl=dlurl.replace("youtube","youtubepp")
             keyboard = InlineKeyboardMarkup(
+            [
                 [
-                    [
-                        InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
-                        InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
-                    ],
-                    [
-                        InlineKeyboardButton(text="🎬 YouTube", url=f"{url}"),
-                        InlineKeyboardButton(text="Download 📥", url=f"{dlurl}"),
-                    ],
-                    [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
-                ]
-            )
+                    InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
+                    InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
+                ],
+                [
+                    InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")
+                ],
+            ]
+        )
             requested_by = message.from_user.first_name
             await generate_cover(requested_by, title, views, duration, thumbnail)
             file_path = await convert(youtube.download(url))   
@@ -836,18 +831,16 @@ async def ytplay(_, message: Message):
     dlurl=url
     dlurl=dlurl.replace("youtube","youtubepp")
     keyboard = InlineKeyboardMarkup(
-        [
             [
-                InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
-                InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
-            ],
-            [
-                InlineKeyboardButton(text="🎬 YouTube", url=f"{url}"),
-                InlineKeyboardButton(text="Download 📥", url=f"{dlurl}"),
-            ],
-            [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
-        ]
-    )
+                [
+                    InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
+                    InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
+                ],
+                [
+                    InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")
+                ],
+            ]
+        )
     requested_by = message.from_user.first_name
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await convert(youtube.download(url))
@@ -979,15 +972,16 @@ async def deezer(client: Client, message_: Message):
         pass    
     
     keyboard = InlineKeyboardMarkup(
-        [
             [
-                InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
-                InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
-            ],
-            [InlineKeyboardButton(text="استمع على ديزر 🎬", url=f"{url}")],
-            [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
-        ]
-    )
+                [
+                    InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
+                    InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
+                ],
+                [
+                    InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")
+                ],
+            ]
+        )
     file_path = await convert(wget.download(url))
     await res.edit("Generating Thumbnail")
     await generate_cover(requested_by, title, artist, duration, thumbnail)
@@ -1115,19 +1109,16 @@ async def jiosaavn(client: Client, message_: Message):
     except:
         pass    
     keyboard = InlineKeyboardMarkup(
-        [
             [
-                InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
-                InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
-            ],
-            [
-                InlineKeyboardButton(
-                    text="الانضمام إلى قناة التحديثات", url=f"https://t.me/{updateschannel}"
-                )
-            ],
-            [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
-        ]
-    )
+                [
+                    InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
+                    InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
+                ],
+                [
+                    InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")
+                ],
+            ]
+        )
     file_path = await convert(wget.download(slink))
     chat_id = get_chat_id(message_.chat)
     if chat_id in callsmusic.active_chats:
@@ -1224,18 +1215,16 @@ async def lol_cb(b, cb):
     dlurl=url
     dlurl=dlurl.replace("youtube","youtubepp")
     keyboard = InlineKeyboardMarkup(
-        [
             [
-                InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
-                InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
-            ],
-            [
-                InlineKeyboardButton(text="🎬 YouTube", url=f"{url}"),
-                InlineKeyboardButton(text="Download 📥", url=f"{dlurl}"),
-            ],
-            [InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")],
-        ]
-    )
+                [
+                    InlineKeyboardButton("📖 قائمة التشغيل", callback_data="playlist"),
+                    InlineKeyboardButton("قائمة ⏯ ", callback_data="menu"),
+                ],
+                [
+                    InlineKeyboardButton(text="❌ اغلاق", callback_data="cls")
+                ],
+            ]
+        )
     requested_by = useer_name
     await generate_cover(requested_by, title, views, duration, thumbnail)
     file_path = await convert(youtube.download(url))  

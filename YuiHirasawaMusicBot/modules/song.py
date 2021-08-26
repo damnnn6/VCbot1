@@ -40,9 +40,9 @@ from youtube_dl.utils import (
 async def song(client, message):
     cap = f"🎵 Uploaded by @{BOT_USERNAME}\nChannel bot @{updateschannel}"
     url = message.text.split(None, 1)[1]
-    rkp = await message.reply("معالجه...")
+    rkp = await message.reply("Processing...")
     if not url:
-        await rkp.edit("**لي تحميل اغنيه?**\nاكتب`/تحميل` <اسم الاغنيه>")
+        await rkp.edit("**ما هي الاغنية التي تريدها?**\nاكتب`/تحميل ` <اسم الاغنية>")
     search = SearchVideos(url, offset=1, mode="json", max_results=1)
     test = search.result()
     p = json.loads(test)
@@ -50,7 +50,7 @@ async def song(client, message):
     try:
         url = q[0]["link"]
     except BaseException:
-        return await rkp.edit("فشل في العثور على تلك الأغنية.")
+        return await rkp.edit("فشل العثور علي الموسيقي.")
     type = "audio"
     if type == "audio":
         opts = {
@@ -81,27 +81,27 @@ async def song(client, message):
         await rkp.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await rkp.edit("`كان محتوى التنزيل قصيرًا جدًا.`")
+        await rkp.edit("لا يمكنني التحميل بسبب قصر طول الفيديو")
         return
     except GeoRestrictedError:
         await rkp.edit(
-            "`الفيديو غير متاح من موقعك الجغرافي بسبب القيود الجغرافية التي يفرضها موقع الويب.`"
+            "الفيديو غير متاح من موقعك الجغرافي بسبب القيود الجغرافية التي يفرضها موقع الويب"
         )
         return
     except MaxDownloadsReached:
-        await rkp.edit("`تم الوصول إلى الحد الأقصى لعدد التنزيلات.`")
+        await rkp.edit("تم الوصول إلى الحد الأقصى لعدد التنزيلات")
         return
     except PostProcessingError:
-        await rkp.edit("`كان هناك خطأ أثناء معالجة ما بعد.`")
+        await rkp.edit("كان هناك خطأ أثناء معالجة")
         return
     except UnavailableVideoError:
-        await rkp.edit("`الوسائط غير متوفرة بالتنسيق المطلوب.`")
+        await rkp.edit("لم اجد الموسيقي للتحميل")
         return
     except XAttrMetadataError as XAME:
         await rkp.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
         return
     except ExtractorError:
-        await rkp.edit("`حدث خطأ أثناء استخراج المعلومات.`")
+        await rkp.edit("حدث خطأ أثناء استخراج المعلومات")
         return
     except Exception as e:
         await rkp.edit(f"{str(type(e)): {str(e)}}")
@@ -114,5 +114,6 @@ async def song(client, message):
                  duration=int(rip_data["duration"]),
                  title=str(rip_data["title"]),
                  performer=str(rip_data["uploader"]),
+                 thumb=lol,
                  caption=cap)  #JEcode
         await rkp.delete()

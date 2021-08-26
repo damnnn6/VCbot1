@@ -43,11 +43,13 @@ from YuiHirasawaMusicBot.services.callsmusic import client as USER
 from YuiHirasawaMusicBot.services.converter.converter import convert
 from YuiHirasawaMusicBot.services.downloaders import youtube
 from YuiHirasawaMusicBot.services.queues import queues
+from YuiHirasawaMusicBot.config import BOT_USERNAME as bot
+from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 
 chat_id = None
 
 
-@Client.on_message(filters.command(["channelplaylist","cplaylist"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["channelplaylist","cplaylist","القناة قائمه الشتغيل","القناه قائمة الشتغيل","القناه قائمه الشتغيل","القناة قائمة التشغيل","channelplaylist@{bot}","cplaylist@{bot}","القناة قائمه الشتغيل@{bot}","القناه قائمة الشتغيل@{bot}","القناه قائمه الشتغيل@{bot}","القناة قائمة التشغيل@{bot}"]) & ~filters.private & ~filters.bot)
 async def playlist(client, message):
     try:
       lel = await client.get_chat(message.chat.id)
@@ -64,18 +66,18 @@ async def playlist(client, message):
         temp.append(t)
     now_playing = temp[0][0]
     by = temp[0][1].mention(style="md")
-    msg = "<b>Now Playing</b> in {}".format(lel.linked_chat.title)
+    msg = "<b>يشتغل الان</b> in {}".format(lel.linked_chat.title)
     msg += "\n- " + now_playing
-    msg += "\n- Req by " + by
+    msg += "\n- مطلوب من قبل " + by
     temp.pop(0)
     if temp:
         msg += "\n\n"
-        msg += "<b>Queue</b>"
+        msg += "<b>الدور</b>"
         for song in temp:
             name = song[0]
             usr = song[1].mention(style="md")
             msg += f"\n- {name}"
-            msg += f"\n- Req by {usr}\n"
+            msg += f"\n- مطلوب من قبل {usr}\n"
     await message.reply_text(msg)
 
 
@@ -85,13 +87,13 @@ async def playlist(client, message):
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.active_chats:
         # if chat.id in active_chats:
-        stats = "Settings of **{}**".format(chat.title)
+        stats = "**{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
-            stats += "Volume : {}%\n".format(vol)
-            stats += "Songs in queue : `{}`\n".format(len(que))
-            stats += "Now Playing : **{}**\n".format(queue[0][0])
-            stats += "Requested by : {}".format(queue[0][1].mention)
+            stats += "الصوت : {}%\n".format(vol)
+            stats += "عدد الاغاني : `{}`\n".format(len(que))
+            stats += "يشتغل الان : **{}**\n".format(queue[0][0])
+            stats += "مطلوب من قبل : {}".format(queue[0][1].mention)
     else:
         stats = None
     return stats
@@ -111,15 +113,15 @@ def r_ply(type_):
                 InlineKeyboardButton("⏭", "cskip"),
             ],
             [
-                InlineKeyboardButton("Playlist 📖", "cplaylist"),
+                InlineKeyboardButton("قائمه التشغيل 📖", "cplaylist"),
             ],
-            [InlineKeyboardButton("❌ Close", "ccls")],
+            [InlineKeyboardButton("❌ اغلاق", "ccls")],
         ]
     )
     return mar
 
 
-@Client.on_message(filters.command(["channelcurrent","ccurrent"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["channelcurrent","ccurrent","القناة مسار","القناه مسار","channelcurrent@{bot}","ccurrent@{bot}","القناة مسار@{bot}","القناه مسار@{bot}"]) & ~filters.private & ~filters.bot)
 async def ee(client, message):
     try:
       lel = await client.get_chat(message.chat.id)
@@ -176,24 +178,24 @@ async def p_cb(b, cb):
     if type_ == "playlist":
         queue = que.get(lol)
         if not queue:
-            await cb.message.edit("Player is idle")
+            await cb.message.edit("مشغل الموسيقي معطل")
         temp = []
         for t in queue:
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "**Now Playing** in {}".format(conv.title)
+        msg = "**يشتغل الان** in {}".format(conv.title)
         msg += "\n- " + now_playing
-        msg += "\n- Req by " + by
+        msg += "\n- مطلوب من قبل " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**Queue**"
+            msg += "**الدور**"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
                 msg += f"\n- {name}"
-                msg += f"\n- Req by {usr}\n"
+                msg += f"\n- مطلوب من قبل {usr}\n"
         await cb.message.edit(msg)
 
 
@@ -250,24 +252,24 @@ async def m_cb(b, cb):
     elif type_ == "cplaylist":
         queue = que.get(cb.message.chat.id)
         if not queue:
-            await cb.message.edit("Player is idle")
+            await cb.message.edit("مشغل الموسيقي معطل")
         temp = []
         for t in queue:
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "**Now Playing** in {}".format(cb.message.chat.title)
+        msg = "**يشتغل الان** in {}".format(cb.message.chat.title)
         msg += "\n- " + now_playing
-        msg += "\n- Req by " + by
+        msg += "\n- مطلوب من قبل " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**Queue**"
+            msg += "**الدور**"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
                 msg += f"\n- {name}"
-                msg += f"\n- Req by {usr}\n"
+                msg += f"\n- مطلوب من قبل {usr}\n"
         await cb.message.edit(msg)
 
     elif type_ == "cresume":
@@ -302,9 +304,9 @@ async def m_cb(b, cb):
                     InlineKeyboardButton("⏭", "cskip"),
                 ],
                 [
-                    InlineKeyboardButton("Playlist 📖", "cplaylist"),
+                    InlineKeyboardButton("قائمه التشغيل 📖", "cplaylist"),
                 ],
-                [InlineKeyboardButton("❌ Close", "ccls")],
+                [InlineKeyboardButton("❌ اغلاق", "ccls")],
             ]
         )
         await cb.message.edit(stats, reply_markup=marr)
@@ -318,15 +320,15 @@ async def m_cb(b, cb):
 
             if queues.is_empty(chet_id):
                 callsmusic.stop(chet_id)
-                await cb.message.edit("- No More Playlist..\n- Leaving VC!")
+                await cb.message.edit("- لا يوجد المزيد للتشغيل..\n- مغادرة المحادثة الصوتية!")
             else:
                 await callsmusic.set_stream(
                     chet_id, queues.get(chet_id)["file"]
                 )
-                await cb.answer.reply_text("✅ <b>Skipped</b>")
+                await cb.answer.reply_text("✅ <b>تم التخطي</b>")
                 await cb.message.edit((m_chat, qeue), reply_markup=r_ply(the_data))
                 await cb.message.reply_text(
-                    f"- Skipped track\n- Now Playing **{qeue[0][0]}**"
+                    f"- تم التخطي\n- يشتغل الان **{qeue[0][0]}**"
                 )
 
     else:
@@ -337,12 +339,12 @@ async def m_cb(b, cb):
                 pass
 
             callsmusic.stop(chet_id)
-            await cb.message.edit("Successfully Left the Chat!")
+            await cb.message.edit("تم مغادره المحادثة!")
         else:
             await cb.answer("الدردشة غير متصلة!", show_alert=True)
 
 
-@Client.on_message(filters.command(["channelplay","cplay"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["channelplay","cplay","القناة تشغيل","القناه تشغيل","channelplay@{bot}","cplay@{bot}","القناة تشغيل@{bot}","القناه تشغيل@{bot}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 async def play(_, message: Message):
     global que
@@ -382,14 +384,14 @@ async def play(_, message: Message):
                     invitelink = await _.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Add me as admin of yor channel  first</b>",
+                        "<b>اضفني ادمن في القناة</b>",
                     )
                     return
 
                 try:
                     await USER.join_chat(invitelink)
                     await lel.edit(
-                        "<b>helper userbot joined your channel</b>",
+                        "<b>انضم الحساب المساعد الي قناتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -397,21 +399,21 @@ async def play(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} تعذر الانضمام إلى قناتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر الحساب في المجموعة."
-                        "\n\nأو أضف يدويًا وحاول مرا اخري</b>",
+                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \n تعذر الانضمام إلى قناتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر الحساب في المجموعة و القناة."
+                        f"\n\nأو أضف يدويًا وحاول مرا اخري @{ASSISTANT_NAME}</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot not in this chat, Ask channel admin to send /play command for first time or add {user.first_name} manually</i>"
+            f"<i> الحساب المساعد ليس في هذه الدردشه اطلب من المسؤول كتابة `/انضم` حتا ينضم الحساب المساعد الي المجموعة</i>"
         )
         return
     message.from_user.id
     text_links = None
     message.from_user.first_name
-    await lel.edit("🔎 <b>Finding</b>")
+    await lel.edit("🔎 <b>العثور على</b>")
     message.from_user.id
     user_id = message.from_user.id
     message.from_user.first_name
@@ -443,16 +445,16 @@ async def play(_, message: Message):
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             await lel.edit(
-                f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed to play!"
+                f"❌ طول الفيديو اكثر من {DURATION_LIMIT} لا يسمح لي بي التشغيل!"
             )
             return
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("📖 Playlist", callback_data="cplaylist"),
-                    InlineKeyboardButton("Menu ⏯ ", callback_data="cmenu"),
+                    InlineKeyboardButton("📖 قائمه التشغيل", callback_data="cplaylist"),
+                    InlineKeyboardButton("ااتحكم ⏯ ", callback_data="cmenu"),
                 ],
-                [InlineKeyboardButton(text="❌ Close", callback_data="ccls")],
+                [InlineKeyboardButton(text="❌ اغلاق", callback_data="ccls")],
             ]
         )
         file_name = get_file_name(audio)
@@ -497,7 +499,7 @@ async def play(_, message: Message):
                 dur += (int(dur_arr[i]) * secmul)
                 secmul *= 60
             if (dur / 60) > DURATION_LIMIT:
-                 await lel.edit(f"❌ Videos longer than {DURATION_LIMIT} minutes aren't allowed to play!")
+                 await lel.edit(f"❌ طول الفيديو اكثر من  {DURATION_LIMIT} دقيقة لا يسمح لي بي التشغيل!")
                  return
         except:
             pass        
@@ -506,14 +508,10 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("📖 Playlist", callback_data="cplaylist"),
-                    InlineKeyboardButton("Menu ⏯ ", callback_data="cmenu"),
+                    InlineKeyboardButton("📖 قائمة التشغيل", callback_data="cplaylist"),
+                    InlineKeyboardButton("التحكم ⏯ ", callback_data="cmenu"),
                 ],
-                [
-                    InlineKeyboardButton(text="🎬 YouTube", url=f"{url}"),
-                    InlineKeyboardButton(text="Download 📥", url=f"{dlurl}"),
-                ],
-                [InlineKeyboardButton(text="❌ Close", callback_data="ccls")],
+                [InlineKeyboardButton(text="❌ اغلاق", callback_data="ccls")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -541,7 +539,7 @@ async def play(_, message: Message):
 
         except Exception as e:
             await lel.edit(
-                "Song not found.Try another song or maybe spell it properly."
+                "لم يتم العثور على الأغنية ، جرب أغنية أخرى أو ربما تهجئها بشكل صحيح."
             )
             print(str(e))
             return
@@ -551,7 +549,7 @@ async def play(_, message: Message):
                 dur += (int(dur_arr[i]) * secmul)
                 secmul *= 60
             if (dur / 60) > DURATION_LIMIT:
-                 await lel.edit(f"❌ Videos longer than {DURATION_LIMIT} minutes aren't allowed to play!")
+                 await lel.edit(f"❌ طول الفيديو اكثر من  {DURATION_LIMIT} دقيقة لا يسمح لي بي التشغيل!")
                  return
         except:
             pass
@@ -560,14 +558,10 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("📖 Playlist", callback_data="cplaylist"),
-                    InlineKeyboardButton("Menu ⏯ ", callback_data="cmenu"),
+                    InlineKeyboardButton("📖 قائمة التشغيل", callback_data="cplaylist"),
+                    InlineKeyboardButton("التحكم ⏯ ", callback_data="cmenu"),
                 ],
-                [
-                    InlineKeyboardButton(text="🎬 YouTube", url=f"{url}"),
-                    InlineKeyboardButton(text="Download 📥", url=f"{dlurl}"),
-                ],
-                [InlineKeyboardButton(text="❌ Close", callback_data="ccls")],
+                [InlineKeyboardButton(text="❌ اغلاق", callback_data="ccls")],
             ]
         )
         requested_by = message.from_user.first_name
@@ -584,7 +578,7 @@ async def play(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"#⃣ Your requested song <b>queued</b> at position {position}!",
+            caption=f"#⃣ الأغنية التي طلبتها <b>في قائمة الانتظار</b> في الموضع {position}!",
             reply_markup=keyboard,
         )
         os.remove("final.png")
@@ -602,7 +596,7 @@ async def play(_, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="▶️ <b>Playing</b> the song requested by {} via Youtube Music 😎 in Linked Channel".format(
+            caption="▶️ <b>يشتغل</b> الاغنيه للتي طلبها {} في القناة المرتبطة".format(
                 message.from_user.mention()
             ),
         )
@@ -610,7 +604,7 @@ async def play(_, message: Message):
         return await lel.delete()
 
 
-@Client.on_message(filters.command(["channeldplay","cdplay"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["channeldplay","cdplay","القناة ديزر تشغيل","القناه ديزر تشغيل","channeldplay@{bot}","cdplay@{bot}","القناة ديزر تشغيل@{bot}","القناه ديزر تشغيل@{bot}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 async def deezer(client: Client, message_: Message):
     global que
@@ -649,14 +643,14 @@ async def deezer(client: Client, message_: Message):
                     invitelink = await client.export_chat_invite_link(chid)
                 except:
                     await lel.edit(
-                        "<b>Add me as admin of yor channel first</b>",
+                        "<b>اضفني ادمن في قناتك</b>",
                     )
                     return
 
                 try:
                     await USER.join_chat(invitelink)
                     await lel.edit(
-                        "<b>helper userbot joined your channel</b>",
+                        "<b>انضم الحساب المساعد الي قناتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -664,15 +658,15 @@ async def deezer(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} couldn't join your channel due to heavy requests for userbot! Make sure user is not banned in channel."
-                        "\n\nأو أضف يدويًا وحاول مرا اخري</b>",
+                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \n تعذر الانضمام إلى قناتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر الحساب في المجموعة و القناة."
+                        f"\n\nأو أضف يدويًا وحاول مرا اخري @{ASSISTANT_NAME}</b>",
                     )
     try:
         await USER.get_chat(chid)
         # lmoa = await client.get_chat_member(chid,wew)
     except:
         await lel.edit(
-            f"<i> {user.first_name} Userbot not in this channel, Ask admin to send /play command for first time or add {user.first_name} manually</i>"
+            f"<i> الحساب المساعد ليس في هذه الدردشه اطلب من المسؤول كتابة `/انضم` حتا ينضم الحساب المساعد الي المجموعة</i>"
         )
         return
     requested_by = message_.from_user.first_name
@@ -681,7 +675,7 @@ async def deezer(client: Client, message_: Message):
     queryy = text[1]
     query=queryy
     res = lel
-    await res.edit(f"Searching 🔍 for `{queryy}` on deezer")
+    await res.edit(f"جاري البحث 🔍 عن `{queryy}` علي ديزر")
     try:
         songs = await arq.deezer(query,1)
         if not songs.ok:
@@ -693,24 +687,23 @@ async def deezer(client: Client, message_: Message):
         duration = songs.result[0].duration
         thumbnail = songs.result[0].thumbnail
     except:
-        await res.edit("Found Literally Nothing, You Should Work On Your English!")
+        await res.edit("لم اجد نتائج!")
         return
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("📖 Playlist", callback_data="cplaylist"),
-                InlineKeyboardButton("Menu ⏯ ", callback_data="cmenu"),
+                InlineKeyboardButton("📖 قائمة التشغيل", callback_data="cplaylist"),
+                InlineKeyboardButton("التحكم ⏯ ", callback_data="cmenu"),
             ],
-            [InlineKeyboardButton(text="Listen On Deezer 🎬", url=f"{url}")],
             [InlineKeyboardButton(text="❌ Close", callback_data="ccls")],
         ]
     )
     file_path = await convert(wget.download(url))
-    await res.edit("Generating Thumbnail")
+    await res.edit("جاري توليد الصورة المصغرة")
     await generate_cover(requested_by, title, artist, duration, thumbnail)
     chat_id = chid
     if chat_id in callsmusic.active_chats:
-        await res.edit("adding in queue")
+        await res.edit("اضاف الي قائمة الانتظار")
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
@@ -720,7 +713,7 @@ async def deezer(client: Client, message_: Message):
         qeue.append(appendable)
         await res.edit_text(f"✯{bn}✯= #️⃣ في قائمة الانتظار {position}")
     else:
-        await res.edit_text(f"✯{bn}✯=▶️ Playing.....")
+        await res.edit_text(f"✯{bn}✯=▶️ يشتغل.....")
 
         que[chat_id] = []
         qeue = que.get(chat_id)
@@ -736,7 +729,7 @@ async def deezer(client: Client, message_: Message):
         chat_id=message_.chat.id,
         reply_markup=keyboard,
         photo="final.png",
-        caption=f"Playing [{title}]({url}) Via Deezer in Linked Channel",
+        caption=f"يشتغل [{title}]({url}) عبر ديزر في القناة المرتبطة",
     )
     os.remove("final.png")
 
@@ -786,7 +779,7 @@ async def jiosaavn(client: Client, message_: Message):
                 try:
                     await USER.join_chat(invitelink)
                     await lel.edit(
-                        "<b>helper userbot joined your channel</b>",
+                        "<b>انضم الحساب المساعد الي قناتك</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -794,8 +787,8 @@ async def jiosaavn(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \nالمستخدم {user.first_name} تعذر الانضمام إلى قناتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر الحساب في المجموعة."
-                        "\n\nأو أضف يدويًا @Rengoku_Kyujoro_Helper to your Group and try again</b>",
+                        f"<b>🔴 خطأ هناك ضغط علي الحساب المساعد 🔴 \n تعذر الانضمام إلى قناتك بسبب الطلبات الكثيفة على الحساب المساعد تأكد من عدم حظر الحساب في المجموعة و القناة."
+                        f"\n\nأو أضف يدويًا وحاول مرا اخري @{ASSISTANT_NAME}</b>",
                     )
     try:
         await USER.get_chat(chid)
@@ -822,21 +815,16 @@ async def jiosaavn(client: Client, message_: Message):
         sthumb = "https://telegra.ph/file/f6086f8909fbfeb0844f2.png"
         sduration = int(songs.result[0].duration)
     except Exception as e:
-        await res.edit("Found Literally Nothing!, You Should Work On Your English.")
+        await res.edit("لم اجد اي نتائج")
         print(str(e))
         return
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("📖 Playlist", callback_data="cplaylist"),
-                InlineKeyboardButton("Menu ⏯ ", callback_data="cmenu"),
+                InlineKeyboardButton("📖 قائمة التشغيل", callback_data="cplaylist"),
+                InlineKeyboardButton("التحكم ⏯ ", callback_data="cmenu"),
             ],
-            [
-                InlineKeyboardButton(
-                    text="Join Updates Channel", url=f"https://t.me/{updateschannel}"
-                )
-            ],
-            [InlineKeyboardButton(text="❌ Close", callback_data="ccls")],
+            [InlineKeyboardButton(text="❌ اغلاق", callback_data="ccls")],
         ]
     )
     file_path = await convert(wget.download(slink))
