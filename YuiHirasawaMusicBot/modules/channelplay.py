@@ -734,7 +734,7 @@ async def deezer(client: Client, message_: Message):
     os.remove("final.png")
 
 
-@Client.on_message(filters.command(["channelsplay","csplay"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["channelsplay","csplay","القناة سافن تشغيل","القناه سافن تشغيل","channelsplay@{bot}","csplay@{bot}","القناة سافن تشغيل@{bot}","القناه سافن تشغيل@{bot}"]) & ~filters.private & ~filters.bot)
 @authorized_users_only
 async def jiosaavn(client: Client, message_: Message):
     global que
@@ -803,7 +803,7 @@ async def jiosaavn(client: Client, message_: Message):
     text = message_.text.split(" ", 1)
     query = text[1]
     res = lel
-    await res.edit(f"Searching 🔎 for `{query}` on jio saavn")
+    await res.edit(f"🔎 جاري البحث عن `{query}` علي موقع سافن")
     try:
         songs = await arq.saavn(query)
         if not songs.ok:
