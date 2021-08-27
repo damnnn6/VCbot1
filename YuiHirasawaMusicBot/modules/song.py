@@ -36,12 +36,12 @@ from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message
 from youtube_search import YoutubeSearch
 from youtubesearchpython import SearchVideos
-
 from YuiHirasawaMusicBot.config import DURATION_LIMIT
 from YuiHirasawaMusicBot.modules.play import arq
+from YuiHirasawaMusicBot.config import UPDATES_CHANNEL as channel
+from YuiHirasawaMusicBot.config import BOT_USERNAME
 
-
-@Client.on_message(filters.command("song") & ~filters.channel)
+@Client.on_message(filters.command(["song","تحميل",f"song@{BOT_USERNAME}",f"تحميل@{BOT_USERNAME}"]))
 def song(client, message):
 
     user_id = message.from_user.id
@@ -52,7 +52,7 @@ def song(client, message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    m = message.reply("🔎 Finding the song...")
+    m = message.reply("🔎 جاري البحث...")
     ydl_opts = {"format": "bestaudio/best"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -69,16 +69,17 @@ def song(client, message):
         results[0]["views"]
 
     except Exception as e:
-        m.edit("❌ Found Nothing.\n\nTry another keywork or maybe spell it properly.")
+        m.edit("❌ لم اجد اي شيئ.")
         print(str(e))
         return
-    m.edit("Downloading the song ")
+    m.edit("جاري التحميل ")
     try:
+    m.edit("جاري الرفع ")
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = "**🎵 Uploaded by **"
+        rep = f"**🎵 Uploaded by @{BOT_USERNAME}\nBot Channel @{channel}**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -93,7 +94,7 @@ def song(client, message):
         )
         m.delete()
     except Exception as e:
-        m.edit("❌ Error")
+        m.edit("❌ حدث خطأ")
         print(e)
 
     try:
@@ -150,7 +151,7 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
         if file_name:
             try:
                 await message.edit(
-                    "{}\n**File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
+                    "{}\n**الاسم الاول:** `{}`\n{}".format(type_of_ps, file_name, tmp)
                 )
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -267,7 +268,7 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(filters.command("saavn") & ~filters.edited)
+@Client.on_message(filters.command("saavn"))
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
@@ -290,9 +291,9 @@ async def jssong(_, message):
         sname = songs.result[0].song
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
-        await m.edit("Downloading")
+        await m.edit("جاري التحميل")
         song = await download_song(slink)
-        await m.edit("Uploading")
+        await m.edit("جاري الرفع")
         await message.reply_audio(audio=song, title=sname, performer=ssingers)
         os.remove(song)
         await m.delete()
@@ -306,7 +307,7 @@ async def jssong(_, message):
 # Deezer Music
 
 
-@Client.on_message(filters.command("deezer") & ~filters.edited)
+@Client.on_message(filters.command("deezer"))
 async def deezsong(_, message):
     global is_downloading
     if len(message.command) < 2:
@@ -342,7 +343,7 @@ async def deezsong(_, message):
     is_downloading = False
 
 
-@Client.on_message(filters.command(["vsong", "video"]))
+@Client.on_message(filters.command(["vsong","video"]))
 async def ytmusic(client, message: Message):
     global is_downloading
     if is_downloading:

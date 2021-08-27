@@ -21,6 +21,8 @@ from pyrogram.types import Message
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
 
+from YuiHirasawaMusicBot.config import BOT_NAME
+from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.config import ASSISTANT_NAME
 from YuiHirasawaMusicBot.config import ARQ_API_KEY
 from YuiHirasawaMusicBot.config import DURATION_LIMIT
@@ -40,11 +42,6 @@ from YuiHirasawaMusicBot.services.converter.converter import convert
 from YuiHirasawaMusicBot.services.downloaders import youtube
 from YuiHirasawaMusicBot.services.queues import queues
 
-import telebot
-from YuiHirasawaMusicBot.config import BOT_TOKEN
-bot = telebot.TeleBot(token=BOT_TOKEN)
-BOT_NAME = bot.get_me().first_name
-BOT_USERNAME = bot.get_me().username
 
 aiohttpsession = aiohttp.ClientSession()
 chat_id = None
