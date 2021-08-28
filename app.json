@@ -5,12 +5,8 @@
   "keywords": ["music", "voicechat", "telegram"],
   "repository": "https://github.com/Dev3yad/VCbot1",
   "buildpacks": [
-   {
-     "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-   },
-   {
-     "url": "heroku/python"
-   }   
+   {"url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"},
+   {"url": "heroku/python"}   
   ],        
   "env": {
     "SESSION_NAME": {
@@ -48,8 +44,7 @@
     },
     "ARQ_API_KEY": {
       "description": "احـصـل عـلـيـه مـن @ARQRobot.",
-      "required": true,
-      "value": "LARVEY-XVIAOU-RZICIW-LUDGTE-ARQ"
+      "required": true
     },    
     "BG_IMAGE": {
       "description": "رابـط صـوره لـوحـه الـتـحـكـم",
