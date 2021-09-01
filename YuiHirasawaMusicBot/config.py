@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 if os.path.exists("local.env"):
     load_dotenv("local.env")
 
-
-
+que = {}
+admins = {}
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
 SESSION_NAME = getenv("SESSION_NAME")
