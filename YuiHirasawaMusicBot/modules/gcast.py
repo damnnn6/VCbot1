@@ -1,6 +1,8 @@
 # Credits Daisyxmusic
 # Copyright (C) 2021  Inukaasith | Bruh_0x
 
+from time import time
+from datetime import datetime
 
 import asyncio
 
@@ -35,3 +37,19 @@ async def broadcast(_, message: Message):
                 await wtf.edit(f"`الاذاعة...` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
             await asyncio.sleep(1)
         await message.reply_text(f"`انتهت الاذاعة 😌` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** {failed} محادثة")
+
+
+@Client.on_message(filters.command(["ping",f"ping@{BOT_USERNAME}","السرعه",f"السرعه@{BOT_USERNAME}"]))
+async def ping_pong(client: Client, message: Message):
+    start = time()
+    if message.from_user.id not in SUDO_USERS:
+        await message.reply("بس لعب!")
+        return
+    else:
+    m_reply = await message.reply_text("جاري قياس السرعه...")
+    delta_ping = time() - start
+    await m_reply.edit_text(
+        f"السرعة `{delta_ping * 1000:.3f} MS`"
+    )
+    
+    

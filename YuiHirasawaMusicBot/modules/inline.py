@@ -46,3 +46,5 @@ async def inline(client: Client, query: InlineQuery):
                 switch_pm_text="خطأ لا يمكنني البحث هن كل هذا 🙂",
                 switch_pm_parameter="",
             )
+          
+      
