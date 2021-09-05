@@ -7,7 +7,6 @@ from pyrogram.types import Message, Voice
 from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.queues import queues
 
-import converter
 from YuiHirasawaMusicBot.services.downloaders import youtube
 from YuiHirasawaMusicBot.helpers.filters import command
 from YuiHirasawaMusicBot.config import DURATION_LIMIT, BG_IMAGE
@@ -46,16 +45,16 @@ async def stream(_, message: Message):
             )
 
         file_name = get_file_name(audio)
-        file_path = await converter.convert(
+        file_path = await convert(
             (await message.reply_to_message.download(file_name))
             if not path.isfile(path.join("downloads", file_name)) else file_name
         )
     elif url:
-        file_path = await converter.convert(youtube.download(url))
+        file_path = await convert(youtube.download(url))
     else:
-        return await lel.edit_text("♨ لم اجد اغنية لتشغيلها!")
+        return await lel.edit_text(" لم اجد اغنية لتشغيلها!")
 
-    if message.chat.id in callsmusic.pytgcalls.active_calls:
+    if message.chat.id in callsmusic.active_chats:
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
         photo=f"{BG_IMAGE}",
