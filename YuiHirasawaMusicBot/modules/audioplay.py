@@ -6,7 +6,7 @@ from pyrogram.types import Message, Voice
 
 from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.queues import queues
-
+from YuiHirasawaMusicBot.config import BOT_USERNAME
 from YuiHirasawaMusicBot.services.downloaders import youtube
 from YuiHirasawaMusicBot.helpers.filters import command
 from YuiHirasawaMusicBot.config import DURATION_LIMIT, BG_IMAGE
