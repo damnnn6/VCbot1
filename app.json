@@ -35,7 +35,7 @@
     "BOT_NAME": {
       "description": "اسـم الـبـوت",
       "required": false,
-      "value": '√𝙼𝚄𝚂𝙸𝙲..🎶'
+      "value": "√𝙼𝚄𝚂𝙸𝙲..🎶"
     },
     "SUPPORT_GROUP": {
       "description": "مـعـرف جـروب الـدعـم بـدون @",
