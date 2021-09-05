@@ -4,7 +4,8 @@ from pyrogram import filters
 from pyrogram import Client
 from pyrogram.types import Message, Voice
 
-from YuiHirasawaMusicBot.services.callsmusic import callsmusic, queues
+from YuiHirasawaMusicBot.services.callsmusic import callsmusic
+from YuiHirasawaMusicBot.services.queues import queues
 
 import converter
 from YuiHirasawaMusicBot.services.downloaders import youtube
