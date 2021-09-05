@@ -37,7 +37,6 @@ from YuiHirasawaMusicBot.helpers.decorators import authorized_users_only
 from YuiHirasawaMusicBot.helpers.filters import command
 from YuiHirasawaMusicBot.helpers.gets import get_file_name
 from YuiHirasawaMusicBot.services.callsmusic import callsmusic
-from YuiHirasawaMusicBot.services.callsmusic.callsmusic import unmute
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
 from YuiHirasawaMusicBot.services.converter.converter import convert
 from YuiHirasawaMusicBot.services.downloaders import youtube
@@ -187,11 +186,7 @@ def r_ply(type_):
     )
     return mar
 # ============================= Settings =========================================
-@Client.on_message(filters.command(["الغاء كتم","فتح المايك"]))
-async def start(client, message):
-    txt = f"تم فتح مايك الحساب المساعد"
-    await message.reply_text(txt)
-      unmute(message.chat.id)
+
 
 
 @Client.on_message(filters.command(["المسار","current",f"المسار@{BOT_USERNAME}",f"current@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
