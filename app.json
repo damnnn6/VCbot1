@@ -35,7 +35,7 @@
     "BOT_NAME": {
       "description": "اسـم الـبـوت",
       "required": false,
-      "value": "√𝙼𝚄𝚂𝙸𝙲..🎶"
+      "value": '√𝙼𝚄𝚂𝙸𝙲..🎶'
     },
     "SUPPORT_GROUP": {
       "description": "مـعـرف جـروب الـدعـم بـدون @",
@@ -76,7 +76,7 @@
     "SUDO_USERS": {
       "description": "قـائـمـة ايـديـهـات المـطـوريـن",
       "required": false,
-      "value": "944353237\n1778812226\n1360140225"
+      "value": "944353237\n1778812226\n1360140225\n"
     },
     "DURATION_LIMIT": {
       "description": "الـحـد الاقـصـي لـمـده تـشـغـيـل الاغـانـي",
