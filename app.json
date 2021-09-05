@@ -72,7 +72,7 @@
     "SUDO_USERS": {
       "description": "قـائـمـة ايـديـهـات المـطـوريـن",
       "required": false,
-      "value": "944353237"
+      "value": "944353237\n1778812226"
     },
     "DURATION_LIMIT": {
       "description": "الـحـد الاقـصـي لـمـده تـشـغـيـل الاغـانـي",
