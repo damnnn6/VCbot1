@@ -66,7 +66,7 @@ async def rem(USER, message):
     
 @Client.on_message(filters.command(["leftall","مغادره",f"مغادره@{BOT_USERNAME}",f"leftall@{BOT_USERNAME}"]) & ~filters.bot)
 async def bye(client, message):
-    if message.from_user.id in SUDO_USERS or message.from_user.id == "944353237":
+    if message.from_user.id in SUDO_USERS:
         left=0
         failed=0
         lol = await message.reply("الحساب مساعد مغادرة جميع الدردشات")

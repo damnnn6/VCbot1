@@ -110,10 +110,10 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/font.otf", 32)
-    draw.text((205, 565), f"Title: {title}", (51, 215, 255), font=font)
-    draw.text((205, 603), f"Duration: {duration}", (255, 255, 255), font=font)
-    draw.text((205, 642), f"Views: {views}", (255, 255, 255), font=font)
-    draw.text((205, 681), f"Added By: {requested_by}", (255, 255, 255), font=font)
+    draw.text((205, 560), f"Title: {title}", (51, 215, 255), font=font)
+    draw.text((205, 600), f"Duration: {duration}", (255, 255, 255), font=font)
+    draw.text((205, 640), f"Views: {views}", (255, 255, 255), font=font)
+    draw.text((205, 680), f"Added By: {requested_by}", (255, 255, 255), font=font)
     img.save("final.png")
     os.remove("temp.png")
     os.remove("background.png")
@@ -138,7 +138,7 @@ async def playlist(client, message):
     temp.pop(0)
     if temp:
         msg += "\n\n"
-        msg += "**التالي**\n"
+        msg += "**الدور**"
         for song in temp:
             name = song[0]
             usr = song[1].mention(style="md")
@@ -185,8 +185,6 @@ def r_ply(type_):
         ]
     )
     return mar
-# ============================= Settings =========================================
-
 
 
 @Client.on_message(filters.command(["المسار","current",f"المسار@{BOT_USERNAME}",f"current@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
@@ -236,7 +234,7 @@ async def hfmm(_, message):
         return
     status = message.text.split(None, 1)[1]
     message.chat.id
-    if status == "ON" or status == "on" or status == "oN" or status == "On" or status == "تنشيط" or status == "تفعيل":
+    if status == "ON" or status == "on" or status == "oN" or status == "On" or status == "تنشيط":
         lel = await message.reply("`معالجة...`")
         if not message.chat.id in DISABLED_GROUPS:
             await lel.edit("تم تنشيط مشغل الموسيقى بالفعل في هذه الدردشة ♢")
@@ -279,18 +277,18 @@ async def p_cb(b, cb):
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "<b>المجموعة</b> {}".format(cb.message.chat.title)
-        msg += "\n- يشتغل الان " + now_playing
-        msg += "\n- بوسطة " + by
+        msg = "<b>تشغيل الان</b> in {}".format(cb.message.chat.title)
+        msg += "\n- " + now_playing
+        msg += "\n- Req by " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**التالي**\n"
+            msg += "**Queue**"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
                 msg += f"\n- {name}"
-                msg += f"\n- بوسطة {usr}\n"
+                msg += f"\n- Req by {usr}\n"
         await cb.message.edit(msg)
 
 
@@ -346,18 +344,18 @@ async def m_cb(b, cb):
             temp.append(t)
         now_playing = temp[0][0]
         by = temp[0][1].mention(style="md")
-        msg = "**المجموعة** in {}".format(cb.message.chat.title)
-        msg += "\n- يشتغل الان " + now_playing
-        msg += "\n- بوسطة " + by
+        msg = "**Now Playing** in {}".format(cb.message.chat.title)
+        msg += "\n- " + now_playing
+        msg += "\n- Req by " + by
         temp.pop(0)
         if temp:
             msg += "\n\n"
-            msg += "**التالي**\n"
+            msg += "**Queue**"
             for song in temp:
                 name = song[0]
                 usr = song[1].mention(style="md")
                 msg += f"\n- {name}"
-                msg += f"\n- بوسطة {usr}\n"
+                msg += f"\n- Req by {usr}\n"
         await cb.message.edit(msg)
 
     elif type_ == "resume":
@@ -617,7 +615,7 @@ async def play(_, message: Message):
             emojilist = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣",]
 
             while j < 5:
-                toxxt += f"{emojilist[j]} <b>عنوان - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
+                toxxt += f"{emojilist[j]} <b>Title - [{results[j]['title']}](https://youtube.com{results[j]['url_suffix']})</b>\n"
                 toxxt += f" ╚ <b>المدة</b> - {results[j]['duration']}\n"
                 toxxt += f" ╚ <b>المشاهدات</b> - {results[j]['views']}\n"
                 toxxt += f" ╚ <b>القناة</b> - {results[j]['channel']}\n\n"
@@ -701,7 +699,7 @@ async def play(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption=f"#⃣ الأغنية التي طلبتها {queued} في قائمة الانتظار {position}!",
+            caption=f"#⃣ الأغنية التي طلبتها <b>queued</b> في المنصة {position}!",
             reply_markup=keyboard,
         )
         os.remove("final.png")
