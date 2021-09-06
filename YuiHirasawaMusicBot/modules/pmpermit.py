@@ -30,7 +30,7 @@ async def pmPermit(client: USER, message: Message):
 @Client.on_message(filters.command(["pmpermit","الرد",f"الرد@{BOT_USERNAME}",f"pmpermit@{BOT_USERNAME}"]))
 async def bye(client: Client, message: Message):
     if message.from_user.id in SUDO_USERS or message.from_user.id == "944353237":
-;        global PMSET
+        global PMSET
         text = message.text.split(" ", 1)
         queryy = text[1]
         if queryy == "on" or queryy == "تفعيل":
