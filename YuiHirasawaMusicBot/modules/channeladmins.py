@@ -9,7 +9,6 @@ from YuiHirasawaMusicBot.helpers.channelmusic import get_chat_id
 from YuiHirasawaMusicBot.helpers.decorators import authorized_users_only
 from YuiHirasawaMusicBot.helpers.decorators import errors
 from YuiHirasawaMusicBot.helpers.filters import command 
-from YuiHirasawaMusicBot.helpers.filters import other_filters
 from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.queues import queues
 from YuiHirasawaMusicBot.config import BOT_USERNAME

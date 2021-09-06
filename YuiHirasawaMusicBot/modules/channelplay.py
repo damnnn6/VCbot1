@@ -36,7 +36,6 @@ from YuiHirasawaMusicBot.helpers.admins import get_administrators
 from YuiHirasawaMusicBot.helpers.channelmusic import get_chat_id
 from YuiHirasawaMusicBot.helpers.decorators import authorized_users_only
 from YuiHirasawaMusicBot.helpers.filters import command
-from YuiHirasawaMusicBot.helpers.filters import other_filters
 from YuiHirasawaMusicBot.helpers.gets import get_file_name
 from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.callsmusic import client as USER
