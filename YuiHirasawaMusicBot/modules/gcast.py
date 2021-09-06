@@ -42,10 +42,6 @@ async def broadcast(_, message: Message):
 @Client.on_message(filters.command(["ping",f"ping@{BOT_USERNAME}","السرعه",f"السرعه@{BOT_USERNAME}"]))
 async def ping_pong(client: Client, message: Message):
     start = time()
-    if message.from_user.id not in SUDO_USERS:
-        await message.reply("بس لعب!")
-        return
-    else:
     m_reply = await message.reply("جاري قياس السرعه...")
     delta_ping = time() - start
     await m_reply.edit_text(
