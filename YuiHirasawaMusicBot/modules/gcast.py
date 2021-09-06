@@ -46,7 +46,7 @@ async def ping_pong(client: Client, message: Message):
         await message.reply("بس لعب!")
         return
     else:
-    m_reply = await message.reply_text("جاري قياس السرعه...")
+    m_reply = await message.reply("جاري قياس السرعه...")
     delta_ping = time() - start
     await m_reply.edit_text(
         f"السرعة `{delta_ping * 1000:.3f} MS`"
