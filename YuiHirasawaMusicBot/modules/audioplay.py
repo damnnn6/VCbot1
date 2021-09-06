@@ -15,7 +15,7 @@ from YuiHirasawaMusicBot.helpers.errors import DurationLimitError
 from YuiHirasawaMusicBot.helpers.gets import get_url, get_file_name
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-@Client.on_message(filters.command(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}","audio"]) & ~filters.private & ~filters.bot)
 @errors
 async def stream(_, message: Message):
 

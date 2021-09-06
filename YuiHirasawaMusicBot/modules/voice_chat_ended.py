@@ -10,7 +10,5 @@ from YuiHirasawaMusicBot.helpers.channelmusic import get_chat_id
 async def voice_chat_ended(_, message: Message):
     try:
         remove(get_chat_id(message.chat))
-    helptxt = f"تم ايقاف تشغيل الموسيقي"
-    await message.reply_text(helptxt)
     except Exception:
         pass
