@@ -20,7 +20,7 @@ from YuiHirasawaMusicBot.modules.play import generate_cover
 @errors
 async def stream(_, message: Message):
 
-    lel = await message.reply("🔄 معالجة")
+    AY = await message.reply("🔄 معالجة")
     
     keyboard = InlineKeyboardMarkup(
             [
@@ -44,14 +44,14 @@ async def stream(_, message: Message):
             )
 
         file_name = get_file_name(audio)
-        file_path = await convert(
+        file_path = await converter.convert(
             (await message.reply_to_message.download(file_name))
             if not path.isfile(path.join("downloads", file_name)) else file_name
         )
     elif url:
-        file_path = await convert(youtube.download(url))
+        file_path = await converter.convert(youtube.download(url))
     else:
-        return await lel.edit_text(" لم اجد اغنية لتشغيلها!")
+        return await AY.edit_text(" لم اجد اغنية لتشغيلها!")
 
     if message.chat.id in callsmusic.active_chats:
         position = await queues.put(message.chat.id, file=file_path)
@@ -59,7 +59,7 @@ async def stream(_, message: Message):
         photo=f"{BG_IMAGE}",
         reply_markup=keyboard,
         caption=f"#⌛ تم اضافه الموسيقي الي قائمة التشغيل {position}")
-        return await lel.delete()
+        return await AY.delete()
     else:
         callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
         costumer = message.from_user.mention
@@ -68,4 +68,4 @@ async def stream(_, message: Message):
         reply_markup=keyboard,
         caption=f"🎧 **يشتغل الان** بوسطة {costumer}"
         )   
-        return await lel.delete()
+        return await AY.delete()
