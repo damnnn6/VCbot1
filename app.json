@@ -79,9 +79,9 @@
       "value": "944353237\n"
     },
     "DURATION_LIMIT": {
-      "description": "الـحـد الاقـصـي لـمـده تـشـغـيـل الاغـانـي",
+      "description": "الـحـد الاقـصـي لـمـده الاغـانـي",
       "required": true,
-      "value": "10"
+      "value": "15"
     }
   }
 }
