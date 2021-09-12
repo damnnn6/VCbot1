@@ -3,7 +3,7 @@ from os import path
 from pyrogram import filters
 from pyrogram import Client
 from pyrogram.types import Message, Voice
-
+import converter
 from YuiHirasawaMusicBot.services.callsmusic import callsmusic
 from YuiHirasawaMusicBot.services.queues import queues
 from YuiHirasawaMusicBot.config import BOT_USERNAME
@@ -14,15 +14,14 @@ from YuiHirasawaMusicBot.helpers.decorators import errors
 from YuiHirasawaMusicBot.helpers.errors import DurationLimitError
 from YuiHirasawaMusicBot.helpers.gets import get_url, get_file_name
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from YuiHirasawaMusicBot.modules.play import generate_cover
 
-@Client.on_message(filters.command(["play","تشغيل",f"تشغيل@{BOT_USERNAME}",f"play@{BOT_USERNAME}","audio"]) & ~filters.private & ~filters.bot)
+@Client.on_message(filters.command(["موسيقي",f"موسيقي@{BOT_USERNAME}","audio","stream",f"audio@{BOT_USERNAME}",f"stream@{BOT_USERNAME}"]) & ~filters.private & ~filters.bot)
 @errors
 async def stream(_, message: Message):
 
     lel = await message.reply("🔄 معالجة")
-    sender_id = message.from_user.id
-    sender_name = message.from_user.first_name
-
+    
     keyboard = InlineKeyboardMarkup(
             [
                 [
