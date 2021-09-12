@@ -80,7 +80,7 @@
     },
     "DURATION_LIMIT": {
       "description": "الـحـد الاقـصـي لـمـده الاغـانـي",
-      "required": true,
+      "required": false,
       "value": "15"
     }
   }
