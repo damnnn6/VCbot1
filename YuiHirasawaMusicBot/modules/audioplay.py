@@ -50,7 +50,7 @@ async def stream(_, message: Message):
     else:
         return await AY.edit_text(" لم اجد اغنية لتشغيلها!")
 
-    if message.chat.id in callsmusic.active_chats:
+    if message.chat.id in callsmusic.callsmusic.active_chats:
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
         photo=f"{BG_IMAGE}",
