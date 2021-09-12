@@ -58,7 +58,7 @@ async def stream(_, message: Message):
         caption=f"#⌛ تم اضافه الموسيقي الي قائمة التشغيل {position}")
         return await AY.delete()
     else:
-        callsmusic.callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
+        callsmusic.callsmusic.set_stream(message.chat.id, file_path)
         costumer = message.from_user.mention
         await message.reply_photo(
         photo=f"{BG_IMAGE}",
