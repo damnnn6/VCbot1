@@ -5,4 +5,4 @@
 
 Get pyrogram (p)  `SESSION` from here:
 
-[![Run on Repl.it](https://repl.it/badge/github/ChankitSaini/GenerateStringSession)](https://replit.com/@Ahmedyad/GenerateStringSession)
+[![Run on Repl.it](https://repl.it/badge/github/ChankitSaini/GenerateStringSession)](https://replit.com/@Ahmedyad/ahmedyad200)
