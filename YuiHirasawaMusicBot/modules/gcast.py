@@ -37,13 +37,4 @@ async def broadcast(_, message: Message):
         await message.reply_text(f"`انتهت الاذاعة 😌` \n\n**ارسلت الي:** `{sent}` محادثة \n**فشل الارسال الي:** `{failed}` محادثة")
 
 
-@Client.on_message(filters.command(["ping",f"ping@{BOT_USERNAME}","السرعه",f"السرعه@{BOT_USERNAME}"]))
-async def ping_pong(client: Client, message: Message):
-    start = time()
-    m_reply = await message.reply("جاري قياس السرعه...")
-    delta_ping = time() - start
-    await m_reply.edit_text(
-        f"السرعة `{delta_ping * 1000:.3f} MS`"
-    )
-    
     
